@@ -575,6 +575,69 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   text-align: center;
 }
 
+/* ---- Wren's journal ---- */
+.journal-page {
+  position: relative;
+  background: linear-gradient(160deg, #2b2118, #241c14);
+  color: #ddd5c6;
+  border-radius: 12px;
+  padding: 28px 24px 14px;
+  min-height: 480px;
+  max-height: 78dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6), inset 0 0 0 1px #3f3226, inset 0 0 70px rgba(0,0,0,0.35);
+}
+.journal-head {
+  font-family: 'Cinzel', serif;
+  font-size: 21px;
+  color: #c9a95c;
+  margin-bottom: 4px;
+}
+.journal-flyleaf {
+  font-family: 'Space Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: #8a7a62;
+  border-bottom: 1px solid rgba(221,213,198,0.15);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.journal-entry { margin-bottom: 18px; }
+.journal-entry .je-head {
+  font-family: 'Space Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a7a62;
+  margin-bottom: 4px;
+}
+.journal-entry .je-text {
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #d6ccb8;
+  margin: 0;
+}
+.journal-entry.closing {
+  border-top: 1px solid rgba(221,213,198,0.15);
+  padding-top: 16px;
+}
+.journal-entry.closing .je-head { color: #c9a95c; }
+.je-empty {
+  font-style: italic;
+  color: #8a7a62;
+  margin: auto 0;
+  text-align: center;
+}
+.journal-nav {
+  background: rgba(221,213,198,0.08);
+  color: #d6ccb8;
+  border-color: rgba(221,213,198,0.25);
+}
+.journal-page .book-close-x { color: #8a7a62; }
+
 /* ---- past journeys ---- */
 .past-journeys {
   border-top: 1px solid var(--border);

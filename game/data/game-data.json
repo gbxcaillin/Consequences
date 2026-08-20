@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
@@ -76,6 +76,13 @@
         "light": "…I have nothing to write. There is no word in any record for what you just took.",
         "dark": "The prophecy has an ending written for you, and you just refused to perform it. The page is blank now. Write it yourself."
       }
+    },
+    "flyleaf": "Property of Wren, scribe of the royal archive (formerly). If found, return unread. I will know.",
+    "emptyNote": "The first page is blank. She is waiting to see what you do.",
+    "closing": {
+      "dark-lord": "Last entry. They are burning the archives tomorrow — your decree, though I doubt you read it. I have copied what matters and I am walking east tonight. You never noticed me writing, but someone will find these pages, and they will know what you were before you were this. That is what records are for.",
+      "true-hero": "Last entry of this volume. There is nothing to report: no war, no purge, no triumph. It is the finest nothing I have ever recorded. I have shelved your story between the histories of two famous men. It is better than both, because everyone in it is still alive.",
+      "crossroads": "I hardly know how to file you. Half these pages read like a warning, the other half like a beginning. I have left the final leaf blank on purpose. Come back and give me something worth the ink."
     }
   },
   "endings": [

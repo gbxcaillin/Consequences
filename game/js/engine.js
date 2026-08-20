@@ -15,6 +15,7 @@ let state = null;
 let eraseArmed = false;   // Chronicle "erase" needs a second tap
 let importNote = null;    // feedback line for save-code import
 let book = null;          // { run, page, back } while reading the Seer's account
+let journal = null;       // { run, back } while reading Wren's journal
 
 const app = document.getElementById('app');
 
@@ -90,6 +91,7 @@ function hudHTML(ch) {
       </div>
       <div class="hud-controls">
         <button class="icon-btn" data-act="map" aria-label="Journey map">MAP</button>
+        <button class="icon-btn" data-act="journal-open" aria-label="Wren&rsquo;s journal">WREN</button>
         <button class="icon-btn" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
       </div>
     </div>
@@ -180,6 +182,45 @@ function bookHTML() {
     </div>`;
 }
 
+function journalHTML() {
+  const run = journal.run;
+  const entries = [];
+  let n = 0;
+  for (const ch of DATA.chapters) {
+    const type = run.choices[ch.id];
+    if (!type) continue;
+    n += 1;
+    const line = DATA.companion.lines[ch.id] && DATA.companion.lines[ch.id][type];
+    if (!line) continue;
+    entries.push(`
+      <div class="journal-entry">
+        <div class="je-head">Entry ${n} &mdash; ${esc(ch.location)}</div>
+        <p class="je-text">${esc(line)}</p>
+      </div>`);
+  }
+  if (run.ending && DATA.companion.closing && DATA.companion.closing[run.ending]) {
+    entries.push(`
+      <div class="journal-entry closing">
+        <div class="je-head">Final entry</div>
+        <p class="je-text">${esc(DATA.companion.closing[run.ending])}</p>
+      </div>`);
+  }
+  const body = entries.length
+    ? entries.join('')
+    : `<p class="je-empty">${esc(DATA.companion.emptyNote)}</p>`;
+  return `
+    <div class="journal-page">
+      <button class="book-close-x" data-act="journal-close" aria-label="Close the journal">&times;</button>
+      <div class="journal-head">Wren&rsquo;s Journal</div>
+      <div class="journal-flyleaf">${esc(DATA.companion.flyleaf)}</div>
+      ${body}
+      <div class="book-footer" style="border-top-color:rgba(221,213,198,0.15)">
+        <span></span>
+        <button class="book-nav journal-nav" data-act="journal-close">Close</button>
+      </div>
+    </div>`;
+}
+
 function chronicleHTML() {
   const discovered = GameStore.endingsDiscovered();
   const runs = GameStore.chronicle.length;
@@ -210,7 +251,10 @@ function chronicleHTML() {
             <div class="jr-ending ${run.ending}">${ending ? esc(ending.name) : esc(run.ending)}</div>
             <div class="jr-date">${esc(when)}</div>
           </div>
-          <button class="icon-btn" data-act="read-run" data-idx="${idx}">Read</button>
+          <div class="hud-controls">
+            <button class="icon-btn" data-act="read-run" data-idx="${idx}">Seer</button>
+            <button class="icon-btn" data-act="read-journal" data-idx="${idx}">Wren</button>
+          </div>
         </div>`;
       }).join('')}
     </div>` : ''}
@@ -253,6 +297,10 @@ function render() {
     app.innerHTML = `
       <div class="scene-bg dim" ${sceneStyle(DATA.chapters[Math.max(0, Math.min(book.page - 1, DATA.chapters.length - 1))])}></div>
       <div class="screen book-screen">${bookHTML()}</div>`;
+  } else if (state.phase === 'journal') {
+    app.innerHTML = `
+      <div class="scene-bg dim" ${sceneStyle(null)}></div>
+      <div class="screen book-screen">${journalHTML()}</div>`;
   } else if (state.phase === 'narrative') {
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(ch)}></div>
@@ -325,6 +373,7 @@ function render() {
         </div>
         <div class="actions">
           <button class="continue" data-act="book-open">Read the Seer&rsquo;s Account</button>
+          <button class="continue" data-act="journal-open">Wren&rsquo;s Journal</button>
           <button class="continue" data-act="restart">Play Again</button>
           <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
@@ -406,6 +455,28 @@ app.addEventListener('click', (ev) => {
       book = { run, page: 0, back: 'chronicle' };
       state.phase = 'book';
     }
+    AudioFX.tap();
+  } else if (act === 'journal-open') {
+    journal = {
+      run: {
+        choices: state.choices,
+        ending: state.phase === 'ending' ? pickEnding().id : null,
+      },
+      back: state.phase,
+    };
+    state.phase = 'journal';
+    AudioFX.tap();
+  } else if (act === 'read-journal') {
+    const run = GameStore.chronicle[parseInt(btn.dataset.idx, 10)];
+    if (run) {
+      journal = { run, back: 'chronicle' };
+      state.phase = 'journal';
+    }
+    AudioFX.tap();
+  } else if (act === 'journal-close') {
+    state.phase = journal.back;
+    if (state.phase === 'chronicle') { state = freshState(); state.phase = 'chronicle'; }
+    journal = null;
     AudioFX.tap();
   } else if (act === 'book-next') {
     book.page = Math.min(book.page + 1, DATA.chapters.length + 1);
