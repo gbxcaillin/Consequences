@@ -146,7 +146,7 @@ function bookHTML() {
         <div class="book-chapter-title">${esc(ch.title)}</div>
         <div class="book-chapter-place">${esc(ch.location)}</div>
       </div>
-      <p class="book-body">${esc(choice.consequence)}</p>
+      <p class="book-body">${esc(choice.revealed || choice.consequence)}</p>
       <div class="seer-truth">
         <span class="seer-label">The Seer sees:</span>
         ${esc(choice.seerTruth)}

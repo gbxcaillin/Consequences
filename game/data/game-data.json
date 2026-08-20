@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
@@ -45,36 +45,36 @@
   },
   "companion": {
     "name": "Wren",
-    "role": "A royal scribe who slips away from the herald's retinue to follow you. She keeps the kingdom's records — including the ones nobody is supposed to read. She never tells you what to do; she only tells you what she has written down.",
+    "role": "A royal scribe who slips away from the herald's retinue to follow you. She records what happens — counts, filings, dry notes — and conspicuously never says what she thinks of it. Her restraint makes the player suspect; only the Seer names things.",
     "intro": "A young scribe falls into step beside you on the road out of Thornfield. \"I'm Wren. I keep the records. Someone should be keeping one of you.\"",
     "lines": {
       "prologue": {
-        "light": "You took the scroll without asking who wrote it. I keep the kingdom's records — no one ever asks who writes them.",
-        "dark": "Three hundred years of summons, and you're the first to ask the herald for proof. I checked."
+        "light": "First entry: one scroll, gold seal, no signature. The herald left before supper. I've started a new volume for you.",
+        "dark": "First entry: the Chosen One asked the herald a question. I have no earlier record of that ever happening. Noted."
       },
       "ch1": {
-        "light": "That blade has had eleven owners. I've read how each of them died — near the end, the records stop calling them by name.",
-        "dark": "Plain steel. Good. The named swords all end up in ballads, and the ballads all end the same way."
+        "light": "Second entry: the Blade of Dawning has a new bearer. That makes twelve. The other eleven have their own shelf in the archive.",
+        "dark": "Second entry: declined, one famous sword. Accepted, one plain one. Shortest entry I have ever written about that tower."
       },
       "ch2": {
-        "light": "The farmers are already calling it a victory. I wrote down what was in the wreckage. Someone should.",
-        "dark": "You walked in alone and everyone kept breathing. That never makes the ballads either."
+        "light": "Entry three: Greymarch. The farmers held a feast. I stayed behind in the camp and counted. I'll file the numbers under 'later.'",
+        "dark": "Entry three: Greymarch. Talks held. Casualties: none. Hard to make a ballad out of a quiet evening, but I intend to try."
       },
       "ch3": {
-        "light": "The vault is open, then. I've read what the old kings sealed in there. I hoped the records were wrong.",
-        "dark": "Eight hundred years of vigil and you're the first to ask it why. I'm sensing a pattern with you."
+        "light": "Entry four: one dragon, slain; one vault, opened. The mountain is quieter than the records said it would be.",
+        "dark": "Entry four: you spoke with the dragon for most of a day. I couldn't hear any of it. It watched us all the way down the pass."
       },
       "ch4": {
-        "light": "I've mapped the 'Dark Lands.' The darkest thing out there is what we're marching toward them with.",
-        "dark": "Careful. The last person who asked that question in open court is a footnote now. I wrote the footnote."
+        "light": "Entry five: commission accepted. Ten thousand men march east. I have requisitioned more ink.",
+        "dark": "Entry five: a question was asked in open court. The king's smile is on record. So is the pause before it."
       },
       "ch5": {
-        "light": "I catalogued the confiscations: medicine, songbooks, door blessings. The record will say 'artifacts of darkness.' I'll know better.",
-        "dark": "Harvest prayers and herb gardens. I'll write down what you saw — someone has to keep one honest page."
+        "light": "Entry six: Willowmere. Confiscations catalogued. The Church supplied its own labels for everything. I wrote both sets down.",
+        "dark": "Entry six: Willowmere, inspected in person. Findings: gardens, prayers, bread. Case closed, as far as my pages are concerned."
       },
       "ch6": {
-        "light": "…I have nothing to write. There is no word in any record for what you just took.",
-        "dark": "The prophecy has an ending written for you, and you just refused to perform it. The page is blank now. Write it yourself."
+        "light": "Entry seven: …I sat with this page a long while. In the end I wrote only the date.",
+        "dark": "Entry seven: an offer was made in the Elderwood, and refused. My hand is shaking. Records shouldn't editorialize. Not tonight."
       }
     },
     "flyleaf": "Property of Wren, scribe of the royal archive (formerly). If found, return unread. I will know.",
@@ -216,10 +216,11 @@
       "narrative": "A royal herald rides into your village at dawn, proclaiming you the Chosen One of the Ashenmere Prophecy, fated to defeat a great evil rising in the east.",
       "lightChoice": {
         "text": "I accept my destiny. The kingdom needs me.",
-        "consequence": "You kneel before the herald. The village cheers. A golden light seems to settle around you as you take the scroll. The prophecy has claimed another.",
+        "consequence": "You kneel. The village cheers your name; the herald's trumpet rings off the hills. When you rise, the scroll is warm in your hand, as if it had been waiting for you.",
         "corruption": 15,
         "heroism": 15,
-        "seerTruth": "You were handed a story about yourself and did not ask who wrote it. Obedience arrived dressed as destiny, and you knelt to it. That was the first door, and you walked through it with your eyes closed."
+        "seerTruth": "You were handed a story about yourself and did not ask who wrote it. Obedience arrived dressed as destiny, and you knelt to it. That was the first door, and you walked through it with your eyes closed.",
+        "revealed": "You kneel before the herald. The village cheers. A golden light seems to settle around you as you take the scroll. The prophecy has claimed another."
       },
       "darkChoice": {
         "text": "Prophecies are just words on old paper. Show me proof.",
@@ -241,10 +242,11 @@
       "narrative": "The wizard Aldric presents a magnificent sword wreathed in pale fire — the Blade of Dawning, forged by the first king. He offers it freely.",
       "lightChoice": {
         "text": "I am honored to wield the Blade of Dawning.",
-        "consequence": "The sword hums as your fingers close around the hilt. Aldric smiles, but there's something behind his eyes — relief, not pride. The blade begins to bind.",
+        "consequence": "The sword hums as your fingers close around the hilt, and pale fire runs the length of the blade in welcome. Aldric smiles and looks away. You have never held anything that fit your hand so perfectly.",
         "corruption": 15,
         "heroism": 15,
-        "seerTruth": "The sword was a leash with a handle. You admired the craftsmanship of your own binding as you fastened it to your palm."
+        "seerTruth": "The sword was a leash with a handle. You admired the craftsmanship of your own binding as you fastened it to your palm.",
+        "revealed": "The sword hums as your fingers close around the hilt. Aldric smiles, but there's something behind his eyes — relief, not pride. The blade begins to bind."
       },
       "darkChoice": {
         "text": "What does it cost to carry a blade like this?",
@@ -283,10 +285,11 @@
       "narrative": "Farmers from Greymarch beg you to destroy an orc encampment on their border. The orcs appeared a month ago. The farmers are terrified.",
       "lightChoice": {
         "text": "I will protect you. These creatures will be driven out.",
-        "consequence": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees.",
+        "consequence": "You attack at dawn. It is over faster than you expected — the camp scatters and burns, and by noon the farmers are singing in the fields. Something small crunches under your boot in the ash. You decide not to look down.",
         "corruption": 20,
         "heroism": 18,
-        "seerTruth": "Call it what it was: you killed refugees because frightened people asked you to, and you wanted their gratitude more than the truth. The toys in the ash were not a metaphor. They belonged to children."
+        "seerTruth": "Call it what it was: you killed refugees because frightened people asked you to, and you wanted their gratitude more than the truth. The toys in the ash were not a metaphor. They belonged to children.",
+        "revealed": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees."
       },
       "darkChoice": {
         "text": "Let me speak with them before anyone dies.",
@@ -325,10 +328,11 @@
       "narrative": "A great dragon guards a sealed vault. Legend holds that inside lies power enough to end all wars forever.",
       "lightChoice": {
         "text": "I will slay the dragon and claim the power to bring peace.",
-        "consequence": "The dragon falls. Inside the vault: not a weapon of peace, but an ancient plague — a grey death. The dragon was the warden. You just killed it.",
+        "consequence": "The battle is everything the ballads promised. The dragon falls from the sky like a broken mountain, and the ancient doors swing wide at your touch. A grey wind drifts out of the vault, away toward the east. The power inside will doubtless take study.",
         "corruption": 20,
         "heroism": 18,
-        "seerTruth": "Eight hundred years of vigil ended on your blade so a rumor of power could be checked. You killed the only guard of the only door that mattered, and then you opened it."
+        "seerTruth": "Eight hundred years of vigil ended on your blade so a rumor of power could be checked. You killed the only guard of the only door that mattered, and then you opened it.",
+        "revealed": "The dragon falls. Inside the vault: not a weapon of peace, but an ancient plague — a grey death. The dragon was the warden. You just killed it."
       },
       "darkChoice": {
         "text": "Why do you guard this place? What are you protecting?",
@@ -367,10 +371,11 @@
       "narrative": "King Aldren names you Commander of the Armies and orders you to march east against the 'Dark Lands.'",
       "lightChoice": {
         "text": "I will carry the kingdom's banner into the darkness.",
-        "consequence": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion.",
+        "consequence": "You ride east under the kingdom's banner with ten thousand at your back. Village after village opens its gates without a fight. Odd, how quiet the Dark Lands are. How much they look like home.",
         "corruption": 20,
         "heroism": 18,
-        "seerTruth": "You marched ten thousand soldiers at farmers because a king called freedom 'darkness' and you did not check the map. The invasion had a hero's face. Yours."
+        "seerTruth": "You marched ten thousand soldiers at farmers because a king called freedom 'darkness' and you did not check the map. The invasion had a hero's face. Yours.",
+        "revealed": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion."
       },
       "darkChoice": {
         "text": "Why do you call them the Dark Lands? What did they do?",
@@ -409,10 +414,11 @@
       "narrative": "The Church of Light declares that the halflings practice forbidden dark magic. They demand you purify the village.",
       "lightChoice": {
         "text": "Dark magic must be purged wherever it hides.",
-        "consequence": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book.",
+        "consequence": "The purification is orderly. The Church names each artifact as your soldiers carry it to the fire, and the list is long. The priestess declares Willowmere clean. No one sings that night — but then, it is late.",
         "corruption": 15,
         "heroism": 15,
-        "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch."
+        "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch.",
+        "revealed": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book."
       },
       "darkChoice": {
         "text": "Show me this dark magic yourself. I want to see it.",
@@ -451,10 +457,11 @@
       "narrative": "The last unicorn appears and offers to sacrifice itself to give you the power to defeat the great evil.",
       "lightChoice": {
         "text": "Your sacrifice will save millions. I accept.",
-        "consequence": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition.",
+        "consequence": "The unicorn lowers its head. Light pours into you until you are radiant — power beyond any king, any army, any age. The glade is silent. Utterly silent. You have never felt so strong, or heard so little.",
         "corruption": 25,
         "heroism": 20,
-        "seerTruth": "The last innocent thing in the world offered itself, and you accepted. Every tyrant's ledger balances this way: a great good promised, a small light extinguished, forever. You were radiant, and the glade was silent."
+        "seerTruth": "The last innocent thing in the world offered itself, and you accepted. Every tyrant's ledger balances this way: a great good promised, a small light extinguished, forever. You were radiant, and the glade was silent.",
+        "revealed": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition."
       },
       "darkChoice": {
         "text": "No. I won't buy victory with your life.",
