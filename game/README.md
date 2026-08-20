@@ -1,9 +1,16 @@
-# Consequences — playable scaffold
+# Consequences — playable build
 
 A story-driven phone game of inverted morality: the heroic-feeling path
 quietly corrupts you; the questioning path quietly saves the world.
 
-## Run it
+**Play it live: <https://gbxcaillin.github.io/Consequences/>**
+
+Deploys automatically via GitHub Actions
+(`.github/workflows/deploy-pages.yml`) on every push that touches
+`game/`. It's installable as a home-screen app (PWA) and works offline
+after the first visit.
+
+## Run it locally
 
 The engine loads `data/game-data.json` over HTTP, so serve the folder
 rather than opening `index.html` directly:
