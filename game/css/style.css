@@ -575,6 +575,31 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   text-align: center;
 }
 
+/* ---- how to play ---- */
+.ht-item { margin-bottom: 18px; }
+.ht-head {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.ht-text {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--text-dim);
+  margin: 0;
+}
+.ht-warning {
+  font-style: italic;
+  font-size: 15px;
+  color: var(--gold);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin: 6px 0 0;
+}
+
 /* ---- Wren's journal ---- */
 .journal-page {
   position: relative;

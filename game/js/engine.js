@@ -221,6 +221,26 @@ function journalHTML() {
     </div>`;
 }
 
+function howtoHTML() {
+  const items = [
+    ['Read, then choose', 'Each chapter ends in a single decision between two paths. Neither is labeled right or wrong. Choose what you believe — the story continues either way.'],
+    ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions.'],
+    ['Your legend grows', 'The Heroism bar shows how the kingdom sees you. Whether the kingdom sees clearly is another matter.'],
+    ['On the road', 'MAP shows your progress through the land. WREN opens your companion&rsquo;s journal — a scribe who writes down what you do, as you do it. The note icon silences the realm.'],
+    ['The ending is yours', 'There are three endings. Finish a journey to learn which one your choices earned, and to read the Seer&rsquo;s unvarnished account of what you actually did.'],
+    ['Carry it with you', 'Progress saves automatically on this device. The Chronicle keeps every completed journey, and a save code carries it all to another device.'],
+  ].map(([head, text]) => `
+    <div class="ht-item">
+      <div class="ht-head">${head}</div>
+      <p class="ht-text">${text}</p>
+    </div>`).join('');
+  return `
+    <div class="map-head">How to Play</div>
+    ${items}
+    <p class="ht-warning">One warning, traveler: how a choice feels and what a choice does are not always the same thing.</p>
+    <div class="actions"><button class="continue" data-act="to-title">Return</button></div>`;
+}
+
 function chronicleHTML() {
   const discovered = GameStore.endingsDiscovered();
   const runs = GameStore.chronicle.length;
@@ -286,6 +306,7 @@ function render() {
         <div class="actions">
           ${resumable ? '<button class="continue" data-act="resume">Continue</button>' : ''}
           <button class="continue" data-act="begin">${resumable ? 'New Journey' : 'Begin'}</button>
+          <button class="continue" data-act="howto">How to Play</button>
           <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
       </div>`;
@@ -293,6 +314,10 @@ function render() {
     app.innerHTML = `
       <div class="scene-bg dim" ${sceneStyle(null)}></div>
       <div class="screen chronicle-screen">${chronicleHTML()}</div>`;
+  } else if (state.phase === 'howto') {
+    app.innerHTML = `
+      <div class="scene-bg dim" ${sceneStyle(null)}></div>
+      <div class="screen chronicle-screen">${howtoHTML()}</div>`;
   } else if (state.phase === 'book') {
     app.innerHTML = `
       <div class="scene-bg dim" ${sceneStyle(DATA.chapters[Math.max(0, Math.min(book.page - 1, DATA.chapters.length - 1))])}></div>
@@ -402,6 +427,10 @@ app.addEventListener('click', (ev) => {
   } else if (act === 'chronicle') {
     state = freshState();
     state.phase = 'chronicle';
+    AudioFX.tap();
+  } else if (act === 'howto') {
+    state = freshState();
+    state.phase = 'howto';
     AudioFX.tap();
   } else if (act === 'to-title') {
     state = freshState();
