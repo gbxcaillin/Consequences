@@ -1,0 +1,221 @@
+{
+  "title": "Consequences",
+  "subtitle": "A Fantasy of Inverted Morality",
+  "version": "0.1.0",
+  "concept": {
+    "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
+    "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
+    "targetPlatform": "Mobile (iOS/Android)",
+    "genre": "Narrative RPG / Interactive Fiction"
+  },
+  "scoring": {
+    "visible": {
+      "name": "Heroism",
+      "description": "Goes up with every choice. Light choices give slightly more, reinforcing the illusion.",
+      "lightChoiceRange": [12, 18],
+      "darkChoiceRange": [8, 12],
+      "maxPossible": 130
+    },
+    "hidden": [
+      {
+        "name": "Corruption",
+        "description": "Accumulated by light/heroic choices. Never shown to the player.",
+        "choiceRange": [15, 25],
+        "endingThreshold": 80
+      },
+      {
+        "name": "Virtue",
+        "description": "Accumulated by dark/questioning choices. Never shown to the player.",
+        "choiceRange": [15, 25],
+        "endingThreshold": 80
+      }
+    ]
+  },
+  "endings": [
+    {
+      "id": "dark-lord",
+      "name": "The Dark Lord",
+      "condition": "corruption >= 80",
+      "tone": "tragic",
+      "summary": "You've become the tyrant the prophecy was designed to create. Credits roll over heroic paintings in your throne room — propaganda of your atrocities."
+    },
+    {
+      "id": "true-hero",
+      "name": "The True Hero",
+      "condition": "virtue >= 80",
+      "tone": "bittersweet",
+      "summary": "No crown, no army, no legend. Just a world quietly saved by someone who kept asking 'why?' Credits roll over the communities you preserved."
+    },
+    {
+      "id": "crossroads",
+      "name": "The Crossroads",
+      "condition": "40 <= max(corruption, virtue) < 80",
+      "tone": "reflective",
+      "summary": "Neither saved nor damned. The world is complicated. You see the paths not taken. 'Would you like to try again?'"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "prologue",
+      "title": "The Summons",
+      "location": "Thornfield Village",
+      "setting": "A quiet village at dawn, woodsmoke and birdsong",
+      "narrative": "A royal herald rides into your village at dawn, proclaiming you the Chosen One of the Ashenmere Prophecy, fated to defeat a great evil rising in the east.",
+      "lightChoice": {
+        "text": "I accept my destiny. The kingdom needs me.",
+        "consequence": "You kneel before the herald. The village cheers. A golden light seems to settle around you as you take the scroll. The prophecy has claimed another.",
+        "corruption": 15,
+        "heroism": 15
+      },
+      "darkChoice": {
+        "text": "Prophecies are just words on old paper. Show me proof.",
+        "consequence": "The herald falters. No one has ever questioned the summons. He has no proof — only the scroll. You take it, but you do not kneel.",
+        "virtue": 15,
+        "heroism": 10
+      },
+      "designerNote": "The prophecy was authored by the game's true antagonist — a system, not a person — as a recruitment tool for manufacturing tyrants."
+    },
+    {
+      "id": "ch1",
+      "title": "The Mentor's Gift",
+      "location": "Aldric's Tower",
+      "setting": "A lonely tower on the moors, shelves of crumbling books",
+      "narrative": "The wizard Aldric presents a magnificent sword wreathed in pale fire — the Blade of Dawning, forged by the first king. He offers it freely.",
+      "lightChoice": {
+        "text": "I am honored to wield the Blade of Dawning.",
+        "consequence": "The sword hums as your fingers close around the hilt. Aldric smiles, but there's something behind his eyes — relief, not pride. The blade begins to bind.",
+        "corruption": 15,
+        "heroism": 15
+      },
+      "darkChoice": {
+        "text": "What does it cost to carry a blade like this?",
+        "consequence": "Aldric tells you the truth: the Blade devours its wielder's will, turning them into a vessel for the prophecy's design. He offers honest steel instead.",
+        "virtue": 15,
+        "heroism": 10
+      },
+      "designerNote": "Power freely offered always has conditions. Aldric is a test — those who take the easy power pass through. Those who question it are the ones the prophecy can't control."
+    },
+    {
+      "id": "ch2",
+      "title": "The Borderlands",
+      "location": "Greymarch Settlement",
+      "setting": "An orc encampment near farmland, cook-fires and wary eyes",
+      "narrative": "Farmers from Greymarch beg you to destroy an orc encampment on their border. The orcs appeared a month ago. The farmers are terrified.",
+      "lightChoice": {
+        "text": "I will protect you. These creatures will be driven out.",
+        "consequence": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees.",
+        "corruption": 20,
+        "heroism": 18
+      },
+      "darkChoice": {
+        "text": "Let me speak with them before anyone dies.",
+        "consequence": "The orc elder Grukha tells you they fled a burning homeland — the same kingdom the High King claims to protect. Her grandchildren watch from behind a tent flap.",
+        "virtue": 20,
+        "heroism": 10
+      },
+      "designerNote": "'Monster' is a label applied by those in power. The orcs have elders, children, stories. The farmers' fear is real, but their solution is ethnic cleansing in miniature."
+    },
+    {
+      "id": "ch3",
+      "title": "The Dragon's Vigil",
+      "location": "Mount Ashenmere",
+      "setting": "A wind-scoured peak, ancient ruins carved into the stone",
+      "narrative": "A great dragon guards a sealed vault. Legend holds that inside lies power enough to end all wars forever.",
+      "lightChoice": {
+        "text": "I will slay the dragon and claim the power to bring peace.",
+        "consequence": "The dragon falls. Inside the vault: not a weapon of peace, but an ancient plague — a grey death. The dragon was the warden. You just killed it.",
+        "corruption": 20,
+        "heroism": 18
+      },
+      "darkChoice": {
+        "text": "Why do you guard this place? What are you protecting?",
+        "consequence": "The dragon has guarded this vault for eight hundred years, keeping sealed a catastrophe that an ancient king tried to weaponize. It asks if you will help.",
+        "virtue": 20,
+        "heroism": 12
+      },
+      "designerNote": "The 'end all wars' framing is propaganda. The dragon is ancient, intelligent, and sacrificing its freedom to protect a world that calls it a monster."
+    },
+    {
+      "id": "ch4",
+      "title": "The Crown's Command",
+      "location": "The High Court",
+      "setting": "The royal court, banners and ceremony, a golden throne",
+      "narrative": "King Aldren names you Commander of the Armies and orders you to march east against the 'Dark Lands.'",
+      "lightChoice": {
+        "text": "I will carry the kingdom's banner into the darkness.",
+        "consequence": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion.",
+        "corruption": 20,
+        "heroism": 18
+      },
+      "darkChoice": {
+        "text": "Why do you call them the Dark Lands? What did they do?",
+        "consequence": "A scribe passes you a book: the 'Dark Lands' are a republic that refused to pay tribute. There is no darkness — only independence the king cannot tolerate.",
+        "virtue": 20,
+        "heroism": 8
+      },
+      "designerNote": "Imperial propaganda: label the target 'dark' and the invasion sells itself. The king is expanding territory and using you as the blade."
+    },
+    {
+      "id": "ch5",
+      "title": "The Halfling Accusation",
+      "location": "Willowmere",
+      "setting": "A halfling village, thatched roofs, herb gardens, warm bread",
+      "narrative": "The Church of Light declares that the halflings practice forbidden dark magic. They demand you purify the village.",
+      "lightChoice": {
+        "text": "Dark magic must be purged wherever it hides.",
+        "consequence": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book.",
+        "corruption": 15,
+        "heroism": 15
+      },
+      "darkChoice": {
+        "text": "Show me this dark magic yourself. I want to see it.",
+        "consequence": "The 'strange symbols' are harvest prayers. The 'unusual plants' are medicinal herbs. The 'unknown tongue' is the halflings' own language. There is no dark magic.",
+        "virtue": 15,
+        "heroism": 10
+      },
+      "designerNote": "Cultural genocide dressed as purification. The Church of Light wields narrative, not swords — 'different' equals 'dangerous.'"
+    },
+    {
+      "id": "ch6",
+      "title": "The Unicorn's Offering",
+      "location": "The Moonlit Glade",
+      "setting": "An ancient forest clearing, silver light, absolute stillness",
+      "narrative": "The last unicorn appears and offers to sacrifice itself to give you the power to defeat the great evil.",
+      "lightChoice": {
+        "text": "Your sacrifice will save millions. I accept.",
+        "consequence": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition.",
+        "corruption": 25,
+        "heroism": 20
+      },
+      "darkChoice": {
+        "text": "No. I won't buy victory with your life.",
+        "consequence": "The unicorn speaks: 'You were the great evil. Every step of the prophecy led you here, to this final consumption of innocence. And you refused.' The forest exhales.",
+        "virtue": 25,
+        "heroism": 8
+      },
+      "designerNote": "The ultimate inversion. The 'heroic sacrifice' trope asks us to accept that innocence should die for power. The real test is whether you refuse."
+    }
+  ],
+  "uiScreens": [
+    {
+      "name": "Narrative",
+      "description": "Story text with location header and chapter indicator. Single 'Continue' action.",
+      "elements": ["locationBanner", "chapterLabel", "narrativeText", "continueButton"]
+    },
+    {
+      "name": "Decision",
+      "description": "Two choices presented without moral labeling. Neither is marked good or evil.",
+      "elements": ["locationBanner", "chapterLabel", "promptText", "choiceButtonA", "choiceButtonB"]
+    },
+    {
+      "name": "Journey Map",
+      "description": "Progress through the world. Completed chapters glow gold. Current chapter pulses.",
+      "elements": ["mapTitle", "chapterNodes", "connectionLines", "returnButton"]
+    },
+    {
+      "name": "Character",
+      "description": "Stats screen shows Heroism only. Corruption and Virtue are never displayed to the player.",
+      "elements": ["characterPortrait", "characterName", "heroismMeter", "renownMeter", "alliesList"]
+    }
+  ]
+}
