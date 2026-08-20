@@ -11,6 +11,7 @@ const SAVE_KEY = 'consequences-save-v1';
 
 let DATA = null;
 let state = null;
+let saved = null;   // a resumable run found at boot, offered on the title screen
 
 const app = document.getElementById('app');
 
@@ -23,6 +24,7 @@ function freshState() {
     virtue: 0,
     heroism: 0,
     choices: {},           // chapterId -> 'light' | 'dark'
+    showMap: false,
   };
 }
 
@@ -94,6 +96,10 @@ function hudHTML(ch) {
         <div class="location">${esc(ch.location)}</div>
         <div class="chapter">${chapterLabel(ch)} — ${esc(ch.title)}</div>
       </div>
+      <div class="hud-controls">
+        <button class="icon-btn" data-act="map" aria-label="Journey map">MAP</button>
+        <button class="icon-btn" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
+      </div>
     </div>
     <div class="heroism">
       <span class="hlabel">Heroism</span>
@@ -101,17 +107,40 @@ function hudHTML(ch) {
     </div>`;
 }
 
+function mapOverlayHTML() {
+  const items = DATA.chapters.map((ch, i) => {
+    const done = state.choices[ch.id] !== undefined;
+    const current = i === state.chapterIndex;
+    const cls = current ? 'current' : (done ? 'done' : 'locked');
+    const title = (done || current) ? esc(ch.title) : '· · ·';
+    const place = (done || current) ? esc(ch.location) : 'Unknown';
+    return `
+      <li class="${cls}">
+        <span class="node"></span>
+        <span class="map-title">${title}</span>
+        <span class="map-place">${place}</span>
+      </li>`;
+  }).join('');
+  return `
+    <div class="map-overlay">
+      <div class="map-head">Your Journey</div>
+      <ul class="map-list">${items}</ul>
+      <div class="actions"><button class="continue" data-act="map">Return</button></div>
+    </div>`;
+}
+
 function render() {
   const ch = chapter();
   if (state.phase === 'title') {
+    const resumable = saved && saved.phase !== 'title';
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(null)}></div>
       <div class="screen title-screen">
         <h1>Consequences</h1>
         <div class="sub">A fantasy of inverted morality</div>
         <div class="actions">
-          <button class="continue" data-act="begin">Begin</button>
-          ${load() && load().phase !== 'title' ? '' : ''}
+          ${resumable ? '<button class="continue" data-act="resume">Continue</button>' : ''}
+          <button class="continue" data-act="begin">${resumable ? 'New Journey' : 'Begin'}</button>
         </div>
       </div>`;
   } else if (state.phase === 'narrative') {
@@ -122,6 +151,7 @@ function render() {
         <img class="figure" src="assets/sprites/${ch.sprite}.png" alt="">
         <div class="narrative"><p>${esc(ch.narrative)}</p></div>
         <div class="actions"><button class="continue" data-act="choices">Continue</button></div>
+        ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'choice') {
     app.innerHTML = `
@@ -134,6 +164,7 @@ function render() {
           <button class="choice-light" data-act="choose" data-choice="light">${esc(ch.lightChoice.text)}</button>
           <button class="choice-dark" data-act="choose" data-choice="dark">${esc(ch.darkChoice.text)}</button>
         </div>
+        ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'consequence') {
     const type = state.lastChoice;
@@ -165,6 +196,7 @@ function render() {
         <div class="actions">
           <button class="continue" data-act="next">${last ? 'See Your Ending' : 'Continue'}</button>
         </div>
+        ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'ending') {
     const ending = pickEnding();
@@ -195,9 +227,17 @@ app.addEventListener('click', (ev) => {
 
   if (act === 'begin') {
     state = freshState();
+    saved = null;
     state.phase = 'narrative';
+    AudioFX.tap();
+  } else if (act === 'resume') {
+    state = saved;
+    saved = null;
+    state.showMap = false;
+    AudioFX.tap();
   } else if (act === 'choices') {
     state.phase = 'choice';
+    AudioFX.tap();
   } else if (act === 'choose') {
     const type = btn.dataset.choice;
     const ch = chapter();
@@ -208,15 +248,24 @@ app.addEventListener('click', (ev) => {
     state.virtue += choice.virtue || 0;
     state.heroism += choice.heroism || 0;
     state.phase = 'consequence';
+    if (type === 'light') AudioFX.light(); else AudioFX.dark();
   } else if (act === 'next') {
     if (state.chapterIndex < DATA.chapters.length - 1) {
       state.chapterIndex += 1;
       state.phase = 'narrative';
+      AudioFX.tap();
     } else {
       state.phase = 'ending';
+      AudioFX.ending(pickEnding().id);
     }
   } else if (act === 'restart') {
     state = freshState();
+    AudioFX.tap();
+  } else if (act === 'map') {
+    state.showMap = !state.showMap;
+    AudioFX.tap();
+  } else if (act === 'sound') {
+    AudioFX.toggle();
   }
   save();
   render();
@@ -231,10 +280,17 @@ fetch('data/game-data.json')
   })
   .then(data => {
     DATA = data;
-    state = load() || freshState();
+    saved = load();
+    state = freshState();
     render();
   })
   .catch(err => {
     app.innerHTML = `<div class="loading">Couldn&rsquo;t load game data (${esc(String(err.message || err))}).<br>
       Serve this folder over HTTP &mdash; e.g. <code>python3 -m http.server</code> &mdash; rather than opening the file directly.</div>`;
   });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* offline support is optional */ });
+  });
+}

@@ -66,6 +66,11 @@ html, body {
   padding: 20px;
   padding-top: max(20px, env(safe-area-inset-top));
   padding-bottom: max(20px, env(safe-area-inset-bottom));
+  animation: fadeUp 0.35s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ---- header ---- */
@@ -267,6 +272,89 @@ button.continue {
   margin: 0 0 0.8em;
 }
 
+/* ---- hud controls ---- */
+.hud-controls { display: flex; gap: 6px; }
+.icon-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: rgba(30,26,23,0.7);
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+/* ---- journey map overlay ---- */
+.map-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: rgba(17,15,13,0.94);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px;
+  padding-top: max(28px, env(safe-area-inset-top));
+  animation: fadeUp 0.25s ease both;
+}
+.map-head {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 22px;
+}
+.map-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 8px;
+  flex: 1;
+  position: relative;
+}
+.map-list::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--border);
+}
+.map-list li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  align-items: center;
+  padding: 9px 0;
+  position: relative;
+}
+.map-list .node {
+  grid-row: 1 / span 2;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  box-sizing: border-box;
+  z-index: 1;
+}
+.map-list li.done .node { background: var(--gold-dim); border-color: var(--gold-dim); }
+.map-list li.current .node { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(212,184,106,0.15); }
+.map-title { font-size: 16px; color: var(--text-faint); }
+.map-place {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  grid-column: 2;
+}
+.map-list li.done .map-title { color: var(--text-dim); }
+.map-list li.current .map-title { color: var(--text); font-weight: 600; }
+.map-list li.done .map-place, .map-list li.current .map-place { color: var(--gold-dim); }
+
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
 }
