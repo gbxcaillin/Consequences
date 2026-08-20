@@ -14,6 +14,7 @@ let DATA = null;
 let state = null;
 let eraseArmed = false;   // Chronicle "erase" needs a second tap
 let importNote = null;    // feedback line for save-code import
+let book = null;          // { run, page, back } while reading the Seer's account
 
 const app = document.getElementById('app');
 
@@ -120,6 +121,65 @@ function mapOverlayHTML() {
     </div>`;
 }
 
+function bookHTML() {
+  const run = book.run;
+  const total = DATA.chapters.length + 2;   // cover + chapters + verdict
+  const page = book.page;
+  let inner;
+  if (page === 0) {
+    inner = `
+      <div class="book-cover">
+        <div class="book-title">The Book of<br>Consequences</div>
+        <div class="book-byline">as witnessed by ${esc(DATA.seer.name)}</div>
+        <p class="book-body">${esc(DATA.seer.intro)}</p>
+      </div>`;
+  } else if (page <= DATA.chapters.length) {
+    const ch = DATA.chapters[page - 1];
+    const type = run.choices[ch.id];
+    const choice = type === 'light' ? ch.lightChoice : ch.darkChoice;
+    const isLight = type === 'light';
+    inner = `
+      <div class="book-chapter-head">
+        <div class="book-chapter-label">${chapterLabel(ch)}</div>
+        <div class="book-chapter-title">${esc(ch.title)}</div>
+        <div class="book-chapter-place">${esc(ch.location)}</div>
+      </div>
+      <p class="book-body">${esc(choice.consequence)}</p>
+      <div class="seer-truth">
+        <span class="seer-label">The Seer sees:</span>
+        ${esc(choice.seerTruth)}
+      </div>
+      <div class="ledger ${isLight ? 'corrupt' : 'virtue'}">
+        The ledger: ${isLight ? 'Corruption +' + (choice.corruption || 0) : 'Virtue +' + (choice.virtue || 0)}
+      </div>`;
+  } else {
+    const ending = DATA.endings.find(e => e.id === run.ending);
+    inner = `
+      <div class="book-chapter-head">
+        <div class="book-chapter-label">The Seer&rsquo;s Verdict</div>
+        <div class="book-chapter-title">${esc(ending.name)}</div>
+      </div>
+      <div class="book-tally">
+        <span class="corrupt">Corruption ${run.corruption}</span>
+        <span class="virtue">Virtue ${run.virtue}</span>
+        <span>&ldquo;Heroism&rdquo; you were shown: ${run.heroism}</span>
+      </div>
+      <p class="book-body">${esc(DATA.seer.verdicts[run.ending])}</p>`;
+  }
+  return `
+    <div class="book-page">
+      <button class="book-close-x" data-act="book-close" aria-label="Close the book">&times;</button>
+      ${inner}
+      <div class="book-footer">
+        <button class="book-nav" data-act="book-prev" ${page === 0 ? 'disabled' : ''}>&larr;</button>
+        <span class="book-pageno">${page + 1} / ${total}</span>
+        ${page < total - 1
+          ? '<button class="book-nav" data-act="book-next">&rarr;</button>'
+          : '<button class="book-nav" data-act="book-close">Close</button>'}
+      </div>
+    </div>`;
+}
+
 function chronicleHTML() {
   const discovered = GameStore.endingsDiscovered();
   const runs = GameStore.chronicle.length;
@@ -137,6 +197,23 @@ function chronicleHTML() {
     <p class="chron-sub">${runs === 0 ? 'No journeys completed yet. Wren’s pages are waiting.'
       : runs + (runs === 1 ? ' journey' : ' journeys') + ' recorded &middot; ' + discovered.length + ' of ' + DATA.endings.length + ' endings discovered'}</p>
     <div class="ending-cards">${cards}</div>
+    ${GameStore.chronicle.length ? `
+    <div class="past-journeys">
+      <div class="st-head">Past journeys</div>
+      ${GameStore.chronicle.slice(-12).reverse().map((run) => {
+        const idx = GameStore.chronicle.lastIndexOf(run);
+        const ending = DATA.endings.find(e => e.id === run.ending);
+        const when = new Date(run.finishedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+        return `
+        <div class="journey-row">
+          <div>
+            <div class="jr-ending ${run.ending}">${ending ? esc(ending.name) : esc(run.ending)}</div>
+            <div class="jr-date">${esc(when)}</div>
+          </div>
+          <button class="icon-btn" data-act="read-run" data-idx="${idx}">Read</button>
+        </div>`;
+      }).join('')}
+    </div>` : ''}
     <div class="save-transfer">
       <div class="st-head">Carry your save</div>
       <p class="st-note">Copy a save code to move your Chronicle to another device, or paste one below.</p>
@@ -172,6 +249,10 @@ function render() {
     app.innerHTML = `
       <div class="scene-bg dim" ${sceneStyle(null)}></div>
       <div class="screen chronicle-screen">${chronicleHTML()}</div>`;
+  } else if (state.phase === 'book') {
+    app.innerHTML = `
+      <div class="scene-bg dim" ${sceneStyle(DATA.chapters[Math.max(0, Math.min(book.page - 1, DATA.chapters.length - 1))])}></div>
+      <div class="screen book-screen">${bookHTML()}</div>`;
   } else if (state.phase === 'narrative') {
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(ch)}></div>
@@ -243,6 +324,7 @@ function render() {
           <p class="chron-mark">Recorded in your Chronicle &mdash; ${discovered} of ${DATA.endings.length} endings discovered.</p>
         </div>
         <div class="actions">
+          <button class="continue" data-act="book-open">Read the Seer&rsquo;s Account</button>
           <button class="continue" data-act="restart">Play Again</button>
           <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
@@ -303,6 +385,38 @@ app.addEventListener('click', (ev) => {
   } else if (act === 'restart') {
     state = freshState();
     state.phase = 'narrative';
+    AudioFX.tap();
+  } else if (act === 'book-open') {
+    book = {
+      run: {
+        choices: state.choices,
+        corruption: state.corruption,
+        virtue: state.virtue,
+        heroism: state.heroism,
+        ending: pickEnding().id,
+      },
+      page: 0,
+      back: 'ending',
+    };
+    state.phase = 'book';
+    AudioFX.tap();
+  } else if (act === 'read-run') {
+    const run = GameStore.chronicle[parseInt(btn.dataset.idx, 10)];
+    if (run) {
+      book = { run, page: 0, back: 'chronicle' };
+      state.phase = 'book';
+    }
+    AudioFX.tap();
+  } else if (act === 'book-next') {
+    book.page = Math.min(book.page + 1, DATA.chapters.length + 1);
+    AudioFX.tap();
+  } else if (act === 'book-prev') {
+    book.page = Math.max(book.page - 1, 0);
+    AudioFX.tap();
+  } else if (act === 'book-close') {
+    state.phase = book.back;
+    if (state.phase === 'chronicle') { state = freshState(); state.phase = 'chronicle'; }
+    book = null;
     AudioFX.tap();
   } else if (act === 'map') {
     state.showMap = !state.showMap;

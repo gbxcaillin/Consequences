@@ -76,3 +76,8 @@ synchronous access keeps the engine simple.
 - **Endings** — picked by hidden score (Corruption ≥ 80 → The Dark Lord,
   Virtue ≥ 80 → The True Hero, else The Crossroads), each with
   `reflections` filtered by your specific choices.
+- **The Seer's book** — after any completed run (and for every run in the
+  Chronicle), the player can read their whole journey back as a book,
+  narrated by an unbiased Seer who names each choice for what it really
+  was and reveals the hidden ledger chapter by chapter, closing with a
+  verdict. This is the only place the true scores are ever shown.

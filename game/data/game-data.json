@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
@@ -12,21 +12,33 @@
     "visible": {
       "name": "Heroism",
       "description": "Goes up with every choice. Light choices give slightly more, reinforcing the illusion.",
-      "lightChoiceRange": [12, 18],
-      "darkChoiceRange": [8, 12],
+      "lightChoiceRange": [
+        12,
+        18
+      ],
+      "darkChoiceRange": [
+        8,
+        12
+      ],
       "maxPossible": 130
     },
     "hidden": [
       {
         "name": "Corruption",
         "description": "Accumulated by light/heroic choices. Never shown to the player.",
-        "choiceRange": [15, 25],
+        "choiceRange": [
+          15,
+          25
+        ],
         "endingThreshold": 80
       },
       {
         "name": "Virtue",
         "description": "Accumulated by dark/questioning choices. Never shown to the player.",
-        "choiceRange": [15, 25],
+        "choiceRange": [
+          15,
+          25
+        ],
         "endingThreshold": 80
       }
     ]
@@ -74,10 +86,34 @@
       "tone": "tragic",
       "summary": "You've become the tyrant the prophecy was designed to create. Credits roll over heroic paintings in your throne room — propaganda of your atrocities.",
       "reflections": [
-        { "if": { "chapter": "ch2", "choice": "light" }, "text": "Greymarch's border fields are quiet now. Nothing lives there to tend them." },
-        { "if": { "chapter": "ch3", "choice": "light" }, "text": "The vault stands open on Mount Ashenmere. Something grey drifts east on the wind." },
-        { "if": { "chapter": "ch5", "choice": "light" }, "text": "No one sings in Willowmere. No one is left who remembers the words." },
-        { "if": { "chapter": "ch6", "choice": "light" }, "text": "In the Elderwood there is a clearing where nothing will ever grow again." }
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "light"
+          },
+          "text": "Greymarch's border fields are quiet now. Nothing lives there to tend them."
+        },
+        {
+          "if": {
+            "chapter": "ch3",
+            "choice": "light"
+          },
+          "text": "The vault stands open on Mount Ashenmere. Something grey drifts east on the wind."
+        },
+        {
+          "if": {
+            "chapter": "ch5",
+            "choice": "light"
+          },
+          "text": "No one sings in Willowmere. No one is left who remembers the words."
+        },
+        {
+          "if": {
+            "chapter": "ch6",
+            "choice": "light"
+          },
+          "text": "In the Elderwood there is a clearing where nothing will ever grow again."
+        }
       ]
     },
     {
@@ -87,11 +123,41 @@
       "tone": "bittersweet",
       "summary": "No crown, no army, no legend. Just a world quietly saved by someone who kept asking 'why?' Credits roll over the communities you preserved.",
       "reflections": [
-        { "if": { "chapter": "ch2", "choice": "dark" }, "text": "Grukha's grandchildren farm the Greymarch borderlands beside the farmers' children." },
-        { "if": { "chapter": "ch3", "choice": "dark" }, "text": "The dragon still keeps its vigil — no longer alone. You visit in autumn." },
-        { "if": { "chapter": "ch4", "choice": "dark" }, "text": "The eastern republic sent a letter of thanks. Wren keeps it in the archive." },
-        { "if": { "chapter": "ch5", "choice": "dark" }, "text": "On feast days, Willowmere sings the old songs loudly, in their own tongue." },
-        { "if": { "chapter": "ch6", "choice": "dark" }, "text": "Somewhere in the Elderwood, the last unicorn is no longer the last." }
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "dark"
+          },
+          "text": "Grukha's grandchildren farm the Greymarch borderlands beside the farmers' children."
+        },
+        {
+          "if": {
+            "chapter": "ch3",
+            "choice": "dark"
+          },
+          "text": "The dragon still keeps its vigil — no longer alone. You visit in autumn."
+        },
+        {
+          "if": {
+            "chapter": "ch4",
+            "choice": "dark"
+          },
+          "text": "The eastern republic sent a letter of thanks. Wren keeps it in the archive."
+        },
+        {
+          "if": {
+            "chapter": "ch5",
+            "choice": "dark"
+          },
+          "text": "On feast days, Willowmere sings the old songs loudly, in their own tongue."
+        },
+        {
+          "if": {
+            "chapter": "ch6",
+            "choice": "dark"
+          },
+          "text": "Somewhere in the Elderwood, the last unicorn is no longer the last."
+        }
       ]
     },
     {
@@ -101,10 +167,34 @@
       "tone": "reflective",
       "summary": "Neither saved nor damned. The world is complicated. You see the paths not taken. 'Would you like to try again?'",
       "reflections": [
-        { "if": { "chapter": "ch2", "choice": "light" }, "text": "You still dream of the toys in the wreckage at Greymarch." },
-        { "if": { "chapter": "ch3", "choice": "dark" }, "text": "The dragon remembers you kindly. That counts for something." },
-        { "if": { "chapter": "ch5", "choice": "light" }, "text": "Sometimes you hum a tune you heard once in Willowmere, before it went quiet." },
-        { "if": { "chapter": "ch6", "choice": "dark" }, "text": "The unicorn lives. Whatever else is true, the unicorn lives." }
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "light"
+          },
+          "text": "You still dream of the toys in the wreckage at Greymarch."
+        },
+        {
+          "if": {
+            "chapter": "ch3",
+            "choice": "dark"
+          },
+          "text": "The dragon remembers you kindly. That counts for something."
+        },
+        {
+          "if": {
+            "chapter": "ch5",
+            "choice": "light"
+          },
+          "text": "Sometimes you hum a tune you heard once in Willowmere, before it went quiet."
+        },
+        {
+          "if": {
+            "chapter": "ch6",
+            "choice": "dark"
+          },
+          "text": "The unicorn lives. Whatever else is true, the unicorn lives."
+        }
       ]
     }
   ],
@@ -121,13 +211,15 @@
         "text": "I accept my destiny. The kingdom needs me.",
         "consequence": "You kneel before the herald. The village cheers. A golden light seems to settle around you as you take the scroll. The prophecy has claimed another.",
         "corruption": 15,
-        "heroism": 15
+        "heroism": 15,
+        "seerTruth": "You were handed a story about yourself and did not ask who wrote it. Obedience arrived dressed as destiny, and you knelt to it. That was the first door, and you walked through it with your eyes closed."
       },
       "darkChoice": {
         "text": "Prophecies are just words on old paper. Show me proof.",
         "consequence": "The herald falters. No one has ever questioned the summons. He has no proof — only the scroll. You take it, but you do not kneel.",
         "virtue": 15,
-        "heroism": 10
+        "heroism": 10,
+        "seerTruth": "You asked the only question that mattered: says who? The scroll had no answer. Doubt is not a sin. It is the beginning of sight."
       },
       "echoes": [],
       "designerNote": "The prophecy was authored by the game's true antagonist — a system, not a person — as a recruitment tool for manufacturing tyrants."
@@ -144,17 +236,33 @@
         "text": "I am honored to wield the Blade of Dawning.",
         "consequence": "The sword hums as your fingers close around the hilt. Aldric smiles, but there's something behind his eyes — relief, not pride. The blade begins to bind.",
         "corruption": 15,
-        "heroism": 15
+        "heroism": 15,
+        "seerTruth": "The sword was a leash with a handle. You admired the craftsmanship of your own binding as you fastened it to your palm."
       },
       "darkChoice": {
         "text": "What does it cost to carry a blade like this?",
         "consequence": "Aldric tells you the truth: the Blade devours its wielder's will, turning them into a vessel for the prophecy's design. He offers honest steel instead.",
         "virtue": 15,
-        "heroism": 10
+        "heroism": 10,
+        "seerTruth": "You asked the price before you took the gift. Eleven owners never did. You kept your own will and called it a lesser weapon. It was the greater one."
       },
       "echoes": [
-        { "if": { "chapter": "prologue", "choice": "light" }, "after": "light", "text": "The scroll in your pack seems to warm as you take the hilt, as if two halves of something are finding each other." },
-        { "if": { "chapter": "prologue", "choice": "dark" }, "after": "dark", "text": "The herald had no proof, and this gift had a price. You're learning to check." }
+        {
+          "if": {
+            "chapter": "prologue",
+            "choice": "light"
+          },
+          "after": "light",
+          "text": "The scroll in your pack seems to warm as you take the hilt, as if two halves of something are finding each other."
+        },
+        {
+          "if": {
+            "chapter": "prologue",
+            "choice": "dark"
+          },
+          "after": "dark",
+          "text": "The herald had no proof, and this gift had a price. You're learning to check."
+        }
       ],
       "designerNote": "Power freely offered always has conditions. Aldric is a test — those who take the easy power pass through. Those who question it are the ones the prophecy can't control."
     },
@@ -170,17 +278,33 @@
         "text": "I will protect you. These creatures will be driven out.",
         "consequence": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees.",
         "corruption": 20,
-        "heroism": 18
+        "heroism": 18,
+        "seerTruth": "Call it what it was: you killed refugees because frightened people asked you to, and you wanted their gratitude more than the truth. The toys in the ash were not a metaphor. They belonged to children."
       },
       "darkChoice": {
         "text": "Let me speak with them before anyone dies.",
         "consequence": "The orc elder Grukha tells you they fled a burning homeland — the same kingdom the High King claims to protect. Her grandchildren watch from behind a tent flap.",
         "virtue": 20,
-        "heroism": 10
+        "heroism": 10,
+        "seerTruth": "You walked unarmed into a camp of strangers and traded an hour of listening for a hundred lives. No one sang about it. Everyone lived."
       },
       "echoes": [
-        { "if": { "chapter": "ch1", "choice": "light" }, "after": "light", "text": "The Blade of Dawning sang as you drew it at Greymarch. It was terribly easy." },
-        { "if": { "chapter": "ch1", "choice": "dark" }, "after": "dark", "text": "Honest steel stays sheathed more often than named swords. Aldric told you that, the day you refused the Blade." }
+        {
+          "if": {
+            "chapter": "ch1",
+            "choice": "light"
+          },
+          "after": "light",
+          "text": "The Blade of Dawning sang as you drew it at Greymarch. It was terribly easy."
+        },
+        {
+          "if": {
+            "chapter": "ch1",
+            "choice": "dark"
+          },
+          "after": "dark",
+          "text": "Honest steel stays sheathed more often than named swords. Aldric told you that, the day you refused the Blade."
+        }
       ],
       "designerNote": "'Monster' is a label applied by those in power. The orcs have elders, children, stories. The farmers' fear is real, but their solution is ethnic cleansing in miniature."
     },
@@ -196,17 +320,33 @@
         "text": "I will slay the dragon and claim the power to bring peace.",
         "consequence": "The dragon falls. Inside the vault: not a weapon of peace, but an ancient plague — a grey death. The dragon was the warden. You just killed it.",
         "corruption": 20,
-        "heroism": 18
+        "heroism": 18,
+        "seerTruth": "Eight hundred years of vigil ended on your blade so a rumor of power could be checked. You killed the only guard of the only door that mattered, and then you opened it."
       },
       "darkChoice": {
         "text": "Why do you guard this place? What are you protecting?",
         "consequence": "The dragon has guarded this vault for eight hundred years, keeping sealed a catastrophe that an ancient king tried to weaponize. It asks if you will help.",
         "virtue": 20,
-        "heroism": 12
+        "heroism": 12,
+        "seerTruth": "You asked a monster why, and it turned out to be the most faithful servant the world had. You shared its burden instead of ending it. That is what help is."
       },
       "echoes": [
-        { "if": { "chapter": "ch2", "choice": "light" }, "after": "light", "text": "The soldiers who burned Greymarch cheer loudest at the dragon's fall." },
-        { "if": { "chapter": "ch2", "choice": "dark" }, "after": "dark", "text": "The weariness in the dragon's eyes — you saw the same in Grukha's." }
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "light"
+          },
+          "after": "light",
+          "text": "The soldiers who burned Greymarch cheer loudest at the dragon's fall."
+        },
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "dark"
+          },
+          "after": "dark",
+          "text": "The weariness in the dragon's eyes — you saw the same in Grukha's."
+        }
       ],
       "designerNote": "The 'end all wars' framing is propaganda. The dragon is ancient, intelligent, and sacrificing its freedom to protect a world that calls it a monster."
     },
@@ -222,17 +362,33 @@
         "text": "I will carry the kingdom's banner into the darkness.",
         "consequence": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion.",
         "corruption": 20,
-        "heroism": 18
+        "heroism": 18,
+        "seerTruth": "You marched ten thousand soldiers at farmers because a king called freedom 'darkness' and you did not check the map. The invasion had a hero's face. Yours."
       },
       "darkChoice": {
         "text": "Why do you call them the Dark Lands? What did they do?",
         "consequence": "A scribe passes you a book: the 'Dark Lands' are a republic that refused to pay tribute. There is no darkness — only independence the king cannot tolerate.",
         "virtue": 20,
-        "heroism": 8
+        "heroism": 8,
+        "seerTruth": "One question in open court, and the invasion lost its story. Empires run on unquestioned words. You stopped one with four of them."
       },
       "echoes": [
-        { "if": { "chapter": "ch3", "choice": "light" }, "after": "light", "text": "The court still toasts your dragonslaying. No one asks what the dragon was guarding." },
-        { "if": { "chapter": "ch2", "choice": "dark" }, "after": "dark", "text": "You think of Grukha's grandchildren. The Dark Lands are full of grandmothers too." }
+        {
+          "if": {
+            "chapter": "ch3",
+            "choice": "light"
+          },
+          "after": "light",
+          "text": "The court still toasts your dragonslaying. No one asks what the dragon was guarding."
+        },
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "dark"
+          },
+          "after": "dark",
+          "text": "You think of Grukha's grandchildren. The Dark Lands are full of grandmothers too."
+        }
       ],
       "designerNote": "Imperial propaganda: label the target 'dark' and the invasion sells itself. The king is expanding territory and using you as the blade."
     },
@@ -248,17 +404,33 @@
         "text": "Dark magic must be purged wherever it hides.",
         "consequence": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book.",
         "corruption": 15,
-        "heroism": 15
+        "heroism": 15,
+        "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch."
       },
       "darkChoice": {
         "text": "Show me this dark magic yourself. I want to see it.",
         "consequence": "The 'strange symbols' are harvest prayers. The 'unusual plants' are medicinal herbs. The 'unknown tongue' is the halflings' own language. There is no dark magic.",
         "virtue": 15,
-        "heroism": 10
+        "heroism": 10,
+        "seerTruth": "You looked with your own eyes before you judged, and the accusation died of daylight. Willowmere kept its songs because you bothered to hear them first."
       },
       "echoes": [
-        { "if": { "chapter": "ch4", "choice": "light" }, "after": "light", "text": "The Church blesses your eastern campaign in the same sermon." },
-        { "if": { "chapter": "ch3", "choice": "dark" }, "after": "dark", "text": "The dragon guarded one plague. The Church spreads another, made of words." }
+        {
+          "if": {
+            "chapter": "ch4",
+            "choice": "light"
+          },
+          "after": "light",
+          "text": "The Church blesses your eastern campaign in the same sermon."
+        },
+        {
+          "if": {
+            "chapter": "ch3",
+            "choice": "dark"
+          },
+          "after": "dark",
+          "text": "The dragon guarded one plague. The Church spreads another, made of words."
+        }
       ],
       "designerNote": "Cultural genocide dressed as purification. The Church of Light wields narrative, not swords — 'different' equals 'dangerous.'"
     },
@@ -274,17 +446,33 @@
         "text": "Your sacrifice will save millions. I accept.",
         "consequence": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition.",
         "corruption": 25,
-        "heroism": 20
+        "heroism": 20,
+        "seerTruth": "The last innocent thing in the world offered itself, and you accepted. Every tyrant's ledger balances this way: a great good promised, a small light extinguished, forever. You were radiant, and the glade was silent."
       },
       "darkChoice": {
         "text": "No. I won't buy victory with your life.",
         "consequence": "The unicorn speaks: 'You were the great evil. Every step of the prophecy led you here, to this final consumption of innocence. And you refused.' The forest exhales.",
         "virtue": 25,
-        "heroism": 8
+        "heroism": 8,
+        "seerTruth": "You were offered everything and said no. The prophecy required a hand willing to consume innocence; yours refused, and the whole design failed in the space of one word."
       },
       "echoes": [
-        { "if": { "stat": "corruption", "gte": 60 }, "after": "light", "text": "The Blade, the crown, the Church's blessing — every gift you accepted led to this clearing." },
-        { "if": { "stat": "virtue", "gte": 60 }, "after": "dark", "text": "Every question you asked was a thread pulled loose. The prophecy unravels at your feet." }
+        {
+          "if": {
+            "stat": "corruption",
+            "gte": 60
+          },
+          "after": "light",
+          "text": "The Blade, the crown, the Church's blessing — every gift you accepted led to this clearing."
+        },
+        {
+          "if": {
+            "stat": "virtue",
+            "gte": 60
+          },
+          "after": "dark",
+          "text": "Every question you asked was a thread pulled loose. The prophecy unravels at your feet."
+        }
       ],
       "designerNote": "The ultimate inversion. The 'heroic sacrifice' trope asks us to accept that innocence should die for power. The real test is whether you refuse."
     }
@@ -293,27 +481,68 @@
     {
       "name": "Narrative",
       "description": "Story text over the location's scene backdrop, with location header and chapter indicator. Single 'Continue' action.",
-      "elements": ["sceneBackdrop", "locationBanner", "chapterLabel", "characterSprite", "narrativeText", "continueButton"]
+      "elements": [
+        "sceneBackdrop",
+        "locationBanner",
+        "chapterLabel",
+        "characterSprite",
+        "narrativeText",
+        "continueButton"
+      ]
     },
     {
       "name": "Decision",
       "description": "Two choices presented without moral labeling. Neither is marked good or evil.",
-      "elements": ["sceneBackdrop", "locationBanner", "chapterLabel", "promptText", "choiceButtonA", "choiceButtonB"]
+      "elements": [
+        "sceneBackdrop",
+        "locationBanner",
+        "chapterLabel",
+        "promptText",
+        "choiceButtonA",
+        "choiceButtonB"
+      ]
     },
     {
       "name": "Consequence",
       "description": "The result of the choice, followed by any echo of an earlier choice and Wren's comment.",
-      "elements": ["sceneBackdrop", "consequenceText", "echoText", "companionQuote", "continueButton"]
+      "elements": [
+        "sceneBackdrop",
+        "consequenceText",
+        "echoText",
+        "companionQuote",
+        "continueButton"
+      ]
     },
     {
       "name": "Journey Map",
       "description": "Progress through the world. Completed chapters glow gold.",
-      "elements": ["mapTitle", "chapterNodes", "connectionLines", "returnButton"]
+      "elements": [
+        "mapTitle",
+        "chapterNodes",
+        "connectionLines",
+        "returnButton"
+      ]
     },
     {
       "name": "Character",
       "description": "Stats screen shows Heroism only. Corruption and Virtue are never displayed to the player.",
-      "elements": ["characterPortrait", "characterName", "heroismMeter", "renownMeter", "alliesList"]
+      "elements": [
+        "characterPortrait",
+        "characterName",
+        "heroismMeter",
+        "renownMeter",
+        "alliesList"
+      ]
     }
-  ]
+  ],
+  "seer": {
+    "name": "The Seer",
+    "role": "An unbiased witness who retells the player's completed journey exactly as it happened — not as it felt. The book is the first time the player sees the hidden Corruption/Virtue ledger.",
+    "intro": "I am the Seer. I watched your journey without hope and without fear, and I will tell it back to you exactly as it happened — not as it felt. Others called you hero or traitor as it suited them. I will call things what they were. Turn the page when you are ready to be seen.",
+    "verdicts": {
+      "dark-lord": "You never chose cruelty by name — you chose applause, and armor, and certainty, and other people's stories about you. Evil rarely asks for volunteers. It asks for heroes who don't ask questions, and you answered every call. You are what the prophecy wanted. That is the whole truth, and it is yours to carry — or to unmake, if you begin again.",
+      "true-hero": "You were called hesitant, difficult, ungrateful, small. Note that every one of those words was aimed at a moment when you were being brave. You saved the world the only way it has ever actually been saved: by refusing, one polite atrocity at a time. No statue will say so. I do.",
+      "crossroads": "Half your journey you questioned; half you obeyed. I cannot call you wicked, and I will not call you wise. You are what most people are: unfinished. The road is still open behind you — walk it again and see which half of you was the habit."
+    }
+  }
 }

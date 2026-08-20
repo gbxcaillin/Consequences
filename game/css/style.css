@@ -441,6 +441,166 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   margin-top: 1.4em;
 }
 
+/* ---- the Seer's book ---- */
+.book-screen { justify-content: center; }
+.book-page {
+  position: relative;
+  background: #e8dfd2;
+  color: #2a2018;
+  border-radius: 12px;
+  padding: 28px 24px 18px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6), inset 0 0 0 1px #d0c4ae, inset 0 0 60px rgba(150,120,70,0.12);
+}
+.book-cover { text-align: center; margin: auto 0; }
+.book-title {
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #2a2018;
+  margin-bottom: 10px;
+}
+.book-byline {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8c7e6a;
+  margin-bottom: 26px;
+}
+.book-body {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #3a3024;
+  margin: 0 0 1em;
+}
+.book-chapter-head { margin-bottom: 16px; }
+.book-chapter-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8c7e6a;
+}
+.book-chapter-title {
+  font-family: 'Cinzel', serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: #2a2018;
+}
+.book-chapter-place {
+  font-style: italic;
+  font-size: 14px;
+  color: #6e5f4c;
+}
+.seer-truth {
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #4a3a28;
+  border-left: 3px solid #b8922f;
+  padding: 4px 0 4px 14px;
+  margin: 18px 0;
+}
+.seer-truth .seer-label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b8922f;
+  margin-bottom: 5px;
+}
+.ledger {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+.ledger.corrupt { background: rgba(148,48,48,0.12); color: #943030; }
+.ledger.virtue { background: rgba(45,107,74,0.12); color: #2d6b4a; }
+.book-tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11.5px;
+  color: #6e5f4c;
+  margin-bottom: 18px;
+}
+.book-tally .corrupt { color: #943030; }
+.book-tally .virtue { color: #2d6b4a; }
+.book-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #d0c4ae;
+}
+.book-pageno {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: #8c7e6a;
+}
+.book-nav {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #ded5c6;
+  color: #3a3024;
+  border: 1px solid #c7b99e;
+  text-align: center;
+}
+.book-nav:disabled { opacity: 0.35; cursor: default; }
+.book-close-x {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  padding: 4px 0;
+  font-size: 18px;
+  line-height: 1;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #8c7e6a;
+  text-align: center;
+}
+
+/* ---- past journeys ---- */
+.past-journeys {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 26px;
+}
+.journey-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(58,53,48,0.5);
+}
+.journey-row:last-child { border-bottom: none; }
+.jr-ending { font-family: 'Cinzel', serif; font-size: 14px; color: var(--text-dim); }
+.jr-ending.dark-lord { color: var(--blood); }
+.jr-ending.true-hero { color: var(--fern); }
+.jr-ending.crossroads { color: var(--gold); }
+.jr-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
