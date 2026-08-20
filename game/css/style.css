@@ -56,6 +56,9 @@ html, body {
   inset: 0;
   background: linear-gradient(rgba(17,15,13,0.30) 0%, rgba(17,15,13,0.62) 45%, rgba(17,15,13,0.92) 100%);
 }
+.scene-bg.dim::after {
+  background: rgba(17,15,13,0.93);
+}
 
 .screen {
   position: relative;
@@ -354,6 +357,89 @@ button.continue {
 .map-list li.done .map-title { color: var(--text-dim); }
 .map-list li.current .map-title { color: var(--text); font-weight: 600; }
 .map-list li.done .map-place, .map-list li.current .map-place { color: var(--gold-dim); }
+
+/* ---- chronicle ---- */
+.chronicle-screen { overflow-y: auto; }
+.chron-sub {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 15px;
+  margin: -8px 0 22px;
+}
+.ending-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+.ending-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: rgba(30,26,23,0.75);
+}
+.ending-card .ec-name {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  color: var(--text-faint);
+}
+.ending-card .ec-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-top: 3px;
+}
+.ending-card.found .ec-meta { color: var(--text-dim); }
+.ending-card.found.dark-lord { border-left: 3px solid var(--blood); }
+.ending-card.found.dark-lord .ec-name { color: var(--blood); }
+.ending-card.found.true-hero { border-left: 3px solid var(--fern); }
+.ending-card.found.true-hero .ec-name { color: var(--fern); }
+.ending-card.found.crossroads { border-left: 3px solid var(--gold); }
+.ending-card.found.crossroads .ec-name { color: var(--gold); }
+
+.save-transfer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.st-head {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.st-note { font-size: 14px; color: var(--text-dim); margin: 0 0 12px; }
+.st-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.st-row .continue { flex: 1; }
+.st-box {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(17,15,13,0.8);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  padding: 10px 12px;
+  resize: none;
+  margin-bottom: 10px;
+}
+.st-box:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.st-feedback {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--fern);
+  margin: 4px 0 0;
+}
+button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
+.chron-mark {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 1.4em;
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

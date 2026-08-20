@@ -1,24 +1,26 @@
 /* Consequences — narrative engine.
  *
  * All content lives in data/game-data.json; this file only knows how to
- * play it: title → (narrative → choice → consequence)* → ending.
- * Progress persists in localStorage. Set DESIGN_MODE to true to surface
- * the hidden Corruption/Virtue scoring while testing.
+ * play it: title → (narrative → choice → consequence)* → ending, plus the
+ * Chronicle (endings gallery + save transfer). Persistence is GameStore
+ * (js/storage.js). Set DESIGN_MODE to true to surface the hidden
+ * Corruption/Virtue scoring while testing.
  */
 
 const DESIGN_MODE = false;
-const SAVE_KEY = 'consequences-save-v1';
+const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
 let state = null;
-let saved = null;   // a resumable run found at boot, offered on the title screen
+let eraseArmed = false;   // Chronicle "erase" needs a second tap
+let importNote = null;    // feedback line for save-code import
 
 const app = document.getElementById('app');
 
 function freshState() {
   return {
     chapterIndex: 0,
-    phase: 'title',        // title | narrative | choice | consequence | ending
+    phase: 'title',        // title | chronicle | narrative | choice | consequence | ending
     lastChoice: null,
     corruption: 0,
     virtue: 0,
@@ -28,19 +30,8 @@ function freshState() {
   };
 }
 
-function save() {
-  try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); } catch (e) { /* private mode */ }
-}
-
-function load() {
-  try {
-    const raw = localStorage.getItem(SAVE_KEY);
-    if (raw) {
-      const s = JSON.parse(raw);
-      if (typeof s.chapterIndex === 'number' && s.phase) return s;
-    }
-  } catch (e) { /* corrupt save */ }
-  return null;
+function persistState() {
+  if (RUN_PHASES.includes(state.phase)) GameStore.setCurrent(state);
 }
 
 function esc(s) {
@@ -129,10 +120,43 @@ function mapOverlayHTML() {
     </div>`;
 }
 
+function chronicleHTML() {
+  const discovered = GameStore.endingsDiscovered();
+  const runs = GameStore.chronicle.length;
+  const cards = DATA.endings.map(e => {
+    const found = discovered.includes(e.id);
+    const times = GameStore.timesReached(e.id);
+    return `
+      <div class="ending-card ${found ? 'found ' + e.id : ''}">
+        <div class="ec-name">${found ? esc(e.name) : '???'}</div>
+        <div class="ec-meta">${found ? (times === 1 ? 'reached once' : 'reached ' + times + ' times') : 'undiscovered'}</div>
+      </div>`;
+  }).join('');
+  return `
+    <div class="map-head">The Chronicle</div>
+    <p class="chron-sub">${runs === 0 ? 'No journeys completed yet. Wren’s pages are waiting.'
+      : runs + (runs === 1 ? ' journey' : ' journeys') + ' recorded &middot; ' + discovered.length + ' of ' + DATA.endings.length + ' endings discovered'}</p>
+    <div class="ending-cards">${cards}</div>
+    <div class="save-transfer">
+      <div class="st-head">Carry your save</div>
+      <p class="st-note">Copy a save code to move your Chronicle to another device, or paste one below.</p>
+      <div class="st-row">
+        <button class="continue" data-act="export">Copy save code</button>
+      </div>
+      <textarea id="importBox" class="st-box" rows="2" placeholder="Paste a save code here&hellip;" aria-label="Save code"></textarea>
+      <div class="st-row">
+        <button class="continue" data-act="import">Load save code</button>
+        <button class="continue danger" data-act="erase">${eraseArmed ? 'Tap again to erase everything' : 'Erase Chronicle'}</button>
+      </div>
+      ${importNote ? `<p class="st-feedback">${esc(importNote)}</p>` : ''}
+    </div>
+    <div class="actions"><button class="continue" data-act="to-title">Return</button></div>`;
+}
+
 function render() {
   const ch = chapter();
   if (state.phase === 'title') {
-    const resumable = saved && saved.phase !== 'title';
+    const resumable = !!GameStore.current;
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(null)}></div>
       <div class="screen title-screen">
@@ -141,8 +165,13 @@ function render() {
         <div class="actions">
           ${resumable ? '<button class="continue" data-act="resume">Continue</button>' : ''}
           <button class="continue" data-act="begin">${resumable ? 'New Journey' : 'Begin'}</button>
+          <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
       </div>`;
+  } else if (state.phase === 'chronicle') {
+    app.innerHTML = `
+      <div class="scene-bg dim" ${sceneStyle(null)}></div>
+      <div class="screen chronicle-screen">${chronicleHTML()}</div>`;
   } else if (state.phase === 'narrative') {
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(ch)}></div>
@@ -203,6 +232,7 @@ function render() {
     const reflections = (ending.reflections || [])
       .filter(r => conditionMet(r.if))
       .map(r => `<p>${esc(r.text)}</p>`).join('');
+    const discovered = GameStore.endingsDiscovered().length;
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(DATA.chapters[DATA.chapters.length - 1])}></div>
       <div class="screen">
@@ -210,9 +240,11 @@ function render() {
         <div class="narrative">
           <p>${esc(endingBody(ending))}</p>
           ${reflections ? `<div class="reflections">${reflections}</div>` : ''}
+          <p class="chron-mark">Recorded in your Chronicle &mdash; ${discovered} of ${DATA.endings.length} endings discovered.</p>
         </div>
         <div class="actions">
           <button class="continue" data-act="restart">Play Again</button>
+          <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
       </div>`;
   }
@@ -224,16 +256,24 @@ app.addEventListener('click', (ev) => {
   const btn = ev.target.closest('button[data-act]');
   if (!btn) return;
   const act = btn.dataset.act;
+  if (act !== 'erase') eraseArmed = false;
+  if (act !== 'import' && act !== 'export') importNote = null;
 
   if (act === 'begin') {
+    GameStore.clearCurrent();
     state = freshState();
-    saved = null;
     state.phase = 'narrative';
     AudioFX.tap();
   } else if (act === 'resume') {
-    state = saved;
-    saved = null;
+    state = GameStore.current;
     state.showMap = false;
+    AudioFX.tap();
+  } else if (act === 'chronicle') {
+    state = freshState();
+    state.phase = 'chronicle';
+    AudioFX.tap();
+  } else if (act === 'to-title') {
+    state = freshState();
     AudioFX.tap();
   } else if (act === 'choices') {
     state.phase = 'choice';
@@ -256,18 +296,51 @@ app.addEventListener('click', (ev) => {
       AudioFX.tap();
     } else {
       state.phase = 'ending';
-      AudioFX.ending(pickEnding().id);
+      const ending = pickEnding();
+      GameStore.recordRun(state, ending.id);
+      AudioFX.ending(ending.id);
     }
   } else if (act === 'restart') {
     state = freshState();
+    state.phase = 'narrative';
     AudioFX.tap();
   } else if (act === 'map') {
     state.showMap = !state.showMap;
     AudioFX.tap();
   } else if (act === 'sound') {
     AudioFX.toggle();
+  } else if (act === 'export') {
+    const code = GameStore.exportCode();
+    const box = document.getElementById('importBox');
+    const done = () => { importNote = 'Save code copied — paste it on your other device.'; render(); };
+    const fallback = () => {
+      if (box) { box.value = code; box.select(); }
+      importNote = 'Copy the code from the box below.';
+      render();
+      const box2 = document.getElementById('importBox');
+      if (box2) { box2.value = code; box2.select(); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done, fallback);
+    } else { fallback(); }
+    AudioFX.tap();
+    return;                       // async feedback renders on its own
+  } else if (act === 'import') {
+    const box = document.getElementById('importBox');
+    const result = GameStore.importCode(box ? box.value : '');
+    importNote = result.ok ? 'Save loaded. Welcome back.' : result.error;
+    AudioFX.tap();
+  } else if (act === 'erase') {
+    if (eraseArmed) {
+      GameStore.eraseAll();
+      eraseArmed = false;
+      importNote = 'Chronicle erased.';
+    } else {
+      eraseArmed = true;
+    }
+    AudioFX.tap();
   }
-  save();
+  persistState();
   render();
 });
 
@@ -280,7 +353,6 @@ fetch('data/game-data.json')
   })
   .then(data => {
     DATA = data;
-    saved = load();
     state = freshState();
     render();
   })
