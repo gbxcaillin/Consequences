@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
@@ -309,19 +309,22 @@
           "text": "'It'll be about the eastern roads,' says Corvin the miller, wiping flour on his shirt. 'Soldiers went through last month, thick as geese.' 'It's a tax,' sighs the widow Prell. Rumor moves faster than the horse does. By the time the rider reaches your gate, half of Thornfield has assembled behind you, and all of it is holding its breath."
         },
         {
-          "text": "The herald does not dismount. He unrolls a scroll sealed in gold and reads out your name — your actual name, in a stranger's mouth — and the words 'Chosen of the Ashenmere Prophecy.' The village goes quiet. Your neighbors look at you as if they have never seen you before. Tam looks at you like the sun has come up twice."
+          "text": "The herald does not dismount. He unrolls a scroll sealed in gold and reads out your name — your actual name, in a stranger's mouth — and the words 'Chosen of the Ashenmere Prophecy.' The village goes quiet. Your neighbors look at you as if they have never seen you before. Tam looks at you like the sun has come up twice.",
+          "speaker": "herald"
         },
         {
           "text": "'There must be a mistake,' you hear yourself say. The herald consults the scroll. 'Are you not who I named? Then there is no mistake. The Prophecy of Ashenmere does not misspell.' Behind him, a thin young woman in travel-grey — a clerk of some kind — is writing everything down. She doesn't look up. 'They never check,' she says, to no one in particular."
         },
         {
-          "text": "While the herald waits, Tam presses something into your palm: a charm whittled from ash wood, a small crooked sun. 'Da says heroes are just people who got asked,' he says. 'You'll come back, right? When it's done?' The herald clears his throat. The scroll is waiting."
+          "text": "While the herald waits, Tam presses something into your palm: a charm whittled from ash wood, a small crooked sun. 'Da says heroes are just people who got asked,' he says. 'You'll come back, right? When it's done?' The herald clears his throat. The scroll is waiting.",
+          "speaker": "tam"
         },
         {
           "text": "The herald, to everyone's surprise, permits a night. 'You ride at dawn. The prophecy has waited three hundred years; it will keep until breakfast.' So Thornfield throws you a supper, because Thornfield would throw a supper for a good rain. The widow Prell's plum brandy comes out; Corvin toasts 'our neighbor' and then, catching himself, 'our Chosen,' and the room goes strange for exactly one breath before the fiddle covers it. Later, in the loft, you lie awake counting roof beams you have known all your life, listening to your village believe in you through the floor."
         },
         {
-          "text": "The herald leans down at last. 'Well? The kingdom is waiting, Chosen. The east is burning' — he pauses, correcting himself — 'will burn. It is prophesied.' Around you: the fence half-mended, the dogs barking, Tam's crooked sun warm in your fist. Whatever you say next, you understand, is the first line of a story someone else has already written."
+          "text": "The herald leans down at last. 'Well? The kingdom is waiting, Chosen. The east is burning' — he pauses, correcting himself — 'will burn. It is prophesied.' Around you: the fence half-mended, the dogs barking, Tam's crooked sun warm in your fist. Whatever you say next, you understand, is the first line of a story someone else has already written.",
+          "speaker": "herald"
         }
       ],
       "lightChoice": {
@@ -357,29 +360,37 @@
       "setting": "A lonely tower on the moors, shelves of crumbling books",
       "narrative": [
         {
-          "text": "Two days on the moor road, and Wren, it turns out, talks when the country is empty. 'Records clerk, third class. I do heralds' processions, executions, and weather.' A pause. 'The prophecy scrolls are copied in a sealed wing. Even we don't go in. I've always wondered who does the copying.' Rain starts. She writes something down about it."
+          "text": "Two days on the moor road, and Wren, it turns out, talks when the country is empty. 'Records clerk, third class. I do heralds' processions, executions, and weather.' A pause. 'The prophecy scrolls are copied in a sealed wing. Even we don't go in. I've always wondered who does the copying.' Rain starts. She writes something down about it.",
+          "speaker": "wren"
         },
         {
-          "text": "Half a day out from the tower you shelter in a waystation, its wall chalked generations deep with pilgrim marks — initials, dates, little suns. Wren finds a set she knows from the archive: the Eighth Chosen's own sign. 'They marked the wall going out,' she says, and checks it twice, and once more. 'Everyone marked it twice. Going, and coming home.' The Eighth's mark is there once."
+          "text": "Half a day out from the tower you shelter in a waystation, its wall chalked generations deep with pilgrim marks — initials, dates, little suns. Wren finds a set she knows from the archive: the Eighth Chosen's own sign. 'They marked the wall going out,' she says, and checks it twice, and once more. 'Everyone marked it twice. Going, and coming home.' The Eighth's mark is there once.",
+          "speaker": "wren"
         },
         {
           "text": "Aldric's tower stands alone on the moor like a finger pointing at nothing. Wren stays below with the horses — 'wizards make my ink curdle' — and you climb the stair alone. The old man is thinner than the stories say, and his eyes keep drifting to the window, to the road east."
         },
         {
-          "text": "'So,' the wizard says, before you reach the top stair. 'They found another one.' He pours tea into a chipped cup and pushes it at you. 'Sit. They never want tea, and they always should.' Over the cup's rim he studies you the way a mason studies a wall he has been asked to repair for the twelfth time."
+          "text": "'So,' the wizard says, before you reach the top stair. 'They found another one.' He pours tea into a chipped cup and pushes it at you. 'Sit. They never want tea, and they always should.' Over the cup's rim he studies you the way a mason studies a wall he has been asked to repair for the twelfth time.",
+          "speaker": "aldric"
         },
         {
-          "text": "From a case of black iron he draws the Blade of Dawning, and pale fire runs its length like water remembering light. 'Forged for the first king,' he says. 'Carried by every Chosen since.' His hands, you notice, are shaking — the way hands shake when a man is passing on something he is glad to be rid of."
+          "text": "From a case of black iron he draws the Blade of Dawning, and pale fire runs its length like water remembering light. 'Forged for the first king,' he says. 'Carried by every Chosen since.' His hands, you notice, are shaking — the way hands shake when a man is passing on something he is glad to be rid of.",
+          "speaker": "aldric"
         },
         {
-          "text": "'Eleven before you,' Aldric says, quieter now. 'I armed every one. Fine people, mostly — at the start.' His mouth works around something else, something with edges, and swallows it. 'The blade goes where it is pointed. Try to be the one doing the pointing.' In the iron case, the fire along the blade beats slowly, like a heart at rest."
+          "text": "'Eleven before you,' Aldric says, quieter now. 'I armed every one. Fine people, mostly — at the start.' His mouth works around something else, something with edges, and swallows it. 'The blade goes where it is pointed. Try to be the one doing the pointing.' In the iron case, the fire along the blade beats slowly, like a heart at rest.",
+          "speaker": "aldric"
         }
       ],
       "lightChoice": {
         "text": "I am honored to wield the Blade of Dawning.",
         "consequence": [
           "The hilt settles into your palm as if it had grown there. The fire runs up your arm — not burning; measuring. Aldric exhales through his nose, one long careful breath, and packs the empty case away with the relief of a man closing a grave.",
-          "'It suits you,' he says, and means it, and looks sorry that he means it. On the stair down, you notice your own footsteps have gone quieter. The blade rests against your shoulder like a hand. Outside, Wren looks up from her ledger; her eyes go to the sword, and her pen, for once, does not move."
+          {
+            "text": "'It suits you,' he says, and means it, and looks sorry that he means it. On the stair down, you notice your own footsteps have gone quieter. The blade rests against your shoulder like a hand. Outside, Wren looks up from her ledger; her eyes go to the sword, and her pen, for once, does not move.",
+            "speaker": "aldric"
+          }
         ],
         "corruption": 15,
         "heroism": 15,
@@ -389,8 +400,14 @@
       "darkChoice": {
         "text": "What does it cost to carry a blade like this?",
         "consequence": [
-          "'What does it cost?' Aldric goes very still. Then, slowly, he smiles — and the smile takes years off his face. 'Eleven Chosen,' he says, 'and not one of them asked me that.'",
-          "He tells you: the blade drinks. Slowly, politely, the way a debt does. Will first, then judgment, then whatever is left. 'The prophecy wants a sword that swings itself.' From under the workbench he brings out plain steel, forge-marked, a little heavy at the hilt. 'My own work. It will never sing to you. That is a feature.'"
+          {
+            "text": "'What does it cost?' Aldric goes very still. Then, slowly, he smiles — and the smile takes years off his face. 'Eleven Chosen,' he says, 'and not one of them asked me that.'",
+            "speaker": "aldric"
+          },
+          {
+            "text": "He tells you: the blade drinks. Slowly, politely, the way a debt does. Will first, then judgment, then whatever is left. 'The prophecy wants a sword that swings itself.' From under the workbench he brings out plain steel, forge-marked, a little heavy at the hilt. 'My own work. It will never sing to you. That is a feature.'",
+            "speaker": "aldric"
+          }
         ],
         "virtue": 15,
         "heroism": 10,
@@ -428,16 +445,19 @@
           "text": "The Wayrest sits where three roads argue, and its common room is the parliament of everything within a day's walk. You arrive at dusk to find the parliament in session: torches in the yard, voices over voices, and the innkeeper on a barrel shouting for order and not getting it."
         },
         {
-          "text": "They have caught a spy, they tell you — caught him with maps. In the stable, trussed to a harness peg, sits a half-orc peddler with a split lip and a pack of tin pots. 'Brakka,' he says, when you ask his name. 'Pots, pins, thread, and no trouble.' The maps lie on a hay bale: every farm and track for forty miles, marked in a careful, cramped hand."
+          "text": "They have caught a spy, they tell you — caught him with maps. In the stable, trussed to a harness peg, sits a half-orc peddler with a split lip and a pack of tin pots. 'Brakka,' he says, when you ask his name. 'Pots, pins, thread, and no trouble.' The maps lie on a hay bale: every farm and track for forty miles, marked in a careful, cramped hand.",
+          "speaker": "brakka"
         },
         {
-          "text": "'Route maps,' the peddler says, to you, because no one else is listening. 'Which house buys pins. Which dog bites. Twenty years of knowing which gate to knock at.' The blacksmith's boy saw him copying the mill road by lantern light; by supper the copying had become signaling, and the signaling had become the war. The east is in everyone's mouth tonight. Fear travels faster than armies; it eats first."
+          "text": "'Route maps,' the peddler says, to you, because no one else is listening. 'Which house buys pins. Which dog bites. Twenty years of knowing which gate to knock at.' The blacksmith's boy saw him copying the mill road by lantern light; by supper the copying had become signaling, and the signaling had become the war. The east is in everyone's mouth tonight. Fear travels faster than armies; it eats first.",
+          "speaker": "brakka"
         },
         {
           "text": "The reeve arrives, relieved to find someone above him. 'Chosen. The law allows me a hanging on two witnesses, and I have four.' He does not want to hang anyone, you can see it; he wants the crowd to go home, and a hanging is the shortest road there. The yard quiets. The torches lean in. Everyone is waiting to hear what justice sounds like in the mouth of a hero."
         },
         {
-          "text": "Wren has worked her way to the stable door with her ledger open. She reads the four testimonies back to herself, lips moving, and then looks up at you with no expression at all — which, you are learning, is the expression she saves for when the pages disagree."
+          "text": "Wren has worked her way to the stable door with her ledger open. She reads the four testimonies back to herself, lips moving, and then looks up at you with no expression at all — which, you are learning, is the expression she saves for when the pages disagree.",
+          "speaker": "wren"
         }
       ],
       "lightChoice": {
@@ -455,7 +475,10 @@
         "text": "Question the accusers yourself, one at a time, apart.",
         "consequence": [
           "You take them separately — smith's boy, carter, the carter's cousin, the man who mostly drinks — and ask each to walk you through the night. It takes eleven minutes for the story to die of its own arithmetic: the boy saw copying at the mill road; the carter heard it was the fording maps; the cousin was abed by dark; the drinker saw, on reflection, mostly the inside of a cup.",
-          "You cut Brakka loose yourself. The crowd does not cheer — crowds never cheer at being wrong — but it thins, which is better. The peddler flexes his wrists, gathers his pots, and looks at you a long moment. 'I know every road east of here,' he says. 'The ones on the maps and the other ones. A man who asks questions is going to want both kinds.' He leaves you a tin whistle, 'for the girl who writes,' and walks north whistling nothing in particular."
+          {
+            "text": "You cut Brakka loose yourself. The crowd does not cheer — crowds never cheer at being wrong — but it thins, which is better. The peddler flexes his wrists, gathers his pots, and looks at you a long moment. 'I know every road east of here,' he says. 'The ones on the maps and the other ones. A man who asks questions is going to want both kinds.' He leaves you a tin whistle, 'for the girl who writes,' and walks north whistling nothing in particular.",
+            "speaker": "brakka"
+          }
         ],
         "seerTruth": "Four stories, taken apart gently, came apart entirely. It cost you the crowd's warmth for one evening and it cost Brakka nothing at all, which was the whole sum in question. Questions are not glamorous. Neither are locksmiths, and both open doors.",
         "virtue": 15,
@@ -490,40 +513,49 @@
       "setting": "An orc encampment near farmland, cook-fires and wary eyes",
       "narrative": [
         {
-          "text": "The Greymarch farmers meet you at the boundary stone. A widow named Hedda speaks for them, twisting her apron in both fists. 'They came a month ago. Fires in the night. Voices. My girls won't sleep.' She is not lying about her fear. Fear never has to lie."
+          "text": "The Greymarch farmers meet you at the boundary stone. A widow named Hedda speaks for them, twisting her apron in both fists. 'They came a month ago. Fires in the night. Voices. My girls won't sleep.' She is not lying about her fear. Fear never has to lie.",
+          "speaker": "hedda"
         },
         {
           "text": "On the road to Greymarch a tin-hung mule overtakes your column — Brakka, the peddler from the Wayrest, pots ringing like small bells. 'Greymarch, is it?' He falls in beside you, unbothered by soldiers. 'I trade in that camp. Grukha's people — southerners, burned out. Tell her the pot-man sent you, and go with open hands.' He looks at you sideways. 'You ask before you swing. It's why I'm telling you at all.'",
           "if": {
             "chapter": "ch1b",
             "choice": "dark"
-          }
+          },
+          "speaker": "brakka"
         },
         {
-          "text": "'Understand,' Hedda says, walking you along her fence line, 'I am not a cruel woman. Before my Josef died I fed harvest-hands from four counties at this table.' She stops at a post gone strange — carved, recently, with a spiral of small neat marks. 'But that appeared in the night. On my land. What am I to feel but afraid?' Behind her fear, you notice, is a question — and no one has offered her an answer. Only a sword."
+          "text": "'Understand,' Hedda says, walking you along her fence line, 'I am not a cruel woman. Before my Josef died I fed harvest-hands from four counties at this table.' She stops at a post gone strange — carved, recently, with a spiral of small neat marks. 'But that appeared in the night. On my land. What am I to feel but afraid?' Behind her fear, you notice, is a question — and no one has offered her an answer. Only a sword.",
+          "speaker": "hedda"
         },
         {
-          "text": "Hedda feeds you at her table that night, because feeding people is the shape her hands know. Her girls, who cannot sleep, are awake at the top of the stair the whole meal, two pale watching ovals. As you leave, the younger one asks if it's true that orcs eat children. The elder one, quieter, asks whether orcs have children. Hedda shoos them both to bed and does not answer either question. Neither, you notice, do you."
+          "text": "Hedda feeds you at her table that night, because feeding people is the shape her hands know. Her girls, who cannot sleep, are awake at the top of the stair the whole meal, two pale watching ovals. As you leave, the younger one asks if it's true that orcs eat children. The elder one, quieter, asks whether orcs have children. Hedda shoos them both to bed and does not answer either question. Neither, you notice, do you.",
+          "speaker": "hedda"
         },
         {
           "text": "Tam has followed the column all the way from Thornfield — he appears at your stirrup, breathless and delighted, before anyone can send him home. 'I want to watch,' he says. 'I've never seen a hero fight.'",
           "if": {
             "chapter": "prologue",
             "choice": "light"
-          }
+          },
+          "speaker": "tam"
         },
         {
           "text": "From the ridge you can see the camp: hide tents, a stake fence, thin cook-fires. Distance flattens things. It could be a war-band. It could be a village. On the wind, faint, you hear something that might be a work chant — or might be a child laughing at goats."
         },
         {
-          "text": "Wren is beside you on the ridge, counting under her breath. 'Forty tents. Grain sacks — sixty, give or take. One forge, cold.' She lowers the eyeglass. 'For a war-band, that is a great many grain sacks and a very cold forge.' It is not advice; she would be offended if you called it advice. But she says it looking at you sideways, and slowly."
+          "text": "Wren is beside you on the ridge, counting under her breath. 'Forty tents. Grain sacks — sixty, give or take. One forge, cold.' She lowers the eyeglass. 'For a war-band, that is a great many grain sacks and a very cold forge.' It is not advice; she would be offended if you called it advice. But she says it looking at you sideways, and slowly.",
+          "speaker": "wren"
         }
       ],
       "lightChoice": {
         "text": "I will protect you. These creatures will be driven out.",
         "consequence": [
           "You attack at dawn. It is over faster than you expected — the camp scatters and burns, and by noon the farmers are singing in the fields. Something small crunches under your boot in the ash. You decide not to look down.",
-          "Hedda meets the column at the boundary stone with bread and salt. 'My girls slept,' she says, simply, and her voice does not shake for the first time since you met her. There is a feast; the fiddler invents a reel called 'The Chosen's Charge'; you are toasted eleven times. In the morning the burned field is very quiet, and the crows are very busy."
+          {
+            "text": "Hedda meets the column at the boundary stone with bread and salt. 'My girls slept,' she says, simply, and her voice does not shake for the first time since you met her. There is a feast; the fiddler invents a reel called 'The Chosen's Charge'; you are toasted eleven times. In the morning the burned field is very quiet, and the crows are very busy.",
+            "speaker": "hedda"
+          }
         ],
         "corruption": 20,
         "heroism": 18,
@@ -533,8 +565,14 @@
       "darkChoice": {
         "text": "Let me speak with them before anyone dies.",
         "consequence": [
-          "You leave your sword with Wren and walk down the ridge alone, hands open. The camp goes silent the way a forest goes silent. The elder who comes to meet you is grey-tusked and straight-backed, and she looks at your empty hands for a long moment before showing you her own. 'Grukha,' she says. 'You are the first of your people to arrive here on foot.'",
-          "'We fled the crown's own land-clearances in the south,' Grukha tells you over thin tea. 'Your king burns his poor and calls it husbandry. We took the empty march because no one was using it.' At dusk you bring her to Hedda's fence line. The two women measure each other. 'You carved my post,' Hedda says at last. 'A boundary blessing,' Grukha answers. 'It means: your cattle will not sicken.' Hedda's mouth opens, and closes. 'Well,' she says. 'Come inside. It's cold.'"
+          {
+            "text": "You leave your sword with Wren and walk down the ridge alone, hands open. The camp goes silent the way a forest goes silent. The elder who comes to meet you is grey-tusked and straight-backed, and she looks at your empty hands for a long moment before showing you her own. 'Grukha,' she says. 'You are the first of your people to arrive here on foot.'",
+            "speaker": "grukha"
+          },
+          {
+            "text": "'We fled the crown's own land-clearances in the south,' Grukha tells you over thin tea. 'Your king burns his poor and calls it husbandry. We took the empty march because no one was using it.' At dusk you bring her to Hedda's fence line. The two women measure each other. 'You carved my post,' Hedda says at last. 'A boundary blessing,' Grukha answers. 'It means: your cattle will not sicken.' Hedda's mouth opens, and closes. 'Well,' she says. 'Come inside. It's cold.'",
+            "speaker": "grukha"
+          }
         ],
         "virtue": 20,
         "heroism": 10,
@@ -572,16 +610,20 @@
           "text": "Mount Ashenmere takes two days to climb, and the wind talks the whole way up. Wren counts the old shrines beside the path — 'eight hundred years of pilgrims, and every one of them stopped here' — until the shrines stop, and the bones begin."
         },
         {
-          "text": "You camp in the ribs of an old pilgrim shelter. 'The records say the vault was sealed by the Grey King,' Wren says, feeding the fire pinecones one at a time. 'The records also say he was a great man. The two pages are in different hands.' She wraps her ink bottle in a sock against the frost. 'Everything ever written about this mountain was written by people who never climbed it.'"
+          "text": "You camp in the ribs of an old pilgrim shelter. 'The records say the vault was sealed by the Grey King,' Wren says, feeding the fire pinecones one at a time. 'The records also say he was a great man. The two pages are in different hands.' She wraps her ink bottle in a sock against the frost. 'Everything ever written about this mountain was written by people who never climbed it.'",
+          "speaker": "wren"
         },
         {
-          "text": "The dragon does not roar. It lies coiled across the vault doors like a wall given breath, and one gold eye opens as you crest the ledge. 'I am Vhaleth,' it says, in a voice like rockfall settling. 'Warden of what sleeps below.'"
+          "text": "The dragon does not roar. It lies coiled across the vault doors like a wall given breath, and one gold eye opens as you crest the ledge. 'I am Vhaleth,' it says, in a voice like rockfall settling. 'Warden of what sleeps below.'",
+          "speaker": "vhaleth"
         },
         {
-          "text": "The vault doors are nothing you imagined: no runes, no warnings, no skulls. Only names — a long column of them, carved small in the old script, weathering out of legibility. 'The wardens before you?' you ask. 'The makers,' says Vhaleth. 'I keep them where I must read them daily.' The gold eye closes, briefly. 'Guilt is a better lock than iron. It rusts slower.'"
+          "text": "The vault doors are nothing you imagined: no runes, no warnings, no skulls. Only names — a long column of them, carved small in the old script, weathering out of legibility. 'The wardens before you?' you ask. 'The makers,' says Vhaleth. 'I keep them where I must read them daily.' The gold eye closes, briefly. 'Guilt is a better lock than iron. It rusts slower.'",
+          "speaker": "vhaleth"
         },
         {
-          "text": "'You are the twelfth to stand on that ledge,' Vhaleth says. The gold eye does not blink. 'Four wept. Six drew. One recited a poem about glory. It was very long.' Wind moves through the vanes of its wings with a sound like a pipe organ breathing. 'I offer each of you the same courtesy before we begin. Ask me anything — or draw. I am eight hundred years past being surprised.'"
+          "text": "'You are the twelfth to stand on that ledge,' Vhaleth says. The gold eye does not blink. 'Four wept. Six drew. One recited a poem about glory. It was very long.' Wind moves through the vanes of its wings with a sound like a pipe organ breathing. 'I offer each of you the same courtesy before we begin. Ask me anything — or draw. I am eight hundred years past being surprised.'",
+          "speaker": "vhaleth"
         }
       ],
       "lightChoice": {
@@ -598,8 +640,14 @@
       "darkChoice": {
         "text": "Why do you guard this place? What are you protecting?",
         "consequence": [
-          "You ask. Vhaleth tells you: eight hundred years of vigil over a thing the Grey King built to end a war and nearly ended the world with — sealed, not destroyed, because some things can only be guarded. 'I was the volunteer,' the dragon says. 'It seemed a short posting. I was young.' It asks — it, the wall given breath, asks — whether you will help it hold.",
-          "You stay three days. Vhaleth teaches you the watch-words of the vault and the taste the wind takes when the seals ache. In exchange you tell it about Thornfield: fences, dogs, a boy's crooked wooden sun. 'I had a village once,' the dragon says, and does not elaborate. On the fourth dawn it walks you down the first mile — a courtesy, you understand, offered to no one else in eight centuries — and says: 'Send travelers. Not pilgrims. Travelers. I am so tired of being holy.'"
+          {
+            "text": "You ask. Vhaleth tells you: eight hundred years of vigil over a thing the Grey King built to end a war and nearly ended the world with — sealed, not destroyed, because some things can only be guarded. 'I was the volunteer,' the dragon says. 'It seemed a short posting. I was young.' It asks — it, the wall given breath, asks — whether you will help it hold.",
+            "speaker": "vhaleth"
+          },
+          {
+            "text": "You stay three days. Vhaleth teaches you the watch-words of the vault and the taste the wind takes when the seals ache. In exchange you tell it about Thornfield: fences, dogs, a boy's crooked wooden sun. 'I had a village once,' the dragon says, and does not elaborate. On the fourth dawn it walks you down the first mile — a courtesy, you understand, offered to no one else in eight centuries — and says: 'Send travelers. Not pilgrims. Travelers. I am so tired of being holy.'",
+            "speaker": "vhaleth"
+          }
         ],
         "virtue": 20,
         "heroism": 12,
@@ -637,23 +685,27 @@
           "text": "The High Court smells of beeswax and cold gold. Banners hang to the floor, and your name is already stitched into two of them. King Aldren rises to greet you — kings do not rise for anyone — and the whole hall inhales."
         },
         {
-          "text": "The wait outside the great doors was its own education. Courtiers arrived at your elbow like weather: one complimented your 'rustic directness' twice; a duchess asked whether the east would open 'new markets in timber'; a bishop blessed you absently, watching the doors. Wren was refused at the outer gate — clerks third class do not see thrones. 'Count the smiles for me,' she said, handing you nothing at all. 'I'll want numbers.'"
+          "text": "The wait outside the great doors was its own education. Courtiers arrived at your elbow like weather: one complimented your 'rustic directness' twice; a duchess asked whether the east would open 'new markets in timber'; a bishop blessed you absently, watching the doors. Wren was refused at the outer gate — clerks third class do not see thrones. 'Count the smiles for me,' she said, handing you nothing at all. 'I'll want numbers.'",
+          "speaker": "wren"
         },
         {
           "text": "In the second rank of the honor guard you catch a face you know. Tam, in a uniform cut down to almost fit him, beaming under a borrowed helmet. He enlisted after Greymarch, someone tells you. He wants to make you proud.",
           "if": {
             "chapter": "ch2",
             "choice": "light"
-          }
+          },
+          "speaker": "tam"
         },
         {
-          "text": "A map is unrolled, big as a sail: the east, rendered in grey. Towns you have never heard of; rivers whose names have been crossed out and rewritten in court hand. 'The Dark Lands,' the king says, and his voice does something practiced — drops, saddens. 'Once ours. Sundered from the light by their own pride.' The grey paint, you notice, is fresh. Older colors show through at the edges: green, and gold."
+          "text": "A map is unrolled, big as a sail: the east, rendered in grey. Towns you have never heard of; rivers whose names have been crossed out and rewritten in court hand. 'The Dark Lands,' the king says, and his voice does something practiced — drops, saddens. 'Once ours. Sundered from the light by their own pride.' The grey paint, you notice, is fresh. Older colors show through at the edges: green, and gold.",
+          "speaker": "king-aldren"
         },
         {
           "text": "They fit you for court armor you will never fight in — gilded, mirror-bright, light as a rumor. The armorer works with pins in his mouth and contempt in his eyebrows. 'None of my war-work shines,' he says around the pins. 'Shine is for parades and portraits.' He turns you to face the glass. You are being dressed, you realize, for a painting that has already been commissioned."
         },
         {
-          "text": "'Commander of my armies,' the king says, laying the baton across your palms like a father passing bread. 'The Dark Lands gather against us. You will carry the light to them before winter.' The applause goes on so long it stops sounding like hands."
+          "text": "'Commander of my armies,' the king says, laying the baton across your palms like a father passing bread. 'The Dark Lands gather against us. You will carry the light to them before winter.' The applause goes on so long it stops sounding like hands.",
+          "speaker": "king-aldren"
         }
       ],
       "lightChoice": {
@@ -726,21 +778,24 @@
           }
         },
         {
-          "text": "A voice you know is giving orders around a soup kettle. Hedda of Greymarch — flour on her forearms, steam in her face — has come east with the sutlers' wagons, cooking for coin. But her kettle is pointed the wrong way: she is feeding the queue. She sees you and does not curtsy. 'These ones can't sleep either,' she says, ladling. 'That's all I know anymore about who the monster is. It's whoever's awake at night.' She fills a bowl and holds it out to you like an argument."
+          "text": "A voice you know is giving orders around a soup kettle. Hedda of Greymarch — flour on her forearms, steam in her face — has come east with the sutlers' wagons, cooking for coin. But her kettle is pointed the wrong way: she is feeding the queue. She sees you and does not curtsy. 'These ones can't sleep either,' she says, ladling. 'That's all I know anymore about who the monster is. It's whoever's awake at night.' She fills a bowl and holds it out to you like an argument.",
+          "speaker": "hedda"
         },
         {
           "text": "'You made my girls safe,' she says, lower, not letting go of the bowl. 'I have had a year to think about what I asked you to do, and about how easily it was done. Don't you dare tell me it was for them.'",
           "if": {
             "chapter": "ch2",
             "choice": "light"
-          }
+          },
+          "speaker": "hedda"
         },
         {
           "text": "'Grukha winters with us now,' she says, easier, letting you take the bowl. 'Her folk rebuilt my west fence. You taught me the only trick worth knowing: feed first, ask after. So here I am. Teaching it.'",
           "if": {
             "chapter": "ch2",
             "choice": "dark"
-          }
+          },
+          "speaker": "hedda"
         },
         {
           "text": "Horns, to the west. The vanguard's dust is visible from the bridge tower now. The bridge master looks for someone to decide; the queue looks at the bridge; the river, uninterested, goes on being the border. Whatever crosses first — the army or the wagons — will be the truth of what this campaign is."
@@ -761,7 +816,10 @@
         "text": "Hold the bridge for the refugees until the last wagon is over.",
         "consequence": [
           "You put yourself at the bridgehead, where the argument would have to start, and the argument, seeing you, declines to. All night the wagons cross: anvil, birdcage, star map, soup kettle. Wren stands at the parapet writing down every name that will give one — 'so that somewhere there is a list of who mattered first.'",
-          "The vanguard arrives at grey dawn to find the bridge clear, the town empty, and you sitting on the parapet eating Hedda's soup. Lord Marshal Crane is furious in the way of men who have been handed no one to fight. 'And who,' he demands, 'held this bridge?' 'It held itself,' you say. 'Bridges do, if you let them.'"
+          {
+            "text": "The vanguard arrives at grey dawn to find the bridge clear, the town empty, and you sitting on the parapet eating Hedda's soup. Lord Marshal Crane is furious in the way of men who have been handed no one to fight. 'And who,' he demands, 'held this bridge?' 'It held itself,' you say. 'Bridges do, if you let them.'",
+            "speaker": "hedda"
+          }
         ],
         "seerTruth": "An army is heavy and a birdcage is light, and you decided the light things crossed first. It cost you a marshal's fury and bought a thousand quiet lives. This is the arithmetic no court teaches.",
         "virtue": 20,
@@ -805,17 +863,20 @@
           "text": "The council head is a woman named Odile, elected — the word is said carefully around you, like a password — eleven years running. Her chain of office is harness brass; she brazed it herself, she tells you, apropos of nothing, her voice level as a shelf. In her hands, wrapped in oilcloth, the charter: four pages, sheep-vellum, one wax seal gone amber with age. 'Two hundred years of agreeing how to disagree,' she says. 'It weighs less than a chicken.'",
           "if": {
             "always": true
-          }
+          },
+          "speaker": "odile"
         },
         {
           "text": "Tam stands guard at the charter table. He has learned the soldier's trick of looking at nothing, and he is doing it now, hard, at a point just above the town's bowed heads. When you pass, his eyes come to you for one instant — a boy checking, the way he once checked whether it was safe to laugh — and go back to nothing.",
           "if": {
             "chapter": "ch2",
             "choice": "light"
-          }
+          },
+          "speaker": "tam"
         },
         {
-          "text": "'You may burn it,' Odile says to you, quietly, while the brazier pops. 'You have the men, and vellum doesn't argue. But understand what it is. It isn't law anymore — your marshal repealed that at the gate. It's only the proof that we once agreed to be gentle with each other on purpose.' She holds it out. 'Proof burns. Agreement — ' she shrugs, brass clinking ' — we'll see.'"
+          "text": "'You may burn it,' Odile says to you, quietly, while the brazier pops. 'You have the men, and vellum doesn't argue. But understand what it is. It isn't law anymore — your marshal repealed that at the gate. It's only the proof that we once agreed to be gentle with each other on purpose.' She holds it out. 'Proof burns. Agreement — ' she shrugs, brass clinking ' — we'll see.'",
+          "speaker": "odile"
         }
       ],
       "lightChoice": {
@@ -833,7 +894,10 @@
         "text": "Read the charter aloud to the square before any decree is carried out.",
         "consequence": [
           "You unwrap the oilcloth and read — badly at first, the old legal hand fighting you, and then not badly at all, because the square has begun, very quietly, to say it with you. Two hundred years of agreeing how to disagree, recited back by everyone it belongs to. The brazier burns on, ignored, warming nobody's law. Odile's face never moves; her chain does, slightly, with her breathing.",
-          "Wren stays up all night in the council cellar, teaching the archivist's hand to six volunteer clerks. By morning there are copies in coat linings, hymnals, flour barrels, and one — her idea — misfiled deliberately in Lord Marshal Crane's own baggage inventory, where no one will ever look. 'You can't burn what you can't find,' she says, sanding ink from her fingers. 'And you can't find what everybody has.'"
+          {
+            "text": "Wren stays up all night in the council cellar, teaching the archivist's hand to six volunteer clerks. By morning there are copies in coat linings, hymnals, flour barrels, and one — her idea — misfiled deliberately in Lord Marshal Crane's own baggage inventory, where no one will ever look. 'You can't burn what you can't find,' she says, sanding ink from her fingers. 'And you can't find what everybody has.'",
+            "speaker": "wren"
+          }
         ],
         "seerTruth": "The decree said the charter must be surrendered, and it was — to the whole square at once, out loud. You found the loophole no marshal drafts against: memory. A thing spoken becomes a thing kept. You made two thousand keepers in one reading.",
         "virtue": 15,
@@ -868,19 +932,23 @@
       "setting": "A halfling village, thatched roofs, herb gardens, warm bread",
       "narrative": [
         {
-          "text": "Willowmere is round doors and herb gardens and washing strung between chimneys. An old halfling woman — Marigold, her neighbors call her — presses a heel of warm bread into your hand before anyone has said why you've come. 'Long road,' is all she says. 'Eat.'"
+          "text": "Willowmere is round doors and herb gardens and washing strung between chimneys. An old halfling woman — Marigold, her neighbors call her — presses a heel of warm bread into your hand before anyone has said why you've come. 'Long road,' is all she says. 'Eat.'",
+          "speaker": "marigold"
         },
         {
           "text": "School lets out as you arrive, and halfling children pour around your boots like spring water — entirely unafraid, which does something complicated to your chest. One stops to inform you, gravely, that your horse is too tall on purpose. Another walks the whole lane backward to keep looking at you. The song they were rehearsing follows them out the schoolhouse door. It is on the priestess's list; you will learn that within the hour."
         },
         {
-          "text": "Inside her round door: a kitchen the size of a wagon bed, and on the shelf, the book. Handwritten, floury, older than the door. 'My gran's,' Marigold says, catching your look. 'Receipts, mostly. Bread for grief. Bread for weddings. There's a soup in there that once ended a feud.' She says it the way other people say heirloom sword. On the doorframe, small neat marks — the same spiral you saw once on a fence post at Greymarch."
+          "text": "Inside her round door: a kitchen the size of a wagon bed, and on the shelf, the book. Handwritten, floury, older than the door. 'My gran's,' Marigold says, catching your look. 'Receipts, mostly. Bread for grief. Bread for weddings. There's a soup in there that once ended a feud.' She says it the way other people say heirloom sword. On the doorframe, small neat marks — the same spiral you saw once on a fence post at Greymarch.",
+          "speaker": "marigold"
         },
         {
-          "text": "The priestess arrives an hour behind you with a wagon and a list. 'Symbols on the doorframes,' she reads. 'Unsanctioned plants. Songs in a tongue no godly ear can follow.' Behind her, Marigold stands in her garden, wiping flour from her hands, waiting to hear what you will decide she is."
+          "text": "The priestess arrives an hour behind you with a wagon and a list. 'Symbols on the doorframes,' she reads. 'Unsanctioned plants. Songs in a tongue no godly ear can follow.' Behind her, Marigold stands in her garden, wiping flour from her hands, waiting to hear what you will decide she is.",
+          "speaker": "priestess"
         },
         {
-          "text": "'You hesitate,' the priestess observes. Up close she is younger than her voice, and tired, and absolutely certain — the way only the unslept are certain. 'I have read your campaigns, Chosen. The Light keeps its own ledger.' She touches the wagon's rail. It is stacked with crates, empty, pre-labeled in fresh paint: EVIDENCE. 'We find it saves time,' she says, 'to bring the boxes.'"
+          "text": "'You hesitate,' the priestess observes. Up close she is younger than her voice, and tired, and absolutely certain — the way only the unslept are certain. 'I have read your campaigns, Chosen. The Light keeps its own ledger.' She touches the wagon's rail. It is stacked with crates, empty, pre-labeled in fresh paint: EVIDENCE. 'We find it saves time,' she says, 'to bring the boxes.'",
+          "speaker": "priestess"
         }
       ],
       "lightChoice": {
@@ -898,7 +966,10 @@
         "text": "Show me this dark magic yourself. I want to see it.",
         "consequence": [
           "'Show me this dark magic yourself. I want to see it.' You walk the village with the priestess's own list. The 'strange symbols' are harvest prayers. The 'unsanctioned plants' are feverfew and comfrey. The 'unknown tongue' is the halflings' own, older than the kingdom, and Marigold swears in it — mildly — when her oven sticks.",
-          "'Read them to me,' you say at last, holding out gran's book, and the priestess cannot — not one word. 'Then we are done here. Willowmere is cleared.' The wagon leaves with its EVIDENCE crates still empty and its axles light. Marigold bakes that week — grief bread and wedding bread both, since the two days fell close enough to share an oven — and sends a loaf after Wren, addressed: for the girl who writes."
+          {
+            "text": "'Read them to me,' you say at last, holding out gran's book, and the priestess cannot — not one word. 'Then we are done here. Willowmere is cleared.' The wagon leaves with its EVIDENCE crates still empty and its axles light. Marigold bakes that week — grief bread and wedding bread both, since the two days fell close enough to share an oven — and sends a loaf after Wren, addressed: for the girl who writes.",
+            "speaker": "priestess"
+          }
         ],
         "virtue": 15,
         "heroism": 10,
@@ -933,7 +1004,8 @@
       "setting": "An ancient forest clearing, silver light, absolute stillness",
       "narrative": [
         {
-          "text": "A mile into the Elderwood, hanging from a hazel: charms. Hundreds of them — wooden suns and moons and stranger shapes, ribboned, rain-faded. 'Offerings,' Wren says quietly. 'People bring them when they've lost something the law can't reach.' Your thumb knows the shape it finds in your pocket before you look."
+          "text": "A mile into the Elderwood, hanging from a hazel: charms. Hundreds of them — wooden suns and moons and stranger shapes, ribboned, rain-faded. 'Offerings,' Wren says quietly. 'People bring them when they've lost something the law can't reach.' Your thumb knows the shape it finds in your pocket before you look.",
+          "speaker": "wren"
         },
         {
           "text": "The last mile you walk alone; even the wind keeps to the treeline. You think, unbidden, of all of them at once — Tam's crooked sun, Hedda's kettle, the dragon reading its carved names, an old woman's floury book of bread — the whole company of your journey held up at once, like a page tilted to the light to read what was written under the writing."
@@ -950,10 +1022,12 @@
           "if": {
             "stat": "virtue",
             "gte": 60
-          }
+          },
+          "speaker": "wren"
         },
         {
-          "text": "The glade opens like a held breath released: silver grass, absolute stillness, and the last unicorn shining at the center of it like the moon come down to drink. When it speaks, it speaks inside your bones. 'Champion. I can give you what the prophecy requires. All it costs is everything I am.'"
+          "text": "The glade opens like a held breath released: silver grass, absolute stillness, and the last unicorn shining at the center of it like the moon come down to drink. When it speaks, it speaks inside your bones. 'Champion. I can give you what the prophecy requires. All it costs is everything I am.'",
+          "speaker": "unicorn"
         }
       ],
       "lightChoice": {
@@ -970,8 +1044,14 @@
       "darkChoice": {
         "text": "No. I won't buy victory with your life.",
         "consequence": [
-          "'No. I won't buy victory with your life.' The stillness holds one heartbeat longer — and then the unicorn speaks, and there is something in its voice that has not been there for an age of the world: surprise. 'You were the great evil. Every step of the prophecy was built to bring a hungry hero to this glade. And you have refused the last meal.' Around you, the forest exhales.",
-          "'What happens now?' you ask. The unicorn is already fading back into the silver of the grass, unhurried, the way morning fades into day. 'Now you go home the long way — unarmed, unfollowed, unimportant — and see how much of the world you can leave exactly as you found it. It is harder than the other thing. It was always harder.' At the glade's edge Wren stands holding both horses, writing nothing, smiling like her own first page."
+          {
+            "text": "'No. I won't buy victory with your life.' The stillness holds one heartbeat longer — and then the unicorn speaks, and there is something in its voice that has not been there for an age of the world: surprise. 'You were the great evil. Every step of the prophecy was built to bring a hungry hero to this glade. And you have refused the last meal.' Around you, the forest exhales.",
+            "speaker": "unicorn"
+          },
+          {
+            "text": "'What happens now?' you ask. The unicorn is already fading back into the silver of the grass, unhurried, the way morning fades into day. 'Now you go home the long way — unarmed, unfollowed, unimportant — and see how much of the world you can leave exactly as you found it. It is harder than the other thing. It was always harder.' At the glade's edge Wren stands holding both horses, writing nothing, smiling like her own first page.",
+            "speaker": "unicorn"
+          }
         ],
         "virtue": 25,
         "heroism": 8,
@@ -1072,6 +1152,7 @@
     "vhaleth": "The dragon warden's name. 'Ask, or draw. Those have always been the two roads up this mountain.'",
     "marigold": "An old Willowmere halfling who gives the player bread before hearing why they've come.",
     "brakka": "A half-orc peddler seized as a 'spy' at the Wayrest inn on the strength of his route maps. If questioned free, he reappears at Greymarch to vouch for you: 'This one asks before it swings.'",
-    "odile": "Elected head of Vellbrook's council, first of her line to hold a chain of office she brazed herself from harness fittings. Surrenders everything except the town's memory."
+    "odile": "Elected head of Vellbrook's council, first of her line to hold a chain of office she brazed herself from harness fittings. Surrenders everything except the town's memory.",
+    "portraits": "Illustrated SVG busts (not pixel art) shown beside dialogue whenever a beat or aftermath page has a speaker — visual-novel presentation over the pixel scene."
   }
 }

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">
+  <defs>
+    <radialGradient id="gSkin" cx="45%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#a8bd82"/>
+      <stop offset="78%" stop-color="#84a05c"/>
+      <stop offset="100%" stop-color="#5f7a42"/>
+    </radialGradient>
+    <linearGradient id="gHair" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#c9c2b4"/>
+      <stop offset="100%" stop-color="#9a9488"/>
+    </linearGradient>
+    <linearGradient id="gCloth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a5636"/>
+      <stop offset="100%" stop-color="#66412a"/>
+    </linearGradient>
+    <linearGradient id="gRim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ffe9b8" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  
+  <path d="M 44 360 C 48 292 84 258 118 248 L 150 262 L 182 248 C 216 258 252 292 256 360 Z" fill="url(#gCloth)"/>
+  <path d="M 108 252 L 150 266 L 192 252 L 196 360 L 104 360 Z" fill="#9a6844"/>
+  <path d="M 44 360 C 48 292 84 258 118 248 L 150 262 L 182 248 C 216 258 252 292 256 360 Z" fill="url(#gRim)"/>
+  
+  <path d="M 128 196 L 128 252 C 128 262 172 262 172 252 L 172 196 Z" fill="url(#gSkin)"/>
+  <path d="M 128 196 L 128 216 C 140 226 160 226 172 216 L 172 196 Z" fill="#00000030"/>
+  
+  <path d="M 86.75999999999999 148 C 86.75999999999999 96 104.46719999999999 66 150 66 C 195.5328 66 213.24 96 213.24 148 C 213.24 182 189.2088 212 150 214 C 110.7912 212 86.75999999999999 182 86.75999999999999 148 Z" fill="url(#gSkin)"/>
+  <ellipse cx="84.75999999999999" cy="150" rx="9" ry="14" fill="url(#gSkin)"/>
+  <ellipse cx="215.24" cy="150" rx="9" ry="14" fill="url(#gSkin)"/>
+  
+  <g>
+    <path d="M 108 148 Q 121 141 134 148 Q 121 157 108 148 Z" fill="#fdf8f0"/>
+    <path d="M 166 148 Q 179 141 192 148 Q 179 157 166 148 Z" fill="#fdf8f0"/>
+    <circle cx="121" cy="148" r="6.2" fill="#b98a3d"/>
+    <circle cx="179" cy="148" r="6.2" fill="#b98a3d"/>
+    <circle cx="121" cy="148" r="2.6" fill="#1c140e"/>
+    <circle cx="179" cy="148" r="2.6" fill="#1c140e"/>
+    <circle cx="123.5" cy="145.5" r="1.6" fill="#ffffff" opacity="0.9"/>
+    <circle cx="181.5" cy="145.5" r="1.6" fill="#ffffff" opacity="0.9"/>
+    <path d="M 106 143 Q 121 136 136 143" stroke="#3a2c22" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M 164 143 Q 179 136 194 143" stroke="#3a2c22" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M 112 160 Q 121 164 132 161" stroke="#00000022" stroke-width="2" fill="none"/><path d="M 168 161 Q 179 164 188 160" stroke="#00000022" stroke-width="2" fill="none"/>
+  </g>
+  <path d="M 106 130 Q 121 125 136 130" stroke="#c9c2b4" stroke-width="4.6" fill="none" stroke-linecap="round"/><path d="M 164 130 Q 179 125 194 130" stroke="#c9c2b4" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+  
+  <path d="M 150 158 Q 146 172 143 178 Q 149 182 155 179" stroke="#00000026" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M 138 198 Q 150 196 162 198" stroke="#5f7a42" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 118 182 Q 114 190 116 197" stroke="#00000018" stroke-width="2" fill="none"/><path d="M 182 182 Q 186 190 184 197" stroke="#00000018" stroke-width="2" fill="none"/><path d="M 112 118 Q 150 112 188 118" stroke="#00000015" stroke-width="2" fill="none"/><path d="M 116 108 Q 150 102 184 108" stroke="#00000012" stroke-width="2" fill="none"/>
+  <path d="M 130 204 L 135 186 L 143 202 Z" fill="#efe8d8"/>
+  <path d="M 170 204 L 165 186 L 157 202 Z" fill="#efe8d8"/>
+  <path d="M 118 74 C 118 56 182 56 182 74 L 176 92 C 168 80 132 80 124 92 Z" fill="#c9c2b4"/>
+  <rect x="140" y="44" width="20" height="26" rx="8" fill="#c9c2b4"/>
+  <circle cx="98" cy="158" r="6" fill="#c9a35c"/>
+  <circle cx="202" cy="158" r="6" fill="#c9a35c"/>
+  <path d="M 88 120 Q 150 96 212 120 L 208 132 Q 150 110 92 132 Z" fill="#c9c2b4" opacity="0.85"/>
+  <path d="M 196 92 C 212 112 216 150 208 186" stroke="#ffe9b8" stroke-width="5" fill="none" opacity="0.35" stroke-linecap="round"/></svg>

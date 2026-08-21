@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">
+  <defs>
+    <radialGradient id="gSkin" cx="45%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#b8cc8f"/>
+      <stop offset="78%" stop-color="#94ad68"/>
+      <stop offset="100%" stop-color="#6d8547"/>
+    </radialGradient>
+    <linearGradient id="gHair" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#5a4a34"/>
+      <stop offset="100%" stop-color="#3d3222"/>
+    </linearGradient>
+    <linearGradient id="gCloth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5f5240"/>
+      <stop offset="100%" stop-color="#443a2c"/>
+    </linearGradient>
+    <linearGradient id="gRim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ffe9b8" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  
+  <path d="M 44 360 C 48 292 84 258 118 248 L 150 262 L 182 248 C 216 258 252 292 256 360 Z" fill="url(#gCloth)"/>
+  <path d="M 118 248 L 150 262 L 182 248 L 178 266 L 150 276 L 122 266 Z" fill="#8a6844"/>
+  <path d="M 44 360 C 48 292 84 258 118 248 L 150 262 L 182 248 C 216 258 252 292 256 360 Z" fill="url(#gRim)"/>
+  
+  <path d="M 128 196 L 128 252 C 128 262 172 262 172 252 L 172 196 Z" fill="url(#gSkin)"/>
+  <path d="M 128 196 L 128 216 C 140 226 160 226 172 216 L 172 196 Z" fill="#00000030"/>
+  
+  <path d="M 84.89999999999999 148 C 84.89999999999999 96 103.12799999999999 66 150 66 C 196.872 66 215.10000000000002 96 215.10000000000002 148 C 215.10000000000002 182 190.362 212 150 214 C 109.638 212 84.89999999999999 182 84.89999999999999 148 Z" fill="url(#gSkin)"/>
+  <ellipse cx="82.89999999999999" cy="150" rx="9" ry="14" fill="url(#gSkin)"/>
+  <ellipse cx="217.10000000000002" cy="150" rx="9" ry="14" fill="url(#gSkin)"/>
+  
+  <g>
+    <path d="M 108 148 Q 121 141 134 148 Q 121 157 108 148 Z" fill="#fdf8f0"/>
+    <path d="M 166 148 Q 179 141 192 148 Q 179 157 166 148 Z" fill="#fdf8f0"/>
+    <circle cx="121" cy="148" r="6.2" fill="#c9973d"/>
+    <circle cx="179" cy="148" r="6.2" fill="#c9973d"/>
+    <circle cx="121" cy="148" r="2.6" fill="#1c140e"/>
+    <circle cx="179" cy="148" r="2.6" fill="#1c140e"/>
+    <circle cx="123.5" cy="145.5" r="1.6" fill="#ffffff" opacity="0.9"/>
+    <circle cx="181.5" cy="145.5" r="1.6" fill="#ffffff" opacity="0.9"/>
+    <path d="M 106 143 Q 121 136 136 143" stroke="#3a2c22" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M 164 143 Q 179 136 194 143" stroke="#3a2c22" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </g>
+  <path d="M 106 130 Q 121 125 136 130" stroke="#3d4a2a" stroke-width="4.6" fill="none" stroke-linecap="round"/><path d="M 164 130 Q 179 125 194 130" stroke="#3d4a2a" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+  
+  <path d="M 150 158 Q 146 172 143 178 Q 149 182 155 179" stroke="#00000026" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M 136 194 Q 150 203 164 194" stroke="#5f7a42" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 132 202 L 136 188 L 143 200 Z" fill="#efe8d8"/>
+  <path d="M 168 202 L 164 188 L 157 200 Z" fill="#efe8d8"/>
+  <path d="M 78 160 C 70 80 108 44 150 42 C 192 44 230 80 222 160 L 212 156 C 216 96 190 64 150 62 C 110 64 84 96 88 156 Z" fill="#7a5c3a"/>
+  <path d="M 78 160 C 70 80 108 44 150 42 C 192 44 230 80 222 160 C 224 176 220 190 212 200 L 204 190 C 212 178 214 166 212 154 C 216 94 190 62 150 60 C 110 62 84 94 88 154 C 86 166 88 178 96 190 L 88 200 C 80 190 76 176 78 160 Z" fill="#8a6844"/>
+  <circle cx="106" cy="166" r="4" fill="#c9a35c"/>
+  <path d="M 196 92 C 212 112 216 150 208 186" stroke="#ffe9b8" stroke-width="5" fill="none" opacity="0.35" stroke-linecap="round"/></svg>

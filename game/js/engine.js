@@ -58,6 +58,33 @@ function conditionMet(cond) {
   return false;
 }
 
+const CAST_NAMES = {
+  'wren': 'Wren', 'tam': 'Tam', 'hedda': 'Hedda', 'aldric': 'Aldric',
+  'brakka': 'Brakka', 'grukha': 'Grukha', 'vhaleth': 'Vhaleth',
+  'king-aldren': 'King Aldren', 'odile': 'Odile', 'marigold': 'Marigold',
+  'priestess': 'The Priestess', 'herald': 'The Herald', 'unicorn': 'The Unicorn',
+};
+
+/* Visual-novel presentation: an illustrated bust beside the text whenever
+ * a beat or aftermath page belongs to a character. */
+function dialogueHTML(speaker, text) {
+  const name = CAST_NAMES[speaker] || speaker;
+  return `
+    <div class="dialogue">
+      <div class="d-panel">
+        <span class="d-name">${esc(name)}</span>
+        <p class="d-text">${esc(text)}</p>
+      </div>
+      <img class="d-portrait" src="assets/portraits/${speaker}.svg" alt="${esc(name)}">
+    </div>`;
+}
+
+function proseOrDialogue(entry) {
+  return entry.speaker
+    ? dialogueHTML(entry.speaker, entry.text)
+    : `<p>${esc(entry.text)}</p>`;
+}
+
 /* A chapter's narrative is one string or a list of beats; a beat may carry
  * an `if` so scenes bend around earlier choices and hidden stats. */
 function chapterBeats(ch) {
@@ -168,7 +195,9 @@ function bookHTML() {
         <div class="book-chapter-title">${esc(ch.title)}</div>
         <div class="book-chapter-place">${esc(ch.location)}</div>
       </div>
-      <p class="book-body">${esc(choice.revealed || (Array.isArray(choice.consequence) ? choice.consequence.join(' ') : choice.consequence))}</p>
+      <p class="book-body">${esc(choice.revealed || (Array.isArray(choice.consequence)
+        ? choice.consequence.map(p => (typeof p === 'string' ? p : p.text)).join(' ')
+        : choice.consequence))}</p>
       <div class="seer-truth">
         <span class="seer-label">The Seer sees:</span>
         ${esc(choice.seerTruth)}
@@ -399,8 +428,8 @@ function renderInner() {
       <div class="scene-bg" ${sceneStyle(ch)}></div>
       <div class="screen">
         ${hudHTML(ch)}
-        ${i === 0 ? `<img class="figure" src="assets/sprites/${ch.sprite}.png" alt="">` : ''}
-        <div class="narrative"><p>${esc(beats[i].text)}</p></div>
+        ${i === 0 && !beats[i].speaker ? `<img class="figure" src="assets/sprites/${ch.sprite}.png" alt="">` : ''}
+        <div class="narrative">${proseOrDialogue(beats[i])}</div>
         ${dots}
         <div class="actions"><button class="continue" data-act="choices">Continue</button></div>
         ${state.showMap ? mapOverlayHTML() : ''}
@@ -421,7 +450,8 @@ function renderInner() {
   } else if (state.phase === 'consequence') {
     const type = state.lastChoice;
     const choice = type === 'light' ? ch.lightChoice : ch.darkChoice;
-    const pages = Array.isArray(choice.consequence) ? choice.consequence : [choice.consequence];
+    const pages = (Array.isArray(choice.consequence) ? choice.consequence : [choice.consequence])
+      .map(p => (typeof p === 'string' ? { text: p } : p));
     const pi = Math.min(state.beat || 0, pages.length - 1);
     const lastPage = pi === pages.length - 1;
     const dots = pages.length > 1
@@ -434,9 +464,12 @@ function renderInner() {
     const wrenLine = DATA.companion.lines[ch.id] ? DATA.companion.lines[ch.id][type] : null;
     const wren = (lastPage && wrenLine) ? `
       <div class="wren">
-        ${isPrologue ? `<p style="margin:0 0 10px;font-style:italic;color:var(--text-dim)">${esc(DATA.companion.intro)}</p>` : ''}
-        <span class="who">${esc(DATA.companion.name)}</span>
-        &ldquo;${esc(wrenLine)}&rdquo;
+        <img class="wren-portrait" src="assets/portraits/wren.svg" alt="Wren">
+        <div>
+          ${isPrologue ? `<p style="margin:0 0 10px;font-style:italic;color:var(--text-dim)">${esc(DATA.companion.intro)}</p>` : ''}
+          <span class="who">${esc(DATA.companion.name)}</span>
+          &ldquo;${esc(wrenLine)}&rdquo;
+        </div>
       </div>` : '';
     const flash = (DESIGN_MODE && pi === 0)
       ? `<div class="flash ${type === 'light' ? 'corrupt' : 'virtue'}">${type === 'light' ? '☠ Corruption +' + (choice.corruption || 0) : '✧ Virtue +' + (choice.virtue || 0)}</div>`
@@ -448,7 +481,7 @@ function renderInner() {
         ${hudHTML(ch)}
         ${flash}
         <div class="narrative">
-          <p>${esc(pages[pi])}</p>
+          ${proseOrDialogue(pages[pi])}
           ${echoes}
           ${wren}
         </div>

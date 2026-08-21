@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">
+  <defs>
+    <radialGradient id="gSkin" cx="45%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#f5d9bd"/>
+      <stop offset="78%" stop-color="#e8bd98"/>
+      <stop offset="100%" stop-color="#d19a72"/>
+    </radialGradient>
+    <linearGradient id="gHair" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#4a3a2a"/>
+      <stop offset="100%" stop-color="#2e2318"/>
+    </linearGradient>
+    <linearGradient id="gCloth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5c564c"/>
+      <stop offset="100%" stop-color="#403c34"/>
+    </linearGradient>
+    <linearGradient id="gRim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ffe9b8" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <path d="M 92 210 C 74 150 84 84 150 74 C 216 84 226 150 208 210 C 214 158 206 120 150 116 C 94 120 86 158 92 210 Z" fill="url(#gHair)"/>
+  
+  <path d="M 44 360 C 48 292 84 258 118 248 L 150 262 L 182 248 C 216 258 252 292 256 360 Z" fill="url(#gCloth)"/>
+  <path d="M 118 248 L 150 262 L 182 248 L 176 268 L 150 278 L 124 268 Z" fill="#8a8478"/>
+  <path d="M 44 360 C 48 292 84 258 118 248 L 150 262 L 182 248 C 216 258 252 292 256 360 Z" fill="url(#gRim)"/>
+  
+  <path d="M 128 196 L 128 252 C 128 262 172 262 172 252 L 172 196 Z" fill="url(#gSkin)"/>
+  <path d="M 128 196 L 128 216 C 140 226 160 226 172 216 L 172 196 Z" fill="#00000022"/>
+  
+  <path d="M 91.72 148 C 91.72 96 108.0384 66 150 66 C 191.9616 66 208.28 96 208.28 148 C 208.28 182 186.1336 212 150 214 C 113.8664 212 91.72 182 91.72 148 Z" fill="url(#gSkin)"/>
+  <ellipse cx="89.72" cy="150" rx="9" ry="14" fill="url(#gSkin)"/>
+  <ellipse cx="210.28" cy="150" rx="9" ry="14" fill="url(#gSkin)"/>
+  
+  <g>
+    <path d="M 108 148 Q 121 141 134 148 Q 121 157 108 148 Z" fill="#fdf8f0"/>
+    <path d="M 166 148 Q 179 141 192 148 Q 179 157 166 148 Z" fill="#fdf8f0"/>
+    <circle cx="121" cy="148" r="6.2" fill="#5c4a33"/>
+    <circle cx="179" cy="148" r="6.2" fill="#5c4a33"/>
+    <circle cx="121" cy="148" r="2.6" fill="#1c140e"/>
+    <circle cx="179" cy="148" r="2.6" fill="#1c140e"/>
+    <circle cx="123.5" cy="145.5" r="1.6" fill="#ffffff" opacity="0.9"/>
+    <circle cx="181.5" cy="145.5" r="1.6" fill="#ffffff" opacity="0.9"/>
+    <path d="M 106 143 Q 121 136 136 143" stroke="#3a2c22" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M 164 143 Q 179 136 194 143" stroke="#3a2c22" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </g>
+  <path d="M 106 130 Q 121 125 136 130" stroke="#3d2f22" stroke-width="4.6" fill="none" stroke-linecap="round"/><path d="M 164 130 Q 179 125 194 130" stroke="#3d2f22" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+  
+  <path d="M 150 158 Q 146 172 143 178 Q 149 182 155 179" stroke="#00000026" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M 138 196 Q 150 200 162 196" stroke="#8a5a48" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+  <path d="M 88 148 C 84 96 104 70 150 68 C 196 70 216 96 212 148 C 210 112 192 92 150 92 C 108 92 90 112 88 148 Z" fill="url(#gHair)"/>
+  <path d="M 96 100 Q 116 78 148 76" stroke="#6b5844" stroke-width="4" fill="none" opacity="0.6"/>
+  <path d="M 210 150 C 216 178 212 206 200 224 L 192 216 C 202 198 206 176 202 152 Z" fill="url(#gHair)"/>
+  <rect x="196" y="286" width="34" height="44" rx="4" fill="#b8a888" transform="rotate(-12 213 308)"/>
+  <line x1="202" y1="296" x2="224" y2="292" stroke="#6b5844" stroke-width="2"/>
+  <line x1="203" y1="304" x2="225" y2="300" stroke="#6b5844" stroke-width="2"/>
+  <line x1="204" y1="312" x2="226" y2="308" stroke="#6b5844" stroke-width="2"/>
+  <path d="M 196 92 C 212 112 216 150 208 186" stroke="#ffe9b8" stroke-width="5" fill="none" opacity="0.35" stroke-linecap="round"/></svg>
