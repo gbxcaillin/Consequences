@@ -123,6 +123,39 @@ function sceneStyle(ch) {
   return `style="background-image:url('assets/scenes/${scene}.webp')"`;
 }
 
+/* Momentum: walk one road long enough and the other closes. Past `pull`
+ * the opposing choice carries a warning; past `lock` — the point of no
+ * return — the story takes your hands and the choice is gone. Deliberate
+ * alternators keep both roads open, so the Crossroads stays a chosen
+ * ending rather than a default. */
+function momentumStage(side) {
+  const m = DATA.momentum;
+  if (!m) return 'free';
+  const diff = state.corruption - state.virtue;
+  // the dark (questioning) option is blocked by corruption momentum;
+  // the light (heroic) option by virtue momentum
+  const against = side === 'dark' ? diff : -diff;
+  if (against >= m.lock) return 'locked';
+  if (against >= m.pull) return 'pulled';
+  return 'free';
+}
+
+function choiceButtonHTML(ch, side) {
+  const choice = side === 'light' ? ch.lightChoice : ch.darkChoice;
+  const stage = momentumStage(side);
+  if (stage === 'free') {
+    return `<button class="choice-${side}" data-act="choose" data-choice="${side}">${esc(choice.text)}</button>`;
+  }
+  const force = side === 'dark' ? 'corruption' : 'virtue';
+  const note = (stage === 'locked' && choice.lockNote)
+    ? choice.lockNote
+    : DATA.momentum.notes[force][stage === 'locked' ? 'lock' : 'pull'];
+  if (stage === 'locked') {
+    return `<button class="choice-${side} locked" disabled>${esc(choice.text)}<span class="lock-note">${esc(note)}</span></button>`;
+  }
+  return `<button class="choice-${side} pulled" data-act="choose" data-choice="${side}">${esc(choice.text)}<span class="lock-note">${esc(note)}</span></button>`;
+}
+
 function hudHTML(ch) {
   const pct = Math.min(100, (state.heroism / DATA.scoring.visible.maxPossible) * 100);
   return `
@@ -278,6 +311,7 @@ function howtoHTML() {
     ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions.'],
     ['Your legend grows', 'The Heroism bar shows how the kingdom sees you. Whether the kingdom sees clearly is another matter.'],
     ['On the road', 'MAP shows your progress through the land. WREN opens your companion&rsquo;s journal — a scribe who writes down what you do, as you do it. The note icon silences the realm.'],
+    ['The road remembers', 'Choices have momentum. Walk one path long enough and the other begins to close &mdash; and there is a point past which you cannot turn around.'],
     ['The ending is yours', 'There are three endings. Finish a journey to learn which one your choices earned, and to read the Seer&rsquo;s unvarnished account of what you actually did.'],
     ['Carry it with you', 'Progress saves automatically on this device. The Chronicle keeps every completed journey, and a save code carries it all to another device.'],
   ].map(([head, text]) => `
@@ -441,8 +475,8 @@ function renderInner() {
         <div class="narrative"></div>
         <div class="prompt">What do you do?</div>
         <div class="actions">
-          <button class="choice-light" data-act="choose" data-choice="light">${esc(ch.lightChoice.text)}</button>
-          <button class="choice-dark" data-act="choose" data-choice="dark">${esc(ch.darkChoice.text)}</button>
+          ${choiceButtonHTML(ch, 'light')}
+          ${choiceButtonHTML(ch, 'dark')}
         </div>
         ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;

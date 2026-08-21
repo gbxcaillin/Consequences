@@ -279,6 +279,23 @@ button.choice-dark {
   border-color: #203a2a;
   color: var(--fern);
 }
+button.pulled .lock-note,
+button.locked .lock-note {
+  display: block;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 7px;
+  color: var(--text-dim);
+}
+button.locked {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+  cursor: default;
+}
+button.locked:active { transform: none; }
+button.pulled .lock-note { color: var(--text-faint); }
 button.continue {
   text-align: center;
   font-family: 'Space Mono', monospace;

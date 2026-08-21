@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
@@ -810,7 +810,8 @@
         "revealed": "The fen meadows flooded on the third night. The army's engineers had taken the wagon-boards for corduroy road, and what the cold began, the requisitioners finished — 'useful' was the whole list by then. The queue you sorted did not reach the western towns until spring. Not all of it reached at all.",
         "seerTruth": "You called it logistics. A river of people asked you for one night, and you gave the night to the wheels of a war instead. The Seer keeps no list of the fen meadows; no one does. That is rather the point of fens.",
         "corruption": 20,
-        "heroism": 16
+        "heroism": 16,
+        "lockNote": "You count the birdcage, the star map, the kettle. The order will not come."
       },
       "darkChoice": {
         "text": "Hold the bridge for the refugees until the last wagon is over.",
@@ -823,7 +824,8 @@
         ],
         "seerTruth": "An army is heavy and a birdcage is light, and you decided the light things crossed first. It cost you a marshal's fury and bought a thousand quiet lives. This is the arithmetic no court teaches.",
         "virtue": 20,
-        "heroism": 10
+        "heroism": 10,
+        "lockNote": "The bridge is an obstacle now. That is all your eyes will show you."
       },
       "echoes": [
         {
@@ -960,7 +962,8 @@
         "corruption": 15,
         "heroism": 15,
         "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch.",
-        "revealed": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book."
+        "revealed": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book.",
+        "lockNote": "You watched Marigold wipe flour from her hands. The torch will not light."
       },
       "darkChoice": {
         "text": "Show me this dark magic yourself. I want to see it.",
@@ -973,7 +976,8 @@
         ],
         "virtue": 15,
         "heroism": 10,
-        "seerTruth": "You looked with your own eyes before you judged, and the accusation died of daylight. Willowmere kept its songs because you bothered to hear them first."
+        "seerTruth": "You looked with your own eyes before you judged, and the accusation died of daylight. Willowmere kept its songs because you bothered to hear them first.",
+        "lockNote": "The list is already in your hand, and your hand is already nodding."
       },
       "echoes": [
         {
@@ -1039,7 +1043,8 @@
         "corruption": 25,
         "heroism": 20,
         "seerTruth": "The last innocent thing in the world offered itself, and you accepted. Every tyrant's ledger balances this way: a great good promised, a small light extinguished, forever. You were radiant, and the glade was silent.",
-        "revealed": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition."
+        "revealed": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition.",
+        "lockNote": "You already know what you will not buy with a life."
       },
       "darkChoice": {
         "text": "No. I won't buy victory with your life.",
@@ -1055,7 +1060,8 @@
         ],
         "virtue": 25,
         "heroism": 8,
-        "seerTruth": "You were offered everything and said no. The prophecy required a hand willing to consume innocence; yours refused, and the whole design failed in the space of one word."
+        "seerTruth": "You were offered everything and said no. The prophecy required a hand willing to consume innocence; yours refused, and the whole design failed in the space of one word.",
+        "lockNote": "Refusal is a language you no longer speak."
       },
       "echoes": [
         {
@@ -1154,5 +1160,20 @@
     "brakka": "A half-orc peddler seized as a 'spy' at the Wayrest inn on the strength of his route maps. If questioned free, he reappears at Greymarch to vouch for you: 'This one asks before it swings.'",
     "odile": "Elected head of Vellbrook's council, first of her line to hold a chain of office she brazed herself from harness fittings. Surrenders everything except the town's memory.",
     "portraits": "Illustrated SVG busts (not pixel art) shown beside dialogue whenever a beat or aftermath page has a speaker — visual-novel presentation over the pixel scene."
+  },
+  "momentum": {
+    "pull": 40,
+    "lock": 75,
+    "description": "Momentum is the corruption/virtue differential. Past 'pull', the opposing choice shows a warning; past 'lock' — the point of no return — it becomes unavailable. The story takes your hands: the legend stops permitting questions, or the witness cannot unsee. Deliberate alternators keep both roads open, so the Crossroads is a chosen ending, never a default.",
+    "notes": {
+      "corruption": {
+        "pull": "The words feel heavier than they should. The legend does not like questions.",
+        "lock": "You reach for the question, and it is not there. The legend answers for you now."
+      },
+      "virtue": {
+        "pull": "Your hand hesitates. You have seen too much for this to be easy.",
+        "lock": "You cannot. You have seen the toys in the ash and the names on the doors. Your hands refuse."
+      }
+    }
   }
 }
