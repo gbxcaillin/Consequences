@@ -75,7 +75,7 @@ function dialogueHTML(speaker, text) {
         <span class="d-name">${esc(name)}</span>
         <p class="d-text">${esc(text)}</p>
       </div>
-      <img class="d-portrait" src="assets/portraits/${speaker}.svg" alt="${esc(name)}">
+      <img class="d-portrait" src="assets/portraits/${speaker}.webp" alt="${esc(name)}">
     </div>`;
 }
 
@@ -464,7 +464,7 @@ function renderInner() {
     const wrenLine = DATA.companion.lines[ch.id] ? DATA.companion.lines[ch.id][type] : null;
     const wren = (lastPage && wrenLine) ? `
       <div class="wren">
-        <img class="wren-portrait" src="assets/portraits/wren.svg" alt="Wren">
+        <img class="wren-portrait" src="assets/portraits/wren.webp" alt="Wren">
         <div>
           ${isPrologue ? `<p style="margin:0 0 10px;font-style:italic;color:var(--text-dim)">${esc(DATA.companion.intro)}</p>` : ''}
           <span class="who">${esc(DATA.companion.name)}</span>

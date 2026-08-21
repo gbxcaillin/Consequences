@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v13';
+const CACHE = 'consequences-v14';
 const CORE = [
   './',
   'index.html',
@@ -34,19 +34,19 @@ const CORE = [
   'assets/sprites/halfling.png',
   'assets/sprites/unicorn.png',
   'assets/sprites/hero.png',
-  'assets/portraits/wren.svg',
-  'assets/portraits/tam.svg',
-  'assets/portraits/hedda.svg',
-  'assets/portraits/aldric.svg',
-  'assets/portraits/brakka.svg',
-  'assets/portraits/grukha.svg',
-  'assets/portraits/vhaleth.svg',
-  'assets/portraits/king-aldren.svg',
-  'assets/portraits/odile.svg',
-  'assets/portraits/marigold.svg',
-  'assets/portraits/priestess.svg',
-  'assets/portraits/herald.svg',
-  'assets/portraits/unicorn.svg',
+  'assets/portraits/wren.webp',
+  'assets/portraits/tam.webp',
+  'assets/portraits/hedda.webp',
+  'assets/portraits/aldric.webp',
+  'assets/portraits/brakka.webp',
+  'assets/portraits/grukha.webp',
+  'assets/portraits/vhaleth.webp',
+  'assets/portraits/king-aldren.webp',
+  'assets/portraits/odile.webp',
+  'assets/portraits/marigold.webp',
+  'assets/portraits/priestess.webp',
+  'assets/portraits/herald.webp',
+  'assets/portraits/unicorn.webp',
 ];
 
 self.addEventListener('install', (e) => {
