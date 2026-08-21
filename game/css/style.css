@@ -183,7 +183,7 @@ html, body {
   width: 118px;
   height: 142px;
   object-fit: cover;
-  object-position: top;
+  object-position: right top;
   margin-left: -14px;
   margin-bottom: -6px;
   filter: drop-shadow(0 6px 14px rgba(0,0,0,0.55));
