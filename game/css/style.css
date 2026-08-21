@@ -146,6 +146,21 @@ html, body {
   margin-bottom: 12px;
 }
 
+/* narrative beat progress */
+.beat-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 6px 0 2px;
+}
+.beat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(122,111,98,0.45);
+}
+.beat-dot.on { background: var(--gold); }
+
 /* echo of an earlier choice */
 .echo {
   font-style: italic;

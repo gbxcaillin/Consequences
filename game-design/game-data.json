@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters — Corruption and Virtue — track the real consequences and determine the ending.",
@@ -120,6 +120,13 @@
             "choice": "light"
           },
           "text": "In the Elderwood there is a clearing where nothing will ever grow again."
+        },
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "light"
+          },
+          "text": "Tam commands a border garrison now. He burns the camps himself, without waiting for orders. He learned it from watching you."
         }
       ]
     },
@@ -164,6 +171,13 @@
             "choice": "dark"
           },
           "text": "Somewhere in the Elderwood, the last unicorn is no longer the last."
+        },
+        {
+          "if": {
+            "chapter": "ch2",
+            "choice": "dark"
+          },
+          "text": "Tam went home to Thornfield and grew up a farmer, like his father. He kept the twin of your wooden charm. He still tells everyone he met you."
         }
       ]
     },
@@ -201,6 +215,12 @@
             "choice": "dark"
           },
           "text": "The unicorn lives. Whatever else is true, the unicorn lives."
+        },
+        {
+          "if": {
+            "always": true
+          },
+          "text": "You still carry a boy's crooked wooden sun. Some nights you take it out and try to remember what being sure felt like."
         }
       ]
     }
@@ -213,7 +233,17 @@
       "scene": "thornfield-village",
       "sprite": "herald",
       "setting": "A quiet village at dawn, woodsmoke and birdsong",
-      "narrative": "A royal herald rides into your village at dawn, proclaiming you the Chosen One of the Ashenmere Prophecy, fated to defeat a great evil rising in the east.",
+      "narrative": [
+        {
+          "text": "Dawn in Thornfield smells of woodsmoke and wet grass. You are mending the fence your father built when the sound comes up the road — hooves, a trumpet, and every dog in the village at once. Tam gets there first, of course. Nine years old and faster than bad news, he hangs off your gate shouting that a knight is coming, a real one, with a banner."
+        },
+        {
+          "text": "The herald does not dismount. He unrolls a scroll sealed in gold and reads out your name — your actual name, in a stranger's mouth — and the words 'Chosen of the Ashenmere Prophecy.' The village goes quiet. Your neighbors look at you as if they have never seen you before. Tam looks at you like the sun has come up twice."
+        },
+        {
+          "text": "While the herald waits, Tam presses something into your palm: a charm whittled from ash wood, a small crooked sun. 'Da says heroes are just people who got asked,' he says. 'You'll come back, right? When it's done?' The herald clears his throat. The scroll is waiting."
+        }
+      ],
       "lightChoice": {
         "text": "I accept my destiny. The kingdom needs me.",
         "consequence": "You kneel. The village cheers your name; the herald's trumpet rings off the hills. When you rise, the scroll is warm in your hand, as if it had been waiting for you.",
@@ -239,7 +269,14 @@
       "scene": "aldrics-tower",
       "sprite": "aldric",
       "setting": "A lonely tower on the moors, shelves of crumbling books",
-      "narrative": "The wizard Aldric presents a magnificent sword wreathed in pale fire — the Blade of Dawning, forged by the first king. He offers it freely.",
+      "narrative": [
+        {
+          "text": "Aldric's tower stands alone on the moor like a finger pointing at nothing. Wren waits below with the horses — 'wizards make my ink curdle' — and you climb the stair alone. The old man is thinner than the stories say, and his eyes keep drifting to the window, to the road east."
+        },
+        {
+          "text": "From a case of black iron he draws the Blade of Dawning, and pale fire runs its length like water remembering light. 'Forged for the first king,' he says. 'Carried by every Chosen since.' His hands, you notice, are shaking — the way hands shake when a man is passing on something he is glad to be rid of."
+        }
+      ],
       "lightChoice": {
         "text": "I am honored to wield the Blade of Dawning.",
         "consequence": "The sword hums as your fingers close around the hilt, and pale fire runs the length of the blade in welcome. Aldric smiles and looks away. You have never held anything that fit your hand so perfectly.",
@@ -282,7 +319,21 @@
       "scene": "greymarch",
       "sprite": "grukha",
       "setting": "An orc encampment near farmland, cook-fires and wary eyes",
-      "narrative": "Farmers from Greymarch beg you to destroy an orc encampment on their border. The orcs appeared a month ago. The farmers are terrified.",
+      "narrative": [
+        {
+          "text": "The Greymarch farmers meet you at the boundary stone. A widow named Hedda speaks for them, twisting her apron in both fists. 'They came a month ago. Fires in the night. Voices. My girls won't sleep.' She is not lying about her fear. Fear never has to lie."
+        },
+        {
+          "text": "Tam has followed the column all the way from Thornfield — he appears at your stirrup, breathless and delighted, before anyone can send him home. 'I want to watch,' he says. 'I've never seen a hero fight.'",
+          "if": {
+            "chapter": "prologue",
+            "choice": "light"
+          }
+        },
+        {
+          "text": "From the ridge you can see the camp: hide tents, a stake fence, thin cook-fires. Distance flattens things. It could be a war-band. It could be a village. On the wind, faint, you hear something that might be a work chant — or might be a child laughing at goats."
+        }
+      ],
       "lightChoice": {
         "text": "I will protect you. These creatures will be driven out.",
         "consequence": "You attack at dawn. It is over faster than you expected — the camp scatters and burns, and by noon the farmers are singing in the fields. Something small crunches under your boot in the ash. You decide not to look down.",
@@ -325,7 +376,14 @@
       "scene": "mount-ashenmere",
       "sprite": "dragon",
       "setting": "A wind-scoured peak, ancient ruins carved into the stone",
-      "narrative": "A great dragon guards a sealed vault. Legend holds that inside lies power enough to end all wars forever.",
+      "narrative": [
+        {
+          "text": "Mount Ashenmere takes two days to climb, and the wind talks the whole way up. Wren counts the old shrines beside the path — 'eight hundred years of pilgrims, and every one of them stopped here' — until the shrines stop, and the bones begin."
+        },
+        {
+          "text": "The dragon does not roar. It lies coiled across the vault doors like a wall given breath, and one gold eye opens as you crest the ledge. 'I am Vhaleth,' it says, in a voice like rockfall settling. 'Warden of what sleeps below. Ask, or draw. Those have always been the two roads up this mountain.'"
+        }
+      ],
       "lightChoice": {
         "text": "I will slay the dragon and claim the power to bring peace.",
         "consequence": "The battle is everything the ballads promised. The dragon falls from the sky like a broken mountain, and the ancient doors swing wide at your touch. A grey wind drifts out of the vault, away toward the east. The power inside will doubtless take study.",
@@ -368,7 +426,21 @@
       "scene": "high-court",
       "sprite": "king-aldren",
       "setting": "The royal court, banners and ceremony, a golden throne",
-      "narrative": "King Aldren names you Commander of the Armies and orders you to march east against the 'Dark Lands.'",
+      "narrative": [
+        {
+          "text": "The High Court smells of beeswax and cold gold. Banners hang to the floor, and your name is already stitched into two of them. King Aldren rises to greet you — kings do not rise for anyone — and the whole hall inhales."
+        },
+        {
+          "text": "In the second rank of the honor guard you catch a face you know. Tam, in a uniform cut down to almost fit him, beaming under a borrowed helmet. He enlisted after Greymarch, someone tells you. He wants to make you proud.",
+          "if": {
+            "chapter": "ch2",
+            "choice": "light"
+          }
+        },
+        {
+          "text": "'Commander of my armies,' the king says, laying the baton across your palms like a father passing bread. 'The Dark Lands gather against us. You will carry the light to them before winter.' The applause goes on so long it stops sounding like hands."
+        }
+      ],
       "lightChoice": {
         "text": "I will carry the kingdom's banner into the darkness.",
         "consequence": "You ride east under the kingdom's banner with ten thousand at your back. Village after village opens its gates without a fight. Odd, how quiet the Dark Lands are. How much they look like home.",
@@ -411,7 +483,14 @@
       "scene": "willowmere",
       "sprite": "halfling",
       "setting": "A halfling village, thatched roofs, herb gardens, warm bread",
-      "narrative": "The Church of Light declares that the halflings practice forbidden dark magic. They demand you purify the village.",
+      "narrative": [
+        {
+          "text": "Willowmere is round doors and herb gardens and washing strung between chimneys. An old halfling woman — Marigold, her neighbors call her — presses a heel of warm bread into your hand before anyone has said why you've come. 'Long road,' is all she says. 'Eat.'"
+        },
+        {
+          "text": "The priestess arrives an hour behind you with a wagon and a list. 'Symbols on the doorframes,' she reads. 'Unsanctioned plants. Songs in a tongue no godly ear can follow.' Behind her, Marigold stands in her garden, wiping flour from her hands, waiting to hear what you will decide she is."
+        }
+      ],
       "lightChoice": {
         "text": "Dark magic must be purged wherever it hides.",
         "consequence": "The purification is orderly. The Church names each artifact as your soldiers carry it to the fire, and the list is long. The priestess declares Willowmere clean. No one sings that night — but then, it is late.",
@@ -454,7 +533,25 @@
       "scene": "moonlit-glade",
       "sprite": "unicorn",
       "setting": "An ancient forest clearing, silver light, absolute stillness",
-      "narrative": "The last unicorn appears and offers to sacrifice itself to give you the power to defeat the great evil.",
+      "narrative": [
+        {
+          "text": "The Elderwood swallows the road, then the light, then the sound of your own company. Somewhere behind you Tam waits with the horses. He doesn't laugh much anymore; you cannot remember when that changed. In your pocket, your thumb finds the little wooden sun, worn smooth now.",
+          "if": {
+            "stat": "corruption",
+            "gte": 60
+          }
+        },
+        {
+          "text": "The Elderwood swallows the road, then the light. Wren walks it beside you, uninvited, writing nothing for once. 'Whatever is in there,' she says, 'it has been waiting for the end of your story. I should like to be a footnote.'",
+          "if": {
+            "stat": "virtue",
+            "gte": 60
+          }
+        },
+        {
+          "text": "The glade opens like a held breath released: silver grass, absolute stillness, and the last unicorn shining at the center of it like the moon come down to drink. When it speaks, it speaks inside your bones. 'Champion. I can give you what the prophecy requires. All it costs is everything I am.'"
+        }
+      ],
       "lightChoice": {
         "text": "Your sacrifice will save millions. I accept.",
         "consequence": "The unicorn lowers its head. Light pours into you until you are radiant — power beyond any king, any army, any age. The glade is silent. Utterly silent. You have never felt so strong, or heard so little.",
@@ -558,5 +655,11 @@
       "true-hero": "You were called hesitant, difficult, ungrateful, small. Note that every one of those words was aimed at a moment when you were being brave. You saved the world the only way it has ever actually been saved: by refusing, one polite atrocity at a time. No statue will say so. I do.",
       "crossroads": "Half your journey you questioned; half you obeyed. I cannot call you wicked, and I will not call you wise. You are what most people are: unfinished. The road is still open behind you — walk it again and see which half of you was the habit."
     }
+  },
+  "cast": {
+    "tam": "A nine-year-old from Thornfield who idolizes the player and gives them a whittled wooden sun for luck. On the light path he follows the legend — cheering at Greymarch, enlisting by the High Court, growing quiet by the Elderwood. The Dark Lord ending's sharpest cut: corruption is contagious, and Tam caught it from watching you.",
+    "hedda": "A Greymarch widow whose fear of the orc camp is real and sympathetic — the game never mocks the frightened, it questions what their fear is used to justify.",
+    "vhaleth": "The dragon warden's name. 'Ask, or draw. Those have always been the two roads up this mountain.'",
+    "marigold": "An old Willowmere halfling who gives the player bread before hearing why they've come."
   }
 }

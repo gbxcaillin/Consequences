@@ -29,6 +29,7 @@ function freshState() {
     heroism: 0,
     choices: {},           // chapterId -> 'light' | 'dark'
     showMap: false,
+    beat: 0,               // index into the current chapter's narrative beats
   };
 }
 
@@ -50,9 +51,19 @@ function chapterLabel(ch) {
 }
 
 function conditionMet(cond) {
+  if (cond.always) return true;
   if (cond.chapter) return state.choices[cond.chapter] === cond.choice;
   if (cond.stat) return (state[cond.stat] || 0) >= cond.gte;
   return false;
+}
+
+/* A chapter's narrative is one string or a list of beats; a beat may carry
+ * an `if` so scenes bend around earlier choices and hidden stats. */
+function chapterBeats(ch) {
+  const raw = Array.isArray(ch.narrative) ? ch.narrative : [ch.narrative];
+  return raw
+    .map(b => (typeof b === 'string' ? { text: b } : b))
+    .filter(b => !b.if || conditionMet(b.if));
 }
 
 function activeEchoes(ch, choiceType) {
@@ -327,12 +338,19 @@ function render() {
       <div class="scene-bg dim" ${sceneStyle(null)}></div>
       <div class="screen book-screen">${journalHTML()}</div>`;
   } else if (state.phase === 'narrative') {
+    const beats = chapterBeats(ch);
+    const i = Math.min(state.beat || 0, beats.length - 1);
+    const dots = beats.length > 1
+      ? `<div class="beat-dots">${beats.map((_, d) =>
+          `<span class="beat-dot${d === i ? ' on' : ''}"></span>`).join('')}</div>`
+      : '';
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(ch)}></div>
       <div class="screen">
         ${hudHTML(ch)}
-        <img class="figure" src="assets/sprites/${ch.sprite}.png" alt="">
-        <div class="narrative"><p>${esc(ch.narrative)}</p></div>
+        ${i === 0 ? `<img class="figure" src="assets/sprites/${ch.sprite}.png" alt="">` : ''}
+        <div class="narrative"><p>${esc(beats[i].text)}</p></div>
+        ${dots}
         <div class="actions"><button class="continue" data-act="choices">Continue</button></div>
         ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
@@ -436,7 +454,13 @@ app.addEventListener('click', (ev) => {
     state = freshState();
     AudioFX.tap();
   } else if (act === 'choices') {
-    state.phase = 'choice';
+    const beats = chapterBeats(chapter());
+    if ((state.beat || 0) < beats.length - 1) {
+      state.beat = (state.beat || 0) + 1;
+    } else {
+      state.phase = 'choice';
+      state.beat = 0;
+    }
     AudioFX.tap();
   } else if (act === 'choose') {
     const type = btn.dataset.choice;
@@ -453,6 +477,7 @@ app.addEventListener('click', (ev) => {
     if (state.chapterIndex < DATA.chapters.length - 1) {
       state.chapterIndex += 1;
       state.phase = 'narrative';
+      state.beat = 0;
       AudioFX.tap();
     } else {
       state.phase = 'ending';
