@@ -428,7 +428,6 @@ function renderInner() {
       <div class="scene-bg" ${sceneStyle(ch)}></div>
       <div class="screen">
         ${hudHTML(ch)}
-        ${i === 0 && !beats[i].speaker ? `<img class="figure" src="assets/sprites/${ch.sprite}.png" alt="">` : ''}
         <div class="narrative">${proseOrDialogue(beats[i])}</div>
         ${dots}
         <div class="actions"><button class="continue" data-act="choices">Continue</button></div>
