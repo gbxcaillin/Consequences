@@ -310,6 +310,87 @@ def willowmere():
     return img
 
 
+def wayrest_inn():
+    """Chapter 2 — a crossroads inn at night, torches in the yard."""
+    img = new_img()
+    px = img.load()
+    vgrad(px, [(0, (16, 18, 40)), (40, (26, 30, 58)), (76, (38, 42, 70)),
+               (86, (44, 48, 76))])
+    for _ in range(30):
+        px[rng.randrange(W), rng.randrange(0, 70)] = (198, 204, 224)
+    # the inn (right side), warm windows
+    rect(px, 38, 46, 70, 92, (40, 34, 32))
+    for i in range(5):                                  # gable roof
+        rect(px, 36 + i * 2, 44 - i * 2, 71 - i, 45 - i * 2, (28, 24, 26))
+    for wx, wy in ((42, 56), (52, 56), (62, 56), (42, 72), (62, 72)):
+        rect(px, wx, wy, wx + 4, wy + 5, (250, 200, 110))
+        rect(px, wx + 2, wy, wx + 2, wy + 5, (200, 150, 80))
+    rect(px, 51, 76, 57, 92, (24, 20, 20))              # door
+    rect(px, 52, 78, 56, 80, (250, 200, 110))           # fanlight
+    # hanging sign
+    rect(px, 34, 52, 36, 58, (94, 68, 44))
+    rect(px, 30, 53, 34, 57, (212, 175, 85))
+    # crossroads signpost (left)
+    rect(px, 10, 48, 11, 92, (78, 56, 38))
+    for sy in (52, 60, 68):
+        rect(px, 4, sy, 16, sy + 3, (94, 68, 44))
+    # ground
+    rect(px, 0, 92, W - 1, 127, (30, 28, 34))
+    for y in range(94, 126, 3):
+        dither_row(px, y, (38, 36, 44), 3, y)
+    # torch crowd near the door
+    for fx in (28, 34, 44, 58, 64, 22):
+        rect(px, fx, 100, fx + 2, 108, (16, 14, 16))
+        px[fx + 1, 98] = (20, 18, 20)
+    for tx in (27, 37, 47, 61):
+        rect(px, tx, 92, tx, 99, (60, 46, 32))
+        px[tx, 91] = (240, 140, 50)
+        px[tx, 90] = (250, 190, 80)
+    return img
+
+
+def vellbrook():
+    """Chapter 7 — an occupied town square at dusk: clocktower, brazier, spears."""
+    img = new_img()
+    px = img.load()
+    vgrad(px, [(0, (56, 44, 74)), (34, (110, 70, 88)), (58, (160, 106, 92)),
+               (68, (178, 124, 100))])
+    # row houses across the back
+    for hx, hw, hh in ((0, 14, 26), (15, 12, 22), (44, 13, 24), (58, 14, 28)):
+        rect(px, hx, 68 - hh, hx + hw, 68, (52, 42, 46))
+        for i in range(hw // 2 + 1):
+            rect(px, hx + i - 1, 68 - hh - (hw // 2) + i, hx + hw - i + 1, 68 - hh - (hw // 2) + i, (38, 32, 36))
+        for wx in range(hx + 2, hx + hw - 1, 4):
+            rect(px, wx, 68 - hh + 6, wx + 1, 68 - hh + 9, (232, 182, 122))
+    # clocktower
+    rect(px, 30, 18, 41, 68, (66, 56, 58))
+    rect(px, 30, 18, 31, 68, (52, 44, 48))
+    for i in range(6):
+        rect(px, 29 + i, 18 - i * 2, 42 - i, 19 - i * 2, (40, 34, 40))
+    disc(px, 35, 32, 4, (232, 214, 160))                 # clock face
+    px[35, 32] = (60, 50, 50); px[35, 30] = (60, 50, 50); px[37, 32] = (60, 50, 50)
+    # crown banner on the tower
+    rect(px, 33, 44, 38, 56, (140, 44, 44))
+    px[35, 48] = px[36, 48] = (212, 175, 85)
+    # square
+    rect(px, 0, 68, W - 1, 127, (74, 62, 60))
+    for y in range(70, 126, 3):
+        dither_row(px, y, (64, 54, 54), 3, y)
+    # the brazier, burning 'for effect'
+    rect(px, 33, 96, 38, 100, (44, 38, 40))
+    rect(px, 34, 92, 37, 95, (240, 140, 50))
+    px[35, 90] = (250, 190, 80); px[36, 89] = (250, 190, 80)
+    smoke(px, 35, 86, (120, 100, 100), 7)
+    # gathered townsfolk (bowed silhouettes) and spear line
+    for fx in range(4, 68, 7):
+        rect(px, fx, 112, fx + 2, 120, (34, 30, 34))
+        px[fx + 1, 110] = (28, 25, 30)
+    for sx in (2, 14, 56, 68):
+        rect(px, sx, 100, sx, 112, (30, 27, 32))
+        px[sx, 98] = px[sx, 99] = (150, 150, 160)        # spearheads
+    return img
+
+
 def river_meridian():
     """Chapter 5 — dusk at the border bridge, wagons and lamplight."""
     img = new_img()
@@ -394,12 +475,14 @@ def moonlit_glade():
 SCENES = {
     'thornfield-village': ('Prologue — The Summons', thornfield_village),
     'aldrics-tower': ('Ch. 1 — The Mentor’s Gift', aldrics_tower),
-    'greymarch': ('Ch. 2 — The Borderlands', greymarch),
-    'mount-ashenmere': ('Ch. 3 — The Dragon’s Vigil', mount_ashenmere),
-    'high-court': ('Ch. 4 — The Crown’s Command', high_court),
-    'river-meridian': ('Ch. 5 — The River Meridian', river_meridian),
-    'willowmere': ('Ch. 6 — The Halfling Accusation', willowmere),
-    'moonlit-glade': ('Ch. 7 — The Unicorn’s Offering', moonlit_glade),
+    'wayrest-inn': ('Ch. 2 — The Night at the Wayrest', wayrest_inn),
+    'greymarch': ('Ch. 3 — The Borderlands', greymarch),
+    'mount-ashenmere': ('Ch. 4 — The Dragon’s Vigil', mount_ashenmere),
+    'high-court': ('Ch. 5 — The Crown’s Command', high_court),
+    'river-meridian': ('Ch. 6 — The River Meridian', river_meridian),
+    'vellbrook': ('Ch. 7 — The Charter of Vellbrook', vellbrook),
+    'willowmere': ('Ch. 8 — The Halfling Accusation', willowmere),
+    'moonlit-glade': ('Ch. 9 — The Unicorn’s Offering', moonlit_glade),
 }
 
 

@@ -56,6 +56,7 @@ P = {
     'C': (110, 96, 80),    # claws
     'i': (146, 46, 46),    # blade grip red-brown
     'x': (200, 208, 216),  # steel blade
+    'q': (70, 120, 130),   # council teal
 }
 
 SPRITES = {
@@ -229,6 +230,44 @@ SPRITES = {
         "...UU....UU.UU",
         "...UU....UU.UU",
         "...ee....ee.ee",
+    ],
+    # Brakka — half-orc peddler: hood, pack, tin pots, walking stick.
+    'brakka': [
+        "......bbbb",
+        ".....bbbbbb",
+        "....bGGGGGGb",
+        "....bGAGGAGb",
+        "....bGGGGGGb",
+        ".....GTGGTG",
+        "......GGGG",
+        "..mmbbbbbbbb..s",
+        ".mmmbbbbbbbbb.s",
+        ".mmmGbbbbbbbGss",
+        ".mmm.bbbbbbb.s",
+        "..mm.bbbbbbb.s",
+        ".....lll.lll.s",
+        ".....lll.lll.s",
+        "....ooo...ooo",
+        "",
+    ],
+    # Odile of Vellbrook — grey bun, teal council dress, brass chain.
+    'odile': [
+        ".......kk",
+        "......kkkk",
+        "....kffffffk",
+        "....kfeffefk",
+        "....kffffffk",
+        ".....ffffff",
+        "....qqqqqqqq",
+        "...qqqqqqqqqq",
+        "...fqgqqqqgqf",
+        "...f.qqggqq.f",
+        "....qqqggqqq",
+        "....qqqqqqqq",
+        "....qqqqqqqq",
+        "...qqqqqqqqqq",
+        "...qqqqqqqqqq",
+        "....oo....oo",
     ],
     # Hedda of Greymarch — headscarf, apron, and a soup ladle.
     'hedda': [

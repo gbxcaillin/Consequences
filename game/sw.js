@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v8';
+const CACHE = 'consequences-v9';
 const CORE = [
   './',
   'index.html',
@@ -20,7 +20,11 @@ const CORE = [
   'assets/scenes/willowmere.png',
   'assets/scenes/moonlit-glade.png',
   'assets/scenes/river-meridian.png',
+  'assets/scenes/wayrest-inn.png',
+  'assets/scenes/vellbrook.png',
   'assets/sprites/hedda.png',
+  'assets/sprites/brakka.png',
+  'assets/sprites/odile.png',
   'assets/sprites/herald.png',
   'assets/sprites/aldric.png',
   'assets/sprites/grukha.png',

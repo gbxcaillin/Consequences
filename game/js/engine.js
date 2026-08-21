@@ -71,8 +71,11 @@ function activeEchoes(ch, choiceType) {
 }
 
 function pickEnding() {
-  if (state.corruption >= 80) return DATA.endings.find(e => e.id === 'dark-lord');
-  if (state.virtue >= 80) return DATA.endings.find(e => e.id === 'true-hero');
+  // A pole ending requires both the threshold and clear dominance —
+  // a genuinely split run lands at the Crossroads even with big totals.
+  const c = state.corruption, v = state.virtue;
+  if (c >= 80 && c > v + 20) return DATA.endings.find(e => e.id === 'dark-lord');
+  if (v >= 80 && v > c + 20) return DATA.endings.find(e => e.id === 'true-hero');
   return DATA.endings.find(e => e.id === 'crossroads');
 }
 
