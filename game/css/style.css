@@ -47,7 +47,6 @@ html, body {
   inset: 0;
   background-size: cover;
   background-position: center;
-  image-rendering: pixelated;
   z-index: 0;
 }
 .scene-bg::after {

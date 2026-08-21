@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v19';
+const CACHE = 'consequences-v20';
 const CORE = [
   './',
   'index.html',
@@ -13,16 +13,16 @@ const CORE = [
   'manifest.webmanifest',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
-  'assets/scenes/thornfield-village.png',
-  'assets/scenes/aldrics-tower.png',
-  'assets/scenes/greymarch.png',
-  'assets/scenes/mount-ashenmere.png',
-  'assets/scenes/high-court.png',
-  'assets/scenes/willowmere.png',
-  'assets/scenes/moonlit-glade.png',
-  'assets/scenes/river-meridian.png',
-  'assets/scenes/wayrest-inn.png',
-  'assets/scenes/vellbrook.png',
+  'assets/scenes/thornfield-village.webp',
+  'assets/scenes/aldrics-tower.webp',
+  'assets/scenes/greymarch.webp',
+  'assets/scenes/mount-ashenmere.webp',
+  'assets/scenes/high-court.webp',
+  'assets/scenes/willowmere.webp',
+  'assets/scenes/moonlit-glade.webp',
+  'assets/scenes/river-meridian.webp',
+  'assets/scenes/wayrest-inn.webp',
+  'assets/scenes/vellbrook.webp',
   'assets/sprites/hedda.png',
   'assets/sprites/brakka.png',
   'assets/sprites/odile.png',

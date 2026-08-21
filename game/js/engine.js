@@ -120,7 +120,7 @@ function endingBody(ending) {
 
 function sceneStyle(ch) {
   const scene = ch ? ch.scene : DATA.chapters[0].scene;
-  return `style="background-image:url('assets/scenes/${scene}.png')"`;
+  return `style="background-image:url('assets/scenes/${scene}.webp')"`;
 }
 
 function hudHTML(ch) {
