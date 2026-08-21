@@ -111,7 +111,7 @@ function endingBody(ending) {
   const bodies = {
     'dark-lord': 'You stand in a throne room of blazing gold, armies kneeling at your feet. Every choice felt righteous in the moment. But look at what you’ve built: a kingdom of ashes ruled by a tyrant the prophecy designed. You are the great evil. You always were.',
     'true-hero': 'You stand in a forest clearing. No crown. No army. No legend. The prophecy crumbled the moment you refused to follow it. You didn’t save the world with a sword. You saved it by asking “why?”',
-    'crossroads': 'You stand at a literal crossroads. Some of your choices were brave, others were blind. The world is neither saved nor ruined — just complicated, like you. In the distance, both paths shimmer. Neither is yours. Not yet.',
+    'crossroads': 'You stand at a literal crossroads. Some of your choices were brave, others were blind. The world is neither saved nor ruined, just complicated, like you. In the distance, both paths shimmer. Neither is yours. Not yet.',
   };
   return bodies[ending.id];
 }
@@ -307,11 +307,11 @@ function journalHTML() {
 
 function howtoHTML() {
   const items = [
-    ['Read, then choose', 'Each chapter ends in a single decision between two paths. Neither is labeled right or wrong. Choose what you believe — the story continues either way.'],
-    ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions. You may always page back and re-read a scene before you decide &mdash; but a decision, once made, stands.'],
+    ['Read, then choose', 'Each chapter ends in a single decision between two paths. Neither is labeled right or wrong. Choose what you believe; the story continues either way.'],
+    ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions. You may always page back and re-read a scene before you decide, but a decision, once made, stands.'],
     ['Your legend grows', 'The Heroism bar shows how the kingdom sees you. Whether the kingdom sees clearly is another matter.'],
-    ['On the road', 'MAP shows your progress through the land. WREN opens your companion&rsquo;s journal — a scribe who writes down what you do, as you do it. The note icon silences the realm.'],
-    ['The road remembers', 'Choices have momentum. Walk one path long enough and the other begins to close &mdash; and there is a point past which you cannot turn around.'],
+    ['On the road', 'MAP shows your progress through the land. WREN opens your companion&rsquo;s journal, kept by a scribe who writes down what you do as you do it. The note icon silences the realm.'],
+    ['The road remembers', 'Choices have momentum. Walk one path long enough and the other begins to close, and there is a point past which you cannot turn around.'],
     ['The ending is yours', 'There are three endings. Finish a journey to learn which one your choices earned, and to read the Seer&rsquo;s unvarnished account of what you actually did.'],
     ['Carry it with you', 'Progress saves automatically on this device. The Chronicle keeps every completed journey, and a save code carries it all to another device.'],
   ].map(([head, text]) => `
@@ -544,7 +544,7 @@ function renderInner() {
         <div class="narrative">
           <p>${esc(endingBody(ending))}</p>
           ${reflections ? `<div class="reflections">${reflections}</div>` : ''}
-          <p class="chron-mark">Recorded in your Chronicle &mdash; ${discovered} of ${DATA.endings.length} endings discovered.</p>
+          <p class="chron-mark">Recorded in your Chronicle: ${discovered} of ${DATA.endings.length} endings discovered.</p>
         </div>
         <div class="actions">
           <button class="continue" data-act="book-open">Read the Seer&rsquo;s Account</button>
@@ -704,7 +704,7 @@ app.addEventListener('click', (ev) => {
   } else if (act === 'export') {
     const code = GameStore.exportCode();
     const box = document.getElementById('importBox');
-    const done = () => { importNote = 'Save code copied — paste it on your other device.'; render(); };
+    const done = () => { importNote = 'Save code copied. Paste it on your other device.'; render(); };
     const fallback = () => {
       if (box) { box.value = code; box.select(); }
       importNote = 'Copy the code from the box below.';
@@ -757,7 +757,7 @@ fetch('data/game-data.json')
   })
   .catch(err => {
     app.innerHTML = `<div class="loading">Couldn&rsquo;t load game data (${esc(String(err.message || err))}).<br>
-      Serve this folder over HTTP &mdash; e.g. <code>python3 -m http.server</code> &mdash; rather than opening the file directly.</div>`;
+      Serve this folder over HTTP (e.g. <code>python3 -m http.server</code>) rather than opening the file directly.</div>`;
   });
 
 window.addEventListener('error', () => {
