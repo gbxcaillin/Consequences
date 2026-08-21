@@ -328,9 +328,24 @@ function errorScreen() {
     </div>`;
 }
 
+function themeForNow() {
+  if (!DATA) return 'title';
+  if (['title', 'chronicle', 'howto'].includes(state.phase)) return 'title';
+  if (state.phase === 'ending') return pickEnding().id;
+  if (state.phase === 'book' && book) {
+    const played = playedChapters(book.run);
+    const ch = played[Math.max(0, Math.min(book.page - 1, played.length - 1))];
+    return ch ? ch.scene : 'title';
+  }
+  if (state.phase === 'journal') return 'title';
+  const ch = chapter();
+  return ch ? ch.scene : 'title';
+}
+
 function render() {
   try {
     renderInner();
+    try { MusicEngine.play(themeForNow()); } catch (e) { /* music is optional */ }
   } catch (err) {
     try { console.error(err); } catch (e) { /* nothing */ }
     app.innerHTML = errorScreen();
@@ -598,6 +613,7 @@ app.addEventListener('click', (ev) => {
     AudioFX.tap();
   } else if (act === 'sound') {
     AudioFX.toggle();
+    try { MusicEngine.sync(); } catch (e) { /* music is optional */ }
   } else if (act === 'recover') {
     GameStore.clearCurrent();
     book = null;
