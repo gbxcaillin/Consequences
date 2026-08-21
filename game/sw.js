@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v9';
+const CACHE = 'consequences-v10';
 const CORE = [
   './',
   'index.html',
@@ -52,10 +52,17 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(
     fetch(e.request)
       .then((res) => {
-        const clone = res.clone();
-        caches.open(CACHE).then((c) => c.put(e.request, clone));
+        // Never cache errors — a 404 cached during an outage would poison
+        // the app shell and outlive the outage itself.
+        if (res.ok) {
+          const clone = res.clone();
+          caches.open(CACHE).then((c) => c.put(e.request, clone)).catch(() => {});
+        }
         return res;
       })
-      .catch(() => caches.match(e.request))
+      .catch(() =>
+        caches.match(e.request).then((m) =>
+          m || (e.request.mode === 'navigate' ? caches.match('index.html') : undefined))
+      )
   );
 });

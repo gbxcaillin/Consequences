@@ -30,6 +30,7 @@ function freshState() {
     choices: {},           // chapterId -> 'light' | 'dark'
     showMap: false,
     beat: 0,               // index into the current chapter's narrative beats
+    dataVersion: DATA ? DATA.version : null,
   };
 }
 
@@ -137,9 +138,16 @@ function mapOverlayHTML() {
     </div>`;
 }
 
+/* Chapters this run actually played — chronicle entries from older
+ * versions of the story may not contain every current chapter. */
+function playedChapters(run) {
+  return DATA.chapters.filter(ch => run.choices[ch.id]);
+}
+
 function bookHTML() {
   const run = book.run;
-  const total = DATA.chapters.length + 2;   // cover + chapters + verdict
+  const played = playedChapters(run);
+  const total = played.length + 2;   // cover + played chapters + verdict
   const page = book.page;
   let inner;
   if (page === 0) {
@@ -149,8 +157,8 @@ function bookHTML() {
         <div class="book-byline">as witnessed by ${esc(DATA.seer.name)}</div>
         <p class="book-body">${esc(DATA.seer.intro)}</p>
       </div>`;
-  } else if (page <= DATA.chapters.length) {
-    const ch = DATA.chapters[page - 1];
+  } else if (page <= played.length) {
+    const ch = played[page - 1];
     const type = run.choices[ch.id];
     const choice = type === 'light' ? ch.lightChoice : ch.darkChoice;
     const isLight = type === 'light';
@@ -308,7 +316,28 @@ function chronicleHTML() {
     <div class="actions"><button class="continue" data-act="to-title">Return</button></div>`;
 }
 
+function errorScreen() {
+  return `
+    <div class="scene-bg dim"></div>
+    <div class="screen title-screen">
+      <h1 style="font-size:26px">The thread of the story snapped</h1>
+      <div class="sub">Something went wrong. Your Chronicle is safe.</div>
+      <div class="actions">
+        <button class="continue" data-act="recover">Return to the Title</button>
+      </div>
+    </div>`;
+}
+
 function render() {
+  try {
+    renderInner();
+  } catch (err) {
+    try { console.error(err); } catch (e) { /* nothing */ }
+    app.innerHTML = errorScreen();
+  }
+}
+
+function renderInner() {
   const ch = chapter();
   if (state.phase === 'title') {
     const resumable = !!GameStore.current;
@@ -333,8 +362,12 @@ function render() {
       <div class="scene-bg dim" ${sceneStyle(null)}></div>
       <div class="screen chronicle-screen">${howtoHTML()}</div>`;
   } else if (state.phase === 'book') {
+    const played = playedChapters(book.run);
+    const bookScene = played.length
+      ? played[Math.max(0, Math.min(book.page - 1, played.length - 1))]
+      : null;
     app.innerHTML = `
-      <div class="scene-bg dim" ${sceneStyle(DATA.chapters[Math.max(0, Math.min(book.page - 1, DATA.chapters.length - 1))])}></div>
+      <div class="scene-bg dim" ${sceneStyle(bookScene)}></div>
       <div class="screen book-screen">${bookHTML()}</div>`;
   } else if (state.phase === 'journal') {
     app.innerHTML = `
@@ -550,7 +583,7 @@ app.addEventListener('click', (ev) => {
     journal = null;
     AudioFX.tap();
   } else if (act === 'book-next') {
-    book.page = Math.min(book.page + 1, DATA.chapters.length + 1);
+    book.page = Math.min(book.page + 1, playedChapters(book.run).length + 1);
     AudioFX.tap();
   } else if (act === 'book-prev') {
     book.page = Math.max(book.page - 1, 0);
@@ -565,6 +598,12 @@ app.addEventListener('click', (ev) => {
     AudioFX.tap();
   } else if (act === 'sound') {
     AudioFX.toggle();
+  } else if (act === 'recover') {
+    GameStore.clearCurrent();
+    book = null;
+    journal = null;
+    state = freshState();
+    AudioFX.tap();
   } else if (act === 'export') {
     const code = GameStore.exportCode();
     const box = document.getElementById('importBox');
@@ -609,6 +648,13 @@ fetch('data/game-data.json')
   })
   .then(data => {
     DATA = data;
+    // A mid-run save from a different content version can point at
+    // chapters that moved or changed shape — drop it rather than resume
+    // into a mismatch. Completed runs in the chronicle are unaffected.
+    const cur = GameStore.current;
+    if (cur && (cur.dataVersion !== DATA.version || cur.chapterIndex >= DATA.chapters.length)) {
+      GameStore.clearCurrent();
+    }
     state = freshState();
     render();
   })
@@ -616,6 +662,13 @@ fetch('data/game-data.json')
     app.innerHTML = `<div class="loading">Couldn&rsquo;t load game data (${esc(String(err.message || err))}).<br>
       Serve this folder over HTTP &mdash; e.g. <code>python3 -m http.server</code> &mdash; rather than opening the file directly.</div>`;
   });
+
+window.addEventListener('error', () => {
+  // Last-resort boundary: never leave the player on a dead screen.
+  if (app && !app.querySelector('[data-act="recover"]')) {
+    app.innerHTML = errorScreen();
+  }
+});
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
