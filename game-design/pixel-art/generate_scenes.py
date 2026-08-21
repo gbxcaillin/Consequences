@@ -310,6 +310,54 @@ def willowmere():
     return img
 
 
+def river_meridian():
+    """Chapter 5 — dusk at the border bridge, wagons and lamplight."""
+    img = new_img()
+    px = img.load()
+    vgrad(px, [(0, (44, 40, 72)), (30, (96, 62, 82)), (52, (176, 108, 76)),
+               (66, (224, 164, 104)), (74, (232, 182, 122))])
+    # army dust on the western horizon
+    for x in range(4, 30):
+        if (x * 7) % 3:
+            px[x, 60 + (x % 3)] = (150, 120, 96)
+    # far bank treeline
+    for x in range(W):
+        h = 3 + ((x * 5) % 6)
+        rect(px, x, 74 - h, x, 74, (58, 48, 60))
+    # the river
+    rect(px, 0, 74, W - 1, 100, (54, 58, 88))
+    for y in range(76, 99, 3):
+        dither_row(px, y, (78, 84, 118), 3, y)
+    dither_row(px, 78, (224, 164, 104), 4, 1)         # dusk glints
+    # stone bridge with arches
+    rect(px, 0, 70, W - 1, 74, (92, 84, 82))
+    rect(px, 0, 68, W - 1, 69, (110, 100, 94))        # parapet
+    for ax in (8, 30, 52):
+        for i in range(6):                             # arch openings
+            rect(px, ax + i, 75 + min(i, 5 - i, 2), ax + 11 - i, 75 + min(i, 5 - i, 2), (40, 36, 52))
+        rect(px, ax + 2, 76, ax + 9, 84, (34, 32, 46))
+        rect(px, ax + 3, 86, ax + 8, 92, (66, 72, 104))  # reflection
+    # wagon queue crossing (dark shapes with lanterns)
+    for wx in (4, 16, 27, 40, 54, 64):
+        rect(px, wx, 63, wx + 6, 67, (44, 38, 36))
+        rect(px, wx + 1, 60, wx + 5, 62, (58, 50, 44))
+        px[wx + 6, 64] = (250, 200, 110)               # lantern
+    # near bank and town
+    rect(px, 0, 100, W - 1, 127, (48, 42, 44))
+    for y in range(102, 126, 3):
+        dither_row(px, y, (56, 50, 50), 3, y)
+    for hx, hw in ((2, 12), (20, 10), (56, 13)):       # inns with lit windows
+        rect(px, hx, 104, hx + hw, 116, (38, 34, 36))
+        for i in range((hw - 2) // 4):
+            rect(px, hx + 2 + i * 4, 108, hx + 3 + i * 4, 110, (250, 200, 110))
+        rect(px, hx + 1, 100, hx + hw - 1, 103, (30, 27, 30))
+    # the soup kettle fire
+    rect(px, 40, 116, 41, 117, (240, 140, 50))
+    px[41, 115] = (250, 190, 80)
+    smoke(px, 40, 112, (120, 104, 96), 6)
+    return img
+
+
 def moonlit_glade():
     """Chapter 6 — the last unicorn's clearing: moon, silver pool, fireflies."""
     img = new_img()
@@ -349,8 +397,9 @@ SCENES = {
     'greymarch': ('Ch. 2 — The Borderlands', greymarch),
     'mount-ashenmere': ('Ch. 3 — The Dragon’s Vigil', mount_ashenmere),
     'high-court': ('Ch. 4 — The Crown’s Command', high_court),
-    'willowmere': ('Ch. 5 — The Halfling Accusation', willowmere),
-    'moonlit-glade': ('Ch. 6 — The Unicorn’s Offering', moonlit_glade),
+    'river-meridian': ('Ch. 5 — The River Meridian', river_meridian),
+    'willowmere': ('Ch. 6 — The Halfling Accusation', willowmere),
+    'moonlit-glade': ('Ch. 7 — The Unicorn’s Offering', moonlit_glade),
 }
 
 

@@ -157,7 +157,7 @@ function bookHTML() {
         <div class="book-chapter-title">${esc(ch.title)}</div>
         <div class="book-chapter-place">${esc(ch.location)}</div>
       </div>
-      <p class="book-body">${esc(choice.revealed || choice.consequence)}</p>
+      <p class="book-body">${esc(choice.revealed || (Array.isArray(choice.consequence) ? choice.consequence.join(' ') : choice.consequence))}</p>
       <div class="seer-truth">
         <span class="seer-label">The Seer sees:</span>
         ${esc(choice.seerTruth)}
@@ -370,17 +370,24 @@ function render() {
   } else if (state.phase === 'consequence') {
     const type = state.lastChoice;
     const choice = type === 'light' ? ch.lightChoice : ch.darkChoice;
-    const echoes = activeEchoes(ch, type)
-      .map(e => `<div class="echo">${esc(e.text)}</div>`).join('');
+    const pages = Array.isArray(choice.consequence) ? choice.consequence : [choice.consequence];
+    const pi = Math.min(state.beat || 0, pages.length - 1);
+    const lastPage = pi === pages.length - 1;
+    const dots = pages.length > 1
+      ? `<div class="beat-dots">${pages.map((_, d) =>
+          `<span class="beat-dot${d === pi ? ' on' : ''}"></span>`).join('')}</div>`
+      : '';
+    const echoes = lastPage ? activeEchoes(ch, type)
+      .map(e => `<div class="echo">${esc(e.text)}</div>`).join('') : '';
     const isPrologue = state.chapterIndex === 0;
     const wrenLine = DATA.companion.lines[ch.id] ? DATA.companion.lines[ch.id][type] : null;
-    const wren = wrenLine ? `
+    const wren = (lastPage && wrenLine) ? `
       <div class="wren">
         ${isPrologue ? `<p style="margin:0 0 10px;font-style:italic;color:var(--text-dim)">${esc(DATA.companion.intro)}</p>` : ''}
         <span class="who">${esc(DATA.companion.name)}</span>
         &ldquo;${esc(wrenLine)}&rdquo;
       </div>` : '';
-    const flash = DESIGN_MODE
+    const flash = (DESIGN_MODE && pi === 0)
       ? `<div class="flash ${type === 'light' ? 'corrupt' : 'virtue'}">${type === 'light' ? '☠ Corruption +' + (choice.corruption || 0) : '✧ Virtue +' + (choice.virtue || 0)}</div>`
       : '';
     const last = state.chapterIndex >= DATA.chapters.length - 1;
@@ -390,12 +397,15 @@ function render() {
         ${hudHTML(ch)}
         ${flash}
         <div class="narrative">
-          <p>${esc(choice.consequence)}</p>
+          <p>${esc(pages[pi])}</p>
           ${echoes}
           ${wren}
         </div>
+        ${dots}
         <div class="actions">
-          <button class="continue" data-act="next">${last ? 'See Your Ending' : 'Continue'}</button>
+          ${lastPage
+            ? `<button class="continue" data-act="next">${last ? 'See Your Ending' : 'Continue'}</button>`
+            : '<button class="continue" data-act="aftermath">Continue</button>'}
         </div>
         ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
@@ -472,7 +482,11 @@ app.addEventListener('click', (ev) => {
     state.virtue += choice.virtue || 0;
     state.heroism += choice.heroism || 0;
     state.phase = 'consequence';
+    state.beat = 0;
     if (type === 'light') AudioFX.light(); else AudioFX.dark();
+  } else if (act === 'aftermath') {
+    state.beat = (state.beat || 0) + 1;
+    AudioFX.tap();
   } else if (act === 'next') {
     if (state.chapterIndex < DATA.chapters.length - 1) {
       state.chapterIndex += 1;

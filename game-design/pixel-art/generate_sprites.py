@@ -230,6 +230,25 @@ SPRITES = {
         "...UU....UU.UU",
         "...ee....ee.ee",
     ],
+    # Hedda of Greymarch — headscarf, apron, and a soup ladle.
+    'hedda': [
+        "......mmmm",
+        ".....mmmmmm",
+        "....mmmmmmmm",
+        "....mffffffm",
+        "....mfeffefm",
+        "....mffffffm",
+        ".....ffffff",
+        "....tttttttt",
+        "...ttwwwwtt.s",
+        "...fttwwwwttfs",
+        "...f.twwwwt.fs",
+        "....ttwwwwtt.x",
+        "....tttttttt",
+        "....tttttttt",
+        "...tttttttttt",
+        "....oo....oo",
+    ],
     # Hidden-score icon: corruption.
     'icon-corruption': [
         "",
