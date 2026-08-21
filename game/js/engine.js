@@ -308,7 +308,7 @@ function journalHTML() {
 function howtoHTML() {
   const items = [
     ['Read, then choose', 'Each chapter ends in a single decision between two paths. Neither is labeled right or wrong. Choose what you believe — the story continues either way.'],
-    ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions.'],
+    ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions. You may always page back and re-read a scene before you decide &mdash; but a decision, once made, stands.'],
     ['Your legend grows', 'The Heroism bar shows how the kingdom sees you. Whether the kingdom sees clearly is another matter.'],
     ['On the road', 'MAP shows your progress through the land. WREN opens your companion&rsquo;s journal — a scribe who writes down what you do, as you do it. The note icon silences the realm.'],
     ['The road remembers', 'Choices have momentum. Walk one path long enough and the other begins to close &mdash; and there is a point past which you cannot turn around.'],
@@ -464,7 +464,10 @@ function renderInner() {
         ${hudHTML(ch)}
         <div class="narrative">${proseOrDialogue(beats[i])}</div>
         ${dots}
-        <div class="actions"><button class="continue" data-act="choices">Continue</button></div>
+        <div class="actions actions-row">
+          ${i > 0 ? '<button class="continue btn-back" data-act="beat-back" aria-label="Back to the previous page">&larr;</button>' : ''}
+          <button class="continue grow" data-act="choices">Continue</button>
+        </div>
         ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'choice') {
@@ -473,6 +476,7 @@ function renderInner() {
       <div class="screen">
         ${hudHTML(ch)}
         <div class="narrative"></div>
+        <button class="reread-link" data-act="reread">&larr; Re-read the scene</button>
         <div class="prompt">What do you do?</div>
         <div class="actions">
           ${choiceButtonHTML(ch, 'light')}
@@ -519,10 +523,11 @@ function renderInner() {
           ${wren}
         </div>
         ${dots}
-        <div class="actions">
+        <div class="actions actions-row">
+          ${pi > 0 ? '<button class="continue btn-back" data-act="beat-back" aria-label="Back to the previous page">&larr;</button>' : ''}
           ${lastPage
-            ? `<button class="continue" data-act="next">${last ? 'See Your Ending' : 'Continue'}</button>`
-            : '<button class="continue" data-act="aftermath">Continue</button>'}
+            ? `<button class="continue grow" data-act="next">${last ? 'See Your Ending' : 'Continue'}</button>`
+            : '<button class="continue grow" data-act="aftermath">Continue</button>'}
         </div>
         ${state.showMap ? mapOverlayHTML() : ''}
       </div>`;
@@ -588,6 +593,16 @@ app.addEventListener('click', (ev) => {
       state.phase = 'choice';
       state.beat = 0;
     }
+    AudioFX.tap();
+  } else if (act === 'beat-back') {
+    // Re-reading is free; only decisions are permanent. Within a chapter's
+    // beats or a consequence's pages this steps back a page — it can never
+    // cross back over a choice already made.
+    state.beat = Math.max(0, (state.beat || 0) - 1);
+    AudioFX.tap();
+  } else if (act === 'reread') {
+    state.phase = 'narrative';
+    state.beat = chapterBeats(chapter()).length - 1;
     AudioFX.tap();
   } else if (act === 'choose') {
     const type = btn.dataset.choice;

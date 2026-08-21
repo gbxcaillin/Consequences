@@ -304,6 +304,32 @@ button.continue {
   text-transform: uppercase;
 }
 
+/* re-reading: back through pages, never back through choices */
+.actions-row { flex-direction: row; }
+.actions-row .grow { flex: 1; }
+button.btn-back {
+  flex: 0 0 auto;
+  width: 54px;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+button.reread-link {
+  display: block;
+  width: auto;
+  margin: 0 auto 6px;
+  padding: 4px 10px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--text-faint);
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+}
+button.reread-link:active { color: var(--text-dim); }
+
 /* ---- title screen ---- */
 .title-screen {
   flex: 1;
