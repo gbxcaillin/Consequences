@@ -123,11 +123,14 @@ function sceneStyle(ch) {
   return `style="background-image:url('assets/scenes/${scene}.webp')"`;
 }
 
-/* Momentum: walk one road long enough and the other closes. Past `pull`
- * the opposing choice carries a warning; past `lock` — the point of no
- * return — the story takes your hands and the choice is gone. Deliberate
- * alternators keep both roads open, so the Crossroads stays a chosen
- * ending rather than a default. */
+/* Momentum: walk one road long enough and the other closes. Past `drift`
+ * the world recolors quietly: choice text swaps to variants that make the
+ * road you walk read as reasonable and the other road read as foolish,
+ * with no visual tell at all. Past `pull` the opposing choice carries an
+ * open warning; past `lock` — the point of no return — the story takes
+ * your hands and the choice is gone. Deliberate alternators keep both
+ * roads open, so the Crossroads stays a chosen ending rather than a
+ * default. */
 function momentumStage(side) {
   const m = DATA.momentum;
   if (!m) return 'free';
@@ -137,23 +140,31 @@ function momentumStage(side) {
   const against = side === 'dark' ? diff : -diff;
   if (against >= m.lock) return 'locked';
   if (against >= m.pull) return 'pulled';
+  if (against >= (m.drift == null ? m.pull : m.drift)) return 'drift';
   return 'free';
 }
 
 function choiceButtonHTML(ch, side) {
   const choice = side === 'light' ? ch.lightChoice : ch.darkChoice;
   const stage = momentumStage(side);
-  if (stage === 'free') {
-    return `<button class="choice-${side}" data-act="choose" data-choice="${side}">${esc(choice.text)}</button>`;
+  const withStage = momentumStage(side === 'light' ? 'dark' : 'light');
+  let text = choice.text;
+  if (stage !== 'free' && choice.textAgainst) {
+    text = choice.textAgainst;
+  } else if (withStage !== 'free' && choice.textWith) {
+    text = choice.textWith;
+  }
+  if (stage === 'free' || stage === 'drift') {
+    return `<button class="choice-${side}" data-act="choose" data-choice="${side}">${esc(text)}</button>`;
   }
   const force = side === 'dark' ? 'corruption' : 'virtue';
   const note = (stage === 'locked' && choice.lockNote)
     ? choice.lockNote
     : DATA.momentum.notes[force][stage === 'locked' ? 'lock' : 'pull'];
   if (stage === 'locked') {
-    return `<button class="choice-${side} locked" disabled>${esc(choice.text)}<span class="lock-note">${esc(note)}</span></button>`;
+    return `<button class="choice-${side} locked" disabled>${esc(text)}<span class="lock-note">${esc(note)}</span></button>`;
   }
-  return `<button class="choice-${side} pulled" data-act="choose" data-choice="${side}">${esc(choice.text)}<span class="lock-note">${esc(note)}</span></button>`;
+  return `<button class="choice-${side} pulled" data-act="choose" data-choice="${side}">${esc(text)}<span class="lock-note">${esc(note)}</span></button>`;
 }
 
 function hudHTML(ch) {

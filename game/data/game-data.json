@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters, Corruption and Virtue, track the real consequences and determine the ending.",
@@ -469,7 +469,9 @@
         "revealed": "There was no spy. The maps were a peddler's memory of twenty years' kindness, and the four testimonies agreed only because they were rehearsed in the same taproom by the same fear. Brakka was flogged for maps of dog bites and pin-buyers, stripped of her stock, and walked out of the county she had supplied for two decades. The bell that rang you out was the same bell that had rung the crowd in.",
         "seerTruth": "You did not ask whether he was guilty; you asked how guilt could be administered smoothly. A mob wanted blood and you taught it procedure. Fear with paperwork is still fear, and a fair-sounding wrong is the hardest kind to undo, because everyone present remembers doing it properly.",
         "corruption": 15,
-        "heroism": 14
+        "heroism": 14,
+        "textWith": "Give these people the trial they deserve. Order is what a Chosen brings.",
+        "textAgainst": "Recite the forms of a trial over a verdict the crowd has already reached."
       },
       "darkChoice": {
         "text": "Question the accusers yourself, one at a time, apart.",
@@ -482,7 +484,9 @@
         ],
         "seerTruth": "Four stories, taken apart gently, came apart entirely. It cost you the crowd's warmth for one evening and it cost Brakka nothing at all, which was the whole sum in question. Questions are not glamorous. Neither are locksmiths, and both open doors.",
         "virtue": 15,
-        "heroism": 9
+        "heroism": 9,
+        "textWith": "Take the accusers aside one at a time. Stories told apart tell the truth.",
+        "textAgainst": "Coddle the spy with questions while the town stands waiting."
       },
       "echoes": [
         {
@@ -560,7 +564,9 @@
         "corruption": 20,
         "heroism": 18,
         "seerTruth": "Call it what it was: you killed refugees because frightened people asked you to, and you wanted their gratitude more than the truth. The toys in the ash were not a metaphor. They belonged to children.",
-        "revealed": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees."
+        "revealed": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees.",
+        "textWith": "Protect these farmers. It is what you were summoned to do.",
+        "textAgainst": "Promise to drive out 'creatures' you have not once laid eyes on."
       },
       "darkChoice": {
         "text": "Let me speak with them before anyone dies.",
@@ -576,7 +582,9 @@
         ],
         "virtue": 20,
         "heroism": 10,
-        "seerTruth": "You walked unarmed into a camp of strangers and traded an hour of listening for a hundred lives. No one sang about it. Everyone lived."
+        "seerTruth": "You walked unarmed into a camp of strangers and traded an hour of listening for a hundred lives. No one sang about it. Everyone lived.",
+        "textWith": "Walk into the camp unarmed and hear them first. Then decide.",
+        "textAgainst": "Parley with the things nesting in their fields, as if fear needs a hearing."
       },
       "echoes": [
         {
@@ -635,7 +643,9 @@
         "corruption": 20,
         "heroism": 18,
         "seerTruth": "Eight hundred years of vigil ended on your blade so a rumor of power could be checked. You killed the only guard of the only door that mattered, and then you opened it.",
-        "revealed": "The dragon falls. Inside the vault: not a weapon of peace, but an ancient plague, a grey death. The dragon was the warden. You just killed it."
+        "revealed": "The dragon falls. Inside the vault: not a weapon of peace, but an ancient plague, a grey death. The dragon was the warden. You just killed it.",
+        "textWith": "End the dragon. Eleven Chosen failed; the twelfth will not.",
+        "textAgainst": "Slay the old warden because the song says a hero would."
       },
       "darkChoice": {
         "text": "Why do you guard this place? What are you protecting?",
@@ -651,7 +661,9 @@
         ],
         "virtue": 20,
         "heroism": 12,
-        "seerTruth": "You asked a monster why, and it turned out to be the most faithful servant the world had. You shared its burden instead of ending it. That is what help is."
+        "seerTruth": "You asked a monster why, and it turned out to be the most faithful servant the world had. You shared its burden instead of ending it. That is what help is.",
+        "textWith": "It offered you questions. Take it at its word and ask.",
+        "textAgainst": "Chat with the beast while it measures you for a grave."
       },
       "echoes": [
         {
@@ -717,7 +729,9 @@
         "corruption": 20,
         "heroism": 18,
         "seerTruth": "You marched ten thousand soldiers at farmers because a king called freedom 'darkness' and you did not check the map. The invasion had a hero's face. Yours.",
-        "revealed": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion."
+        "revealed": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion.",
+        "textWith": "Take the king's banner. An army follows the one who carries it.",
+        "textAgainst": "Accept a gilded banner for a war nobody has explained."
       },
       "darkChoice": {
         "text": "Why do you call them the Dark Lands? What did they do?",
@@ -727,7 +741,9 @@
         ],
         "virtue": 20,
         "heroism": 8,
-        "seerTruth": "One question in open court, and the invasion lost its story. Empires run on unquestioned words. You stopped one with four of them."
+        "seerTruth": "One question in open court, and the invasion lost its story. Empires run on unquestioned words. You stopped one with four of them.",
+        "textWith": "Ask the question no one in this hall will: what did the Dark Lands do?",
+        "textAgainst": "Embarrass the king before his court with a clerk's quibbling."
       },
       "echoes": [
         {
@@ -811,7 +827,9 @@
         "seerTruth": "You called it logistics. A river of people asked you for one night, and you gave the night to the wheels of a war instead. The Seer keeps no list of the fen meadows; no one does. That is rather the point of fens.",
         "corruption": 20,
         "heroism": 16,
-        "lockNote": "You count the birdcage, the star map, the kettle. The order will not come."
+        "lockNote": "You count the birdcage, the star map, the kettle. The order will not come.",
+        "textWith": "The columns must cross by dawn. See it done; wars are won on time.",
+        "textAgainst": "Schedule the refugees out of the way and call the arithmetic mercy."
       },
       "darkChoice": {
         "text": "Hold the bridge for the refugees until the last wagon is over.",
@@ -825,7 +843,9 @@
         "seerTruth": "An army is heavy and a birdcage is light, and you decided the light things crossed first. It cost you a marshal's fury and bought a thousand quiet lives. This is the arithmetic no court teaches.",
         "virtue": 20,
         "heroism": 10,
-        "lockNote": "The bridge is an obstacle now. That is all your eyes will show you."
+        "lockNote": "The bridge is an obstacle now. That is all your eyes will show you.",
+        "textWith": "Hold the bridge. The army can lose a day; the wagons cannot.",
+        "textAgainst": "Hold up the whole campaign for a queue of carts."
       },
       "echoes": [
         {
@@ -890,7 +910,9 @@
         "revealed": "The charter was the town's memory of itself, and you burned it to make an example of paper. What you could not burn: within the month, Vellbrook's children were reciting all four pages, taught in kitchens by candlelight, and the recitation spread town to town ahead of your army like a fire the fire had started. The crown made memorizing it a flogging offense. Floggings taught it faster.",
         "seerTruth": "You burned four pages of sheep-vellum before a silent square and called it order. The town let you, because the town understood before you did that you were burning the copy. The original was standing all around you, holding its breath, wearing brass.",
         "corruption": 15,
-        "heroism": 14
+        "heroism": 14,
+        "textWith": "Carry out the decree cleanly. Better your steady hand than a cruder one.",
+        "textAgainst": "Burn an old town's memory because a piece of paper told you to."
       },
       "darkChoice": {
         "text": "Read the charter aloud to the square before any decree is carried out.",
@@ -903,7 +925,9 @@
         ],
         "seerTruth": "The decree said the charter must be surrendered, and it was: to the whole square at once, out loud. You found the loophole no marshal drafts against: memory. A thing spoken becomes a thing kept. You made two thousand keepers in one reading.",
         "virtue": 15,
-        "heroism": 10
+        "heroism": 10,
+        "textWith": "Read the charter to the square first. Let them keep what fire cannot take.",
+        "textAgainst": "Make theatre of a seditious document in an occupied square."
       },
       "echoes": [
         {
@@ -963,7 +987,9 @@
         "heroism": 15,
         "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch.",
         "revealed": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book.",
-        "lockNote": "You watched Marigold wipe flour from her hands. The torch will not light."
+        "lockNote": "You watched Marigold wipe flour from her hands. The torch will not light.",
+        "textWith": "Let the cleansing proceed. A realm of light cannot leave shadows in its corners.",
+        "textAgainst": "Stand by while a tired priestess scrubs out a village's oldest songs."
       },
       "darkChoice": {
         "text": "Show me this dark magic yourself. I want to see it.",
@@ -977,7 +1003,9 @@
         "virtue": 15,
         "heroism": 10,
         "seerTruth": "You looked with your own eyes before you judged, and the accusation died of daylight. Willowmere kept its songs because you bothered to hear them first.",
-        "lockNote": "The list is already in your hand, and your hand is already nodding."
+        "lockNote": "The list is already in your hand, and your hand is already nodding.",
+        "textWith": "Make her show you one harm. One. Before a single door is marked.",
+        "textAgainst": "Demand evidence against witchcraft, as though shadow leaves receipts."
       },
       "echoes": [
         {
@@ -1044,7 +1072,9 @@
         "heroism": 20,
         "seerTruth": "The last innocent thing in the world offered itself, and you accepted. Every tyrant's ledger balances this way: a great good promised, a small light extinguished, forever. You were radiant, and the glade was silent.",
         "revealed": "The light drains from the unicorn into you. Absolute power floods through you. The forest goes silent. The last innocent thing in the world died for your ambition.",
-        "lockNote": "You already know what you will not buy with a life."
+        "lockNote": "You already know what you will not buy with a life.",
+        "textWith": "Accept the gift. One willing life against millions is not even a question.",
+        "textAgainst": "Take the last pure thing in the world and spend it like coin."
       },
       "darkChoice": {
         "text": "No. I won't buy victory with your life.",
@@ -1061,7 +1091,9 @@
         "virtue": 25,
         "heroism": 8,
         "seerTruth": "You were offered everything and said no. The prophecy required a hand willing to consume innocence; yours refused, and the whole design failed in the space of one word.",
-        "lockNote": "Refusal is a language you no longer speak."
+        "lockNote": "Refusal is a language you no longer speak.",
+        "textWith": "Refuse. You have seen what gifts cost. Walk home with your own hands.",
+        "textAgainst": "Refuse the only power that could ever set your kingdom right."
       },
       "echoes": [
         {
@@ -1174,6 +1206,7 @@
         "pull": "Your hand hesitates. You have seen too much for this to be easy.",
         "lock": "You cannot. You have seen the toys in the ash and the names on the doors. Your hands refuse."
       }
-    }
+    },
+    "drift": 25
   }
 }
