@@ -1015,15 +1015,15 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 .crawl-title {
   font-family: 'Cinzel', serif;
   /* must fit one line on narrow phones and inside the 430px app column */
-  font-size: clamp(20px, 7.6vw, 33px);
+  font-size: clamp(13px, 4.6vw, 20px);
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.05em;
   margin-bottom: 6px;
 }
 .crawl-sub {
   font-family: 'Cinzel', serif;
-  font-size: clamp(11px, 3.4vw, 15px);
-  letter-spacing: 0.16em;
+  font-size: clamp(9px, 2.5vw, 11px);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold-dim);
   margin-bottom: 34px;
