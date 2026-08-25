@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 51;   // shown on the title screen; bump with the service worker
+const BUILD = 52;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -692,7 +692,7 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <video class="crawl-bg" autoplay muted loop playsinline poster="assets/scenes/opening-sky.webp"></video>
+        <video class="crawl-bg" autoplay muted loop playsinline preload="auto" poster="assets/scenes/opening-sky.webp"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner wait">
@@ -741,11 +741,18 @@ function renderInner() {
         if (playingSeen && (skyLocal || skyFallback)) release();
       };
       vid.addEventListener('playing', () => { playingSeen = true; maybeRelease(); });
-      const src = (vid.canPlayType && vid.canPlayType('video/webm; codecs="vp9"')) ? SKY_WEBM : SKY_MP4;
-      vid.src = src;
-      tryPlay();
-      fetch(src)
+      // if the element itself gives up, run the crawl over the poster
+      vid.addEventListener('error', () => { skyFallback = true; maybeRelease(); }, true);
+      tryPlay();   // in-gesture: the browser streams from whichever source it can play
+      // Blob upgrade in parallel: try the formats in the browser's likely
+      // order and swap playback onto the local copy so nothing can stall
+      // mid-scroll; if no download succeeds, streaming is all we need.
+      const prefer = (vid.canPlayType && vid.canPlayType('video/webm; codecs="vp9"'))
+        ? [SKY_WEBM, SKY_MP4] : [SKY_MP4, SKY_WEBM];
+      const grab = (i) => fetch(prefer[i])
         .then((r) => { if (!r.ok) throw new Error('http ' + r.status); return r.blob(); })
+        .catch((e) => (i + 1 < prefer.length ? grab(i + 1) : Promise.reject(e)));
+      grab(0)
         .then((bl) => {
           if (state.phase !== 'crawl') { skyFallback = true; return; }
           const t = vid.currentTime;
