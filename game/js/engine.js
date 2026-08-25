@@ -621,7 +621,7 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <img class="crawl-bg" src="assets/scenes/opening-sky.webp" alt="" onerror="this.remove()">
+        <video class="crawl-bg" autoplay muted loop playsinline poster="assets/scenes/opening-sky.webp" onerror="this.remove()"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner">
@@ -633,6 +633,14 @@ function renderInner() {
         </div>
         <div class="travel-hint crawl-hint">tap to skip</div>
       </div>`;
+    const vid = app.querySelector('video.crawl-bg');
+    if (vid) {
+      // the muted markup attribute alone doesn't satisfy autoplay policy
+      // when the element arrives via innerHTML
+      vid.muted = true;
+      const pr = vid.play();
+      if (pr && pr.catch) pr.catch(() => { /* poster stands in */ });
+    }
     const inner = app.querySelector('.crawl-inner');
     if (inner) inner.addEventListener('animationend', () => {
       if (state.phase === 'crawl') {
