@@ -589,6 +589,7 @@ function renderInner() {
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(null)}></div>
       <div class="screen title-screen">
+        <button class="icon-btn sound-corner" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
         <h1>Consequences</h1>
         <div class="sub">A fantasy of inverted morality</div>
         <div class="actions">
@@ -632,6 +633,7 @@ function renderInner() {
             </div>
           </div>
         </div>
+        <button class="icon-btn sound-corner" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
         <div class="travel-hint crawl-hint">tap to skip</div>
       </div>`;
     const vid = app.querySelector('video.crawl-bg');
@@ -946,6 +948,11 @@ app.addEventListener('click', (ev) => {
   } else if (act === 'sound') {
     AudioFX.toggle();
     try { MusicEngine.sync(); } catch (e) { /* music is optional */ }
+    if (state.phase === 'crawl') {
+      // a full render would restart the crawl; swap the glyph in place
+      btn.innerHTML = AudioFX.muted ? '&#215;&#9834;' : '&#9834;';
+      return;
+    }
   } else if (act === 'recover') {
     GameStore.clearCurrent();
     book = null;

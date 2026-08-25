@@ -1029,3 +1029,11 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   margin: 0 0 32px;
 }
 .crawl-hint { color: rgba(221,213,198,0.55); }
+
+/* corner sound toggle on the title screen and opening crawl */
+.sound-corner {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  z-index: 3;
+}
