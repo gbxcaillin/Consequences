@@ -1170,3 +1170,17 @@ button.crawl-skip {
   background: rgba(30,26,23,0.82);
   opacity: 0.9;
 }
+
+/* build tag: tiny, for telling which build a device is running */
+.build-tag {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: max(6px, env(safe-area-inset-bottom));
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: rgba(122,111,98,0.55);
+  pointer-events: none;
+}

@@ -8,6 +8,7 @@
  */
 
 const DESIGN_MODE = false;
+const BUILD = 49;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -658,6 +659,7 @@ function renderInner() {
           <button class="continue" data-act="options">Options</button>
           <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
+        <div class="build-tag">build ${BUILD}</div>
         ${state.showOptions ? optionsOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'chronicle') {
