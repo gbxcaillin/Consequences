@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 52;   // shown on the title screen; bump with the service worker
+const BUILD = 53;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -744,6 +744,26 @@ function renderInner() {
       // if the element itself gives up, run the crawl over the poster
       vid.addEventListener('error', () => { skyFallback = true; maybeRelease(); }, true);
       tryPlay();   // in-gesture: the browser streams from whichever source it can play
+      // the load() kick that build 49 relied on: some phones defer media
+      // startup until an explicit load, so pulse it while nothing plays
+      [1600, 4000].forEach((ms) => setTimeout(() => {
+        if (state.phase === 'crawl' && vid.paused && !skyLocal) {
+          try { vid.load(); } catch (e) { /* nothing */ }
+          tryPlay();
+        }
+      }, ms));
+      // if the sky still refuses after 6s, put its state on the loader so a
+      // screenshot tells us exactly what the device is doing
+      setTimeout(() => {
+        if (state.phase !== 'crawl' || !vid.paused) return;
+        const loader = app.querySelector('.crawl-loading');
+        if (loader && !loader.classList.contains('hidden')) {
+          const err = vid.error ? vid.error.code : 0;
+          const srcKind = vid.currentSrc ? (vid.currentSrc.indexOf('blob:') === 0 ? 'blob' : vid.currentSrc.split('.').pop().slice(0, 5)) : 'none';
+          loader.textContent = 'sky held: net=' + vid.networkState + ' ready=' + vid.readyState
+            + ' err=' + err + ' src=' + srcKind + (skyLocal ? ' dl=ok' : (skyFallback ? ' dl=fail' : ' dl=...'));
+        }
+      }, 6000);
       // Blob upgrade in parallel: try the formats in the browser's likely
       // order and swap playback onto the local copy so nothing can stall
       // mid-scroll; if no download succeeds, streaming is all we need.
@@ -764,7 +784,7 @@ function renderInner() {
         })
         .catch(() => { skyFallback = true; maybeRelease(); });
     }
-    setTimeout(release, 12000);   // covers the full prefetch; scroll waits
+    setTimeout(release, 9000);   // covers the prefetch; scroll never waits longer
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
     // Self-fitting headline: measure the real rendered text width on this
     // device (fonts differ; the 3D entry magnifies up to ~1.25x) and size
