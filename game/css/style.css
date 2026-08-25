@@ -1037,3 +1037,17 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   right: 14px;
   z-index: 3;
 }
+
+/* painted sound-toggle badges + crawl start/stop */
+.icon-btn.snd {
+  background: none;
+  border: none;
+  padding: 2px;
+}
+.snd-ico {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+.crawl-inner.wait { animation-play-state: paused; }

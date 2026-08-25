@@ -319,6 +319,32 @@ function choiceButtonHTML(ch, side) {
   return `<button class="choice-${side} pulled" data-act="choose" data-choice="${side}">${esc(text)}<span class="lock-note">${esc(note)}</span></button>`;
 }
 
+const SOUND_ON_IMG = 'assets/icons/sound-on.webp';
+const SOUND_OFF_IMG = 'assets/icons/sound-off.webp';
+function soundBtnHTML(extra) {
+  return `<button class="icon-btn snd ${extra || ''}" data-act="sound" aria-label="Toggle sound"><img class="snd-ico" src="${AudioFX.muted ? SOUND_OFF_IMG : SOUND_ON_IMG}" alt=""></button>`;
+}
+
+/* fade the crawl out, then hand over to the story */
+let crawlEnding = false;
+function crawlEnd(fadeMs) {
+  if (!state || state.phase !== 'crawl' || crawlEnding) return;
+  crawlEnding = true;
+  const scr = app.querySelector('.crawl-screen');
+  if (scr) {
+    scr.style.transition = `opacity ${fadeMs}ms ease`;
+    scr.style.opacity = '0';
+  }
+  setTimeout(() => {
+    crawlEnding = false;
+    if (state.phase !== 'crawl') return;
+    state.phase = 'narrative';
+    state.beat = 0;
+    persistState();
+    render();
+  }, fadeMs);
+}
+
 function hudHTML(ch) {
   const pct = Math.max(0, Math.min(100, (state.heroism / DATA.scoring.visible.maxPossible) * 100));
   return `
@@ -330,7 +356,7 @@ function hudHTML(ch) {
       <div class="hud-controls">
         <button class="icon-btn" data-act="map" aria-label="Journey map">MAP</button>
         <button class="icon-btn" data-act="journal-open" aria-label="Wren&rsquo;s journal">WREN</button>
-        <button class="icon-btn" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
+        ${soundBtnHTML('')}
       </div>
     </div>
     <div class="heroism">
@@ -589,7 +615,7 @@ function renderInner() {
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(null)}></div>
       <div class="screen title-screen">
-        <button class="icon-btn sound-corner" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
+        ${soundBtnHTML('sound-corner')}
         <h1>Consequences</h1>
         <div class="sub">A fantasy of inverted morality</div>
         <div class="actions">
@@ -623,39 +649,38 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <video class="crawl-bg" autoplay muted loop playsinline poster="assets/scenes/opening-sky.webp" onerror="this.remove()"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
+        <video class="crawl-bg" autoplay muted loop playsinline preload="auto" poster="assets/scenes/opening-sky.webp" onerror="this.remove()"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
-            <div class="crawl-inner">
+            <div class="crawl-inner wait">
               <div class="crawl-title">${esc(op.title)}</div>
               <div class="crawl-sub">${esc(op.sub)}</div>
               ${op.crawl.map(p => `<p>${esc(p)}</p>`).join('')}
             </div>
           </div>
         </div>
-        <button class="icon-btn sound-corner" data-act="sound" aria-label="Toggle sound">${AudioFX.muted ? '&#215;&#9834;' : '&#9834;'}</button>
+        ${soundBtnHTML('sound-corner')}
         <div class="travel-hint crawl-hint">tap to skip</div>
       </div>`;
     const vid = app.querySelector('video.crawl-bg');
+    const inner = app.querySelector('.crawl-inner');
+    // hold the text until the sky actually starts playing (buffering can
+    // take seconds on a phone) so the scroll and the video end together;
+    // if the video never starts, a short fallback releases the text anyway
+    let released = false;
+    const release = () => {
+      if (!released && inner) { released = true; inner.classList.remove('wait'); }
+    };
     if (vid) {
       // the muted markup attribute alone doesn't satisfy autoplay policy
       // when the element arrives via innerHTML
       vid.muted = true;
-      // stretch the sky over the whole scroll (66s, matching crawlUp in CSS)
-      const slow = () => { try { vid.playbackRate = Math.max(0.07, vid.duration / 66); } catch (e) { /* keep 1x */ } };
-      if (vid.readyState >= 1) slow(); else vid.addEventListener('loadedmetadata', slow);
+      vid.addEventListener('playing', release, { once: true });
       const pr = vid.play();
       if (pr && pr.catch) pr.catch(() => { /* poster stands in */ });
     }
-    const inner = app.querySelector('.crawl-inner');
-    if (inner) inner.addEventListener('animationend', () => {
-      if (state.phase === 'crawl') {
-        state.phase = 'narrative';
-        state.beat = 0;
-        persistState();
-        render();
-      }
-    });
+    setTimeout(release, 2500);
+    if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
   } else if (state.phase === 'travel') {
     app.innerHTML = `
       <div class="travel-screen">
@@ -790,13 +815,10 @@ app.addEventListener('click', (ev) => {
     travelArrived();
     return;
   }
-  // any tap skips the opening crawl
+  // any tap skips the opening crawl (with a quick fade)
   if (state && state.phase === 'crawl' && !ev.target.closest('button[data-act]')) {
-    state.phase = 'narrative';
-    state.beat = 0;
     AudioFX.tap();
-    persistState();
-    render();
+    crawlEnd(450);
     return;
   }
   const btn = ev.target.closest('button[data-act]');
@@ -952,8 +974,9 @@ app.addEventListener('click', (ev) => {
     AudioFX.toggle();
     try { MusicEngine.sync(); } catch (e) { /* music is optional */ }
     if (state.phase === 'crawl') {
-      // a full render would restart the crawl; swap the glyph in place
-      btn.innerHTML = AudioFX.muted ? '&#215;&#9834;' : '&#9834;';
+      // a full render would restart the crawl; swap the icon in place
+      const im = btn.querySelector('img.snd-ico');
+      if (im) im.src = AudioFX.muted ? SOUND_OFF_IMG : SOUND_ON_IMG;
       return;
     }
   } else if (act === 'recover') {

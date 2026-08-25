@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v36';
+const CACHE = 'consequences-v37';
 const CORE = [
   './',
   'index.html',
@@ -12,6 +12,8 @@ const CORE = [
   'data/game-data.json',
   'manifest.webmanifest',
   'assets/icons/icon-192.png',
+  'assets/icons/sound-on.webp',
+  'assets/icons/sound-off.webp',
   'assets/icons/icon-512.png',
   'assets/scenes/thornfield-village.webp',
   'assets/scenes/aldrics-tower.webp',
