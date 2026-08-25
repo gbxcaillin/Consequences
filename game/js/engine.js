@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 50;   // shown on the title screen; bump with the service worker
+const BUILD = 51;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -692,7 +692,7 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <video class="crawl-bg" muted loop playsinline poster="assets/scenes/opening-sky.webp"></video>
+        <video class="crawl-bg" autoplay muted loop playsinline poster="assets/scenes/opening-sky.webp"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner wait">
@@ -723,7 +723,6 @@ function renderInner() {
       // the muted markup attribute alone doesn't satisfy autoplay policy
       // when the element arrives via innerHTML
       vid.muted = true;
-      vid.addEventListener('playing', release, { once: true });
       const tryPlay = () => {
         if (!vid.paused) return;
         const pr = vid.play();
@@ -731,22 +730,32 @@ function renderInner() {
       };
       vid.addEventListener('canplay', tryPlay);
       vid.addEventListener('loadeddata', tryPlay);
-      // Download the whole sky before starting: playing from a local blob
-      // can never stall mid-scroll, so video and text stay in lockstep.
-      // The loader covers the download; streaming is only the fallback.
+      // Two-phase start. Phase 1, inside the Begin tap's gesture: stream
+      // the sky immediately so autoplay is blessed. Phase 2, in parallel:
+      // download the whole file and swap playback onto a local blob, so
+      // nothing can stall mid-scroll. The scroll is held until the local
+      // copy is playing (or the download failed and streaming is all we
+      // have), so video and text run in lockstep.
+      let playingSeen = false, skyLocal = false, skyFallback = false;
+      const maybeRelease = () => {
+        if (playingSeen && (skyLocal || skyFallback)) release();
+      };
+      vid.addEventListener('playing', () => { playingSeen = true; maybeRelease(); });
       const src = (vid.canPlayType && vid.canPlayType('video/webm; codecs="vp9"')) ? SKY_WEBM : SKY_MP4;
+      vid.src = src;
+      tryPlay();
       fetch(src)
         .then((r) => { if (!r.ok) throw new Error('http ' + r.status); return r.blob(); })
         .then((bl) => {
-          if (state.phase !== 'crawl') return;
+          if (state.phase !== 'crawl') { skyFallback = true; return; }
+          const t = vid.currentTime;
+          playingSeen = false;          // wait for the blob copy to play
+          skyLocal = true;
           vid.src = URL.createObjectURL(bl);
+          try { vid.currentTime = t; } catch (e) { /* start over is fine */ }
           tryPlay();
         })
-        .catch(() => {
-          if (state.phase !== 'crawl' || vid.src) return;
-          vid.src = src;
-          tryPlay();
-        });
+        .catch(() => { skyFallback = true; maybeRelease(); });
     }
     setTimeout(release, 12000);   // covers the full prefetch; scroll waits
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
