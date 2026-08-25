@@ -617,7 +617,7 @@ function renderInner() {
       <div class="screen title-screen">
         ${soundBtnHTML('sound-corner')}
         <h1>Consequences</h1>
-        <div class="sub">A fantasy of inverted morality</div>
+        <div class="sub">The Ashenmere Prophecy</div>
         <div class="actions">
           ${resumable ? '<button class="continue" data-act="resume">Continue</button>' : ''}
           <button class="continue" data-act="begin">${resumable ? 'New Journey' : 'Begin'}</button>
