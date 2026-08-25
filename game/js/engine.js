@@ -558,7 +558,8 @@ function errorScreen() {
 
 function themeForNow() {
   if (!DATA) return 'title';
-  if (['title', 'chronicle', 'howto', 'crawl'].includes(state.phase)) return 'title';
+  if (state.phase === 'crawl') return 'opening';
+  if (['title', 'chronicle', 'howto'].includes(state.phase)) return 'title';
   if (state.phase === 'ending') return pickEnding().id;
   if (state.phase === 'book' && book) {
     const played = playedChapters(book.run);

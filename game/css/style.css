@@ -978,10 +978,10 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 .crawl-vp {
   position: absolute;
   inset: 0;
-  perspective: 340px;
+  perspective: 540px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 24%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 11%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 11%);
 }
 .crawl-plane {
   position: absolute;
@@ -990,14 +990,14 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   top: 0;
   bottom: 0;
   transform-origin: 50% 100%;
-  transform: rotateX(48deg);
+  transform: rotateX(30deg);
 }
 .crawl-inner {
   position: absolute;
   left: 0;
   right: 0;
   top: 100%;
-  animation: crawlUp 52s linear forwards;
+  animation: crawlUp 66s linear forwards;
   text-align: center;
   color: var(--gold);
   text-shadow: 0 1px 6px rgba(0,0,0,0.7);
@@ -1008,7 +1008,7 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 }
 .crawl-title {
   font-family: 'Cinzel', serif;
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 700;
   letter-spacing: 0.12em;
   margin-bottom: 6px;
@@ -1023,9 +1023,9 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 }
 .crawl-inner p {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 21px;
+  font-size: 26px;
   font-weight: 600;
-  line-height: 1.55;
-  margin: 0 0 26px;
+  line-height: 1.5;
+  margin: 0 0 32px;
 }
 .crawl-hint { color: rgba(221,213,198,0.55); }

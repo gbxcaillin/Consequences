@@ -17,6 +17,9 @@ const MusicEngine = (() => {
   // flute/arp = voice probabilities; pulse = heartbeat level; bell = glassy plucks
   const THEMES = {
     'title':              { root: 62, scale: [0, 2, 4, 7, 9],      tempo: 64, bright: 2100, drone: 0.050, density: 0.45, swell: 0.10, prog: [0, 5, 3, 4], flute: 0.22, arp: 0.35, pulse: 0,    bell: false },
+    // the opening crawl: a big Lydian adventure fanfare — frequent horn
+    // swells, a marching pulse, bright and dense over a I-IV-V road
+    'opening':            { root: 60, scale: [0, 2, 4, 6, 7, 9, 11], tempo: 74, bright: 2600, drone: 0.060, density: 0.60, swell: 0.30, prog: [0, 3, 4, 0], flute: 0.30, arp: 0.55, pulse: 0.030, bell: false },
     'thornfield-village': { root: 62, scale: [0, 2, 4, 7, 9],      tempo: 68, bright: 2300, drone: 0.050, density: 0.55, swell: 0.08, prog: [0, 5, 3, 4], flute: 0.25, arp: 0.45, pulse: 0,    bell: false },
     'aldrics-tower':      { root: 64, scale: [0, 2, 3, 5, 7, 10],  tempo: 56, bright: 1700, drone: 0.055, density: 0.35, swell: 0.12, prog: [0, 3, 0, 4], flute: 0.30, arp: 0.15, pulse: 0,    bell: false },
     'wayrest-inn':        { root: 57, scale: [0, 3, 5, 7, 10],     tempo: 60, bright: 1600, drone: 0.050, density: 0.40, swell: 0.06, prog: [0, 0, 3, 4], flute: 0.15, arp: 0.10, pulse: 0.030, bell: false },
