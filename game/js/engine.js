@@ -558,7 +558,7 @@ function errorScreen() {
 
 function themeForNow() {
   if (!DATA) return 'title';
-  if (['title', 'chronicle', 'howto'].includes(state.phase)) return 'title';
+  if (['title', 'chronicle', 'howto', 'crawl'].includes(state.phase)) return 'title';
   if (state.phase === 'ending') return pickEnding().id;
   if (state.phase === 'book' && book) {
     const played = playedChapters(book.run);
@@ -617,6 +617,31 @@ function renderInner() {
     app.innerHTML = `
       <div class="scene-bg dim" ${sceneStyle(null)}></div>
       <div class="screen book-screen">${journalHTML()}</div>`;
+  } else if (state.phase === 'crawl') {
+    const op = DATA.opening;
+    app.innerHTML = `
+      <div class="crawl-screen">
+        <img class="crawl-bg" src="assets/scenes/opening-sky.webp" alt="" onerror="this.remove()">
+        <div class="crawl-vp">
+          <div class="crawl-plane">
+            <div class="crawl-inner">
+              <div class="crawl-title">${esc(op.title)}</div>
+              <div class="crawl-sub">${esc(op.sub)}</div>
+              ${op.crawl.map(p => `<p>${esc(p)}</p>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div class="travel-hint crawl-hint">tap to skip</div>
+      </div>`;
+    const inner = app.querySelector('.crawl-inner');
+    if (inner) inner.addEventListener('animationend', () => {
+      if (state.phase === 'crawl') {
+        state.phase = 'narrative';
+        state.beat = 0;
+        persistState();
+        render();
+      }
+    });
   } else if (state.phase === 'travel') {
     app.innerHTML = `
       <div class="travel-screen">
@@ -751,6 +776,15 @@ app.addEventListener('click', (ev) => {
     travelArrived();
     return;
   }
+  // any tap skips the opening crawl
+  if (state && state.phase === 'crawl' && !ev.target.closest('button[data-act]')) {
+    state.phase = 'narrative';
+    state.beat = 0;
+    AudioFX.tap();
+    persistState();
+    render();
+    return;
+  }
   const btn = ev.target.closest('button[data-act]');
   if (!btn) return;
   const act = btn.dataset.act;
@@ -760,7 +794,11 @@ app.addEventListener('click', (ev) => {
   if (act === 'begin') {
     GameStore.clearCurrent();
     state = freshState();
+    state.phase = DATA.opening ? 'crawl' : 'narrative';
+    AudioFX.tap();
+  } else if (act === 'crawl-done') {
     state.phase = 'narrative';
+    state.beat = 0;
     AudioFX.tap();
   } else if (act === 'resume') {
     state = GameStore.current;
@@ -837,7 +875,7 @@ app.addEventListener('click', (ev) => {
     AudioFX.tap();
   } else if (act === 'restart') {
     state = freshState();
-    state.phase = 'narrative';
+    state.phase = DATA.opening ? 'crawl' : 'narrative';
     AudioFX.tap();
   } else if (act === 'book-open') {
     book = {

@@ -129,3 +129,16 @@ Engine plan once art arrives: trace the road into waypoints per chapter
 segment; transition screen = map + figure walking the segment + chapter
 title fade, tap to skip; MAP overlay reuses the same art with
 reached/unreached markers.
+
+### scenes/opening-sky.webp — opening crawl backdrop
+Phone portrait 9:16 (1080x1920+). A deep night sky over the world of the
+game: near-black indigo at the top graduating to a faint horizon glow at
+the bottom, scattered small stars, and the Ashenmere light crossing the
+sky as a soft diagonal streak of pale green, comet-like, the painting's
+single focal event. At the very bottom edge only, low black silhouettes
+of thatched rooftops, a fence line, and one thin line of chimney smoke:
+Thornfield asleep under the omen. No text, no moon, no clouds heavier
+than wisps; the upper three quarters stay dark and quiet because gold
+scrolling text plays over it. Painterly storybook-fantasy style matching
+the scene backdrops. Drop-in file: game/assets/scenes/opening-sky.webp
+(the engine already looks for it; its built-in starfield is the fallback).

@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters, Corruption and Virtue, track the real consequences and determine the ending.",
@@ -304,15 +304,6 @@
       "narrative": [
         {
           "text": "Dawn in Thornfield smells of woodsmoke and wet grass. You are mending the fence your father built when the sound comes up the road: hooves, a trumpet, and every dog in the village at once. Tam gets there first, of course. Nine years old and faster than bad news, he hangs off your gate shouting that a knight is coming, a real one, with a banner."
-        },
-        {
-          "text": "You knew before Tam said it. Some part of you has been waiting for that trumpet all your life. You were born the night the Ashenmere light crossed the sky, and every soul in Thornfield can tell the story better than you can: the lamps in the birthing room burning green, the priest riding from Millbrook in the dark to look at you in your basket. Every harvest feast it gets retold, and every year the lamps burn a little greener."
-        },
-        {
-          "text": "The signs kept coming, the way signs do when a whole village is watching for them. The priest checked your palms each spring and called the lines 'consistent.' Pilgrims came in the good summers and paid a copper to touch your gate; the ribbons they tied are still on the fence, gone grey. Your mother sewed a banner for the day the summons would come, silver thread she could not afford, and died two winters back with it still folded in the cedar chest."
-        },
-        {
-          "text": "Every child in Thornfield learns the Chosen's oath, but you were always the one picked to say it at festival: wooden sword, borrowed cloak, the walk to the boundary stone and back while the village cheered. You taught Tam the game exactly the way the older children taught it to you. Your whole life, when you are honest about it, has been a rehearsal for a play everyone else has already seen."
         },
         {
           "text": "'It'll be about the eastern roads,' says Corvin the miller, wiping flour on his shirt. 'Soldiers went through last month, thick as geese.' 'It's a tax,' sighs the widow Prell. Rumor moves faster than the horse does. By the time the rider reaches your gate, half of Thornfield has assembled behind you, and all of it is holding its breath."
@@ -1250,5 +1241,17 @@
       }
     },
     "drift": 25
+  },
+  "opening": {
+    "title": "CONSEQUENCES",
+    "sub": "The Ashenmere Prophecy",
+    "crawl": [
+      "For three hundred years the kingdom has waited on a prophecy. Eleven Chosen have carried its title into the east. The songs do not say what became of them.",
+      "You were born the night the Ashenmere light crossed the sky. The midwife swore the birthing lamps burned green. The priest rode through the dark to look at you in your basket. The story is retold at every harvest feast, and every year the lamps burn a little greener.",
+      "You grew up marked. Your palms were read each spring and called consistent. Pilgrims paid a copper to touch your gate. Your mother sewed a banner in silver thread for the day the summons would come, and died with it still folded in the cedar chest.",
+      "Every child in Thornfield learns the Chosen's oath, but you were the one they raised the wooden sword to say it at festival, while the whole village cheered. You taught little Tam the game exactly the way it was taught to you.",
+      "Your whole life, when you are honest about it, has been a rehearsal for a play everyone else has already seen.",
+      "This morning, there are hooves on the east road."
+    ]
   }
 }

@@ -943,3 +943,89 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   border-radius: 4px;
   padding: 1px 5px;
 }
+
+/* ---- opening crawl ---- */
+.crawl-screen {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow: hidden;
+  /* built-in night sky: deep indigo with the green Ashenmere light
+   * crossing it; replaced by assets/scenes/opening-sky.webp when present */
+  background:
+    linear-gradient(115deg, transparent 40%, rgba(110,190,140,0.12) 47%, rgba(150,230,170,0.22) 50%, rgba(110,190,140,0.12) 53%, transparent 60%),
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.9), transparent 60%),
+    radial-gradient(1px 1px at 78% 9%, rgba(255,255,255,0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 33% 41%, rgba(255,255,255,0.8), transparent 60%),
+    radial-gradient(1px 1px at 61% 30%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1px 1px at 88% 52%, rgba(255,255,255,0.75), transparent 60%),
+    radial-gradient(1.5px 1.5px at 22% 66%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1px 1px at 47% 12%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(1px 1px at 70% 74%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1px 1px at 8% 85%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 93% 33%, rgba(255,255,255,0.7), transparent 60%),
+    radial-gradient(1px 1px at 40% 88%, rgba(255,255,255,0.45), transparent 60%),
+    radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.65), transparent 60%),
+    linear-gradient(180deg, #07090f 0%, #0c1120 55%, #131c2e 100%);
+}
+.crawl-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.crawl-vp {
+  position: absolute;
+  inset: 0;
+  perspective: 340px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 24%);
+}
+.crawl-plane {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 0;
+  bottom: 0;
+  transform-origin: 50% 100%;
+  transform: rotateX(48deg);
+}
+.crawl-inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  animation: crawlUp 52s linear forwards;
+  text-align: center;
+  color: var(--gold);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+@keyframes crawlUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-215%); }
+}
+.crawl-title {
+  font-family: 'Cinzel', serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.crawl-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 34px;
+}
+.crawl-inner p {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.55;
+  margin: 0 0 26px;
+}
+.crawl-hint { color: rgba(221,213,198,0.55); }
