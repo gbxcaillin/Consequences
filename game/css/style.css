@@ -794,3 +794,143 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ---- journey map: travel screen + upgraded MAP overlay ---- */
+.hidden { display: none !important; }
+
+.travel-screen {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  animation: fadeUp 0.45s ease both;
+  background: var(--bg);
+}
+.travel-frame {
+  position: relative;
+  aspect-ratio: 720 / 1290;
+  /* width-driven: percentage heights don't resolve in this flex chain */
+  width: min(100%, calc((100dvh - 24px) * 720 / 1290));
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.travel-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.traveler {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+.traveler-sprite {
+  width: 31.25px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-size: 250px 48px;
+  background-position: 0 0;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
+}
+.travel-card {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 62%;
+  background: rgba(30,26,23,0.88);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: 10px;
+  padding: 10px 14px;
+  animation: fadeUp 0.6s ease both;
+}
+.travel-chapter {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.travel-title {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  color: var(--gold);
+  margin: 2px 0;
+}
+.travel-place {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.travel-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(74,60,40,0.85);
+  pointer-events: none;
+}
+.travel-actions {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 14px;
+}
+.travel-actions .continue {
+  width: 100%;
+  background: rgba(30,26,23,0.92);
+}
+
+/* MAP overlay dots over the painted map */
+.map-mini {
+  width: min(100%, calc(58dvh * 720 / 1290));
+  aspect-ratio: 720 / 1290;
+  margin: 6px auto 4px;
+}
+.map-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(58,48,32,0.9);
+  background: rgba(240,228,200,0.65);
+}
+.map-dot.done { background: var(--gold-dim); border-color: rgba(58,48,32,0.9); }
+.map-dot.current {
+  background: var(--gold);
+  box-shadow: 0 0 0 5px rgba(212,184,106,0.28);
+  animation: dotpulse 1.6s ease-in-out infinite;
+}
+.map-dot.future { opacity: 0.45; }
+@keyframes dotpulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(212,184,106,0.22); }
+  50% { box-shadow: 0 0 0 8px rgba(212,184,106,0.10); }
+}
+.map-dot-label {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  color: #2e2617;
+  background: rgba(240,228,200,0.82);
+  border-radius: 4px;
+  padding: 1px 5px;
+}

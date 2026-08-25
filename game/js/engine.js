@@ -123,6 +123,109 @@ function sceneStyle(ch) {
   return `style="background-image:url('assets/scenes/${scene}.webp')"`;
 }
 
+/* ---- journey map: chapter transitions + MAP overlay ----
+ * Stop and bend coordinates are fractions of the map image, traced from
+ * the painted road so the traveler walks the actual art. */
+const MAP_IMG = 'assets/map/journey-map.webp';
+const TRAVELER_IMG = 'assets/map/traveler.webp';
+const MAP_STOPS = {
+  'thornfield-village': [0.235, 0.874],
+  'aldrics-tower':      [0.585, 0.802],
+  'wayrest-inn':        [0.300, 0.648],
+  'greymarch':          [0.578, 0.678],
+  'mount-ashenmere':    [0.690, 0.570],
+  'high-court':         [0.330, 0.505],
+  'river-meridian':     [0.610, 0.392],
+  'vellbrook':          [0.745, 0.328],
+  'willowmere':         [0.385, 0.218],
+  'moonlit-glade':      [0.775, 0.115],
+};
+const MAP_BENDS = {
+  'thornfield-village>aldrics-tower': [[0.36, 0.888], [0.50, 0.892], [0.61, 0.868], [0.65, 0.835]],
+  'aldrics-tower>wayrest-inn':        [[0.555, 0.775], [0.47, 0.705], [0.375, 0.660]],
+  'wayrest-inn>greymarch':            [[0.40, 0.643], [0.49, 0.668]],
+  'greymarch>mount-ashenmere':        [[0.61, 0.638], [0.645, 0.595]],
+  'mount-ashenmere>high-court':       [[0.60, 0.545], [0.50, 0.530], [0.41, 0.515]],
+  'high-court>river-meridian':        [[0.39, 0.465], [0.47, 0.432], [0.545, 0.410]],
+  'river-meridian>vellbrook':         [[0.66, 0.372]],
+  'vellbrook>willowmere':             [[0.66, 0.300], [0.56, 0.270], [0.46, 0.243]],
+  'willowmere>moonlit-glade':         [[0.48, 0.198], [0.60, 0.178], [0.70, 0.152]],
+};
+
+let travel = null;      // { from, to, done } while the travel screen is up
+let travelRAF = 0;
+
+function travelPath() {
+  return [MAP_STOPS[travel.from]]
+    .concat(MAP_BENDS[travel.from + '>' + travel.to] || [])
+    .concat([MAP_STOPS[travel.to]]);
+}
+
+function placeTraveler(walker, x, y, dx) {
+  walker.style.transform = `translate(${x - 15.6}px, ${y - 46}px)`;
+  const sprite = walker.firstElementChild;
+  if (sprite) sprite.style.transform = dx < 0 ? 'scaleX(-1)' : '';
+}
+
+function startTravelWalk() {
+  cancelAnimationFrame(travelRAF);
+  const frame = app.querySelector('.travel-frame');
+  const walker = app.querySelector('.traveler');
+  if (!frame || !walker || !travel) return;
+  const W = frame.clientWidth, H = frame.clientHeight;
+  const px = travelPath().map(([x, y]) => [x * W, y * H]);
+  const segs = []; let total = 0;
+  for (let i = 1; i < px.length; i++) {
+    const d = Math.hypot(px[i][0] - px[i-1][0], px[i][1] - px[i-1][1]);
+    segs.push(d); total += d;
+  }
+  const dur = Math.max(3800, Math.min(7000, total * 22));
+  const t0 = performance.now();
+  const at = (dist) => {
+    let d = dist;
+    for (let i = 0; i < segs.length; i++) {
+      if (d <= segs[i] || i === segs.length - 1) {
+        const f = segs[i] ? Math.min(1, d / segs[i]) : 1;
+        return [px[i][0] + (px[i+1][0] - px[i][0]) * f,
+                px[i][1] + (px[i+1][1] - px[i][1]) * f,
+                px[i+1][0] - px[i][0]];
+      }
+      d -= segs[i];
+    }
+    return [px[px.length-1][0], px[px.length-1][1], 1];
+  };
+  const step = (now) => {
+    if (!travel) return;
+    const t = Math.min(1, (now - t0) / dur);
+    const e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+    const [x, y, dx] = at(e * total);
+    placeTraveler(walker, x, y, dx);
+    const sprite = walker.firstElementChild;
+    if (sprite) sprite.style.backgroundPosition = `${-(Math.floor(now / 110) % 8) * 31.25}px 0`;
+    if (t >= 1) { travelArrived(); return; }
+    travelRAF = requestAnimationFrame(step);
+  };
+  travelRAF = requestAnimationFrame(step);
+}
+
+function travelArrived() {
+  cancelAnimationFrame(travelRAF);
+  if (!travel) return;
+  travel.done = true;
+  const frame = app.querySelector('.travel-frame');
+  const walker = app.querySelector('.traveler');
+  if (frame && walker) {
+    const [x, y] = MAP_STOPS[travel.to];
+    placeTraveler(walker, x * frame.clientWidth, y * frame.clientHeight, 1);
+    const sprite = walker.firstElementChild;
+    if (sprite) sprite.style.backgroundPosition = '0 0';
+  }
+  const btn = app.querySelector('button.travel-done');
+  if (btn) btn.classList.remove('hidden');
+  const hint = app.querySelector('.travel-hint');
+  if (hint) hint.classList.add('hidden');
+}
+
 /* Momentum: walk one road long enough and the other closes. Past `drift`
  * the world recolors quietly: choice text swaps to variants that make the
  * road you walk read as reasonable and the other road read as foolish,
@@ -188,23 +291,25 @@ function hudHTML(ch) {
 }
 
 function mapOverlayHTML() {
-  const items = DATA.chapters.map((ch, i) => {
+  const dots = DATA.chapters.map((ch, i) => {
+    const stop = MAP_STOPS[ch.scene];
+    if (!stop) return '';
     const done = state.choices[ch.id] !== undefined;
     const current = i === state.chapterIndex;
-    const cls = current ? 'current' : (done ? 'done' : 'locked');
-    const title = (done || current) ? esc(ch.title) : '· · ·';
-    const place = (done || current) ? esc(ch.location) : 'Unknown';
+    const cls = current ? 'current' : (done ? 'done' : 'future');
+    const label = (done || current) ? esc(ch.location) : '';
     return `
-      <li class="${cls}">
-        <span class="node"></span>
-        <span class="map-title">${title}</span>
-        <span class="map-place">${place}</span>
-      </li>`;
+      <div class="map-dot ${cls}" style="left:${(stop[0]*100).toFixed(1)}%;top:${(stop[1]*100).toFixed(1)}%">
+        ${label ? `<span class="map-dot-label">${label}</span>` : ''}
+      </div>`;
   }).join('');
   return `
     <div class="map-overlay">
       <div class="map-head">Your Journey</div>
-      <ul class="map-list">${items}</ul>
+      <div class="travel-frame map-mini">
+        <img class="travel-map" src="${MAP_IMG}" alt="">
+        ${dots}
+      </div>
       <div class="actions"><button class="continue" data-act="map">Return</button></div>
     </div>`;
 }
@@ -418,6 +523,7 @@ function themeForNow() {
 
 function render() {
   try {
+    if (state.phase !== 'travel') { cancelAnimationFrame(travelRAF); travel = null; }
     renderInner();
     try { MusicEngine.play(themeForNow()); } catch (e) { /* music is optional */ }
   } catch (err) {
@@ -462,6 +568,24 @@ function renderInner() {
     app.innerHTML = `
       <div class="scene-bg dim" ${sceneStyle(null)}></div>
       <div class="screen book-screen">${journalHTML()}</div>`;
+  } else if (state.phase === 'travel') {
+    app.innerHTML = `
+      <div class="travel-screen">
+        <div class="travel-frame">
+          <img class="travel-map" src="${MAP_IMG}" alt="The road east">
+          <div class="travel-card">
+            <div class="travel-chapter">${chapterLabel(ch)}</div>
+            <div class="travel-title">${esc(ch.title)}</div>
+            <div class="travel-place">${esc(ch.location)}</div>
+          </div>
+          <div class="traveler"><div class="traveler-sprite" style="background-image:url('${TRAVELER_IMG}')"></div></div>
+          <div class="travel-hint">tap to hurry along</div>
+          <div class="travel-actions">
+            <button class="continue travel-done hidden" data-act="travel-done">Arrive</button>
+          </div>
+        </div>
+      </div>`;
+    requestAnimationFrame(() => startTravelWalk());
   } else if (state.phase === 'narrative') {
     const beats = chapterBeats(ch);
     const i = Math.min(state.beat || 0, beats.length - 1);
@@ -570,6 +694,12 @@ function renderInner() {
 /* ---------------------------------------------------------------- actions */
 
 app.addEventListener('click', (ev) => {
+  // during the map walk, any tap that isn't a button hurries the traveler
+  if (state && state.phase === 'travel' && travel && !travel.done
+      && !ev.target.closest('button[data-act]')) {
+    travelArrived();
+    return;
+  }
   const btn = ev.target.closest('button[data-act]');
   if (!btn) return;
   const act = btn.dataset.act;
@@ -632,9 +762,16 @@ app.addEventListener('click', (ev) => {
     AudioFX.tap();
   } else if (act === 'next') {
     if (state.chapterIndex < DATA.chapters.length - 1) {
+      const fromScene = chapter().scene;
       state.chapterIndex += 1;
-      state.phase = 'narrative';
+      const toScene = chapter().scene;
       state.beat = 0;
+      if (MAP_STOPS[fromScene] && MAP_STOPS[toScene] && fromScene !== toScene) {
+        travel = { from: fromScene, to: toScene, done: false };
+        state.phase = 'travel';
+      } else {
+        state.phase = 'narrative';
+      }
       AudioFX.tap();
     } else {
       state.phase = 'ending';
@@ -642,6 +779,11 @@ app.addEventListener('click', (ev) => {
       GameStore.recordRun(state, ending.id);
       AudioFX.ending(ending.id);
     }
+  } else if (act === 'travel-done') {
+    travel = null;
+    state.phase = 'narrative';
+    state.beat = 0;
+    AudioFX.tap();
   } else if (act === 'restart') {
     state = freshState();
     state.phase = 'narrative';

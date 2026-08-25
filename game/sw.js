@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v27';
+const CACHE = 'consequences-v28';
 const CORE = [
   './',
   'index.html',
@@ -23,6 +23,8 @@ const CORE = [
   'assets/scenes/river-meridian.webp',
   'assets/scenes/wayrest-inn.webp',
   'assets/scenes/vellbrook.webp',
+  'assets/map/journey-map.webp',
+  'assets/map/traveler.webp',
   'assets/portraits/wren.webp',
   'assets/portraits/tam.webp',
   'assets/portraits/hedda.webp',
