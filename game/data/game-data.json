@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters, Corruption and Virtue, track the real consequences and determine the ending.",
@@ -360,10 +360,11 @@
         "consequence": [
           "'Show me proof.' The words land in the square like a dropped plate. The herald blinks, once, slowly, like a lizard. 'The proof is the prophecy. The prophecy is the proof.' He appears to genuinely believe this answers you.",
           "The square empties in ones and twos, nobody meeting your eye. Corvin asks the air, not unkindly, what becomes of the levy now. Your father stands in the doorway with the folded banner in his two hands, your mother's silver thread across his forearms, and does not hold it out. Only Tam is delighted. 'You asked the herald for proof,' he whispers, like you had drawn a sword on the sun.",
-          "You take the scroll anyway; someone ought to find out what is actually in the east. But you do not kneel, and the village does not roar; it murmurs. As you ride out, the clerk in travel-grey falls in beside you, already writing. 'That,' she says, 'was the most interesting thing I have recorded in six years of herald duty.'"
+          "You take the scroll anyway; someone ought to find out what is actually in the east. But you do not kneel, and the village does not roar; it murmurs. As you ride out, the clerk in travel-grey falls in beside you, already writing. 'That,' she says, 'was the most interesting thing I have recorded in six years of herald duty.'",
+          "By the time you reach the county road, a rider has passed you twice. The story is ahead of you now: the cradle-village Chosen who demanded proof. In Millbrook they sell you oats at the stranger's price."
         ],
         "virtue": 15,
-        "heroism": 10,
+        "heroism": 0,
         "seerTruth": "You asked the only question that mattered: says who? The scroll had no answer. Doubt is not a sin. It is the beginning of sight. Understand what you refused that morning: the greened lamps, the counted palms, the ribbons on the fence, the levy. A road paved from your cradle door to their war. You were raised to be the last person in the world who would ask that question. You asked it anyway."
       },
       "echoes": [],
@@ -433,10 +434,11 @@
           {
             "text": "He tells you: the blade drinks. Slowly, politely, the way a debt does. Will first, then judgment, then whatever is left. 'The prophecy wants a sword that swings itself.' From under the workbench he brings out plain steel, forge-marked, a little heavy at the hilt. 'My own work. It will never sing to you. That is a feature.'",
             "speaker": "aldric"
-          }
+          },
+          "Word gets down the mountain before you do. The Church names your refusal 'irregular' in a letter read from every pulpit in the shire, and the stipend that was to follow you east is delayed for review, which is a way of saying no with paperwork. Aldric gives you a plain steel sword from his own rack and does not say what he thinks. It is the first gift of your journey that comes with no conditions, and no money."
         ],
         "virtue": 15,
-        "heroism": 10,
+        "heroism": 0,
         "seerTruth": "You asked the price before you took the gift. Eleven owners never did. You kept your own will and called it a lesser weapon. It was the greater one."
       },
       "echoes": [
@@ -493,7 +495,7 @@
           "The crowd disperses satisfied, which is what trials are for, you tell yourself. The reeve pumps your hand. The innkeeper stands you a supper. In the stable, someone has already claimed the tin pots; property of a spy, after all. You leave at first light, and the town's church bell rings you out: two notes, bright and certain, like a story closing cleanly."
         ],
         "revealed": "There was no spy. The maps were a peddler's memory of twenty years' kindness, and the four testimonies agreed only because they were rehearsed in the same taproom by the same fear. Brakka was flogged for maps of dog bites and pin-buyers, stripped of her stock, and walked out of the county she had supplied for two decades. The bell that rang you out was the same bell that had rung the crowd in.",
-        "seerTruth": "You did not ask whether he was guilty; you asked how guilt could be administered smoothly. A mob wanted blood and you taught it procedure. Fear with paperwork is still fear, and a fair-sounding wrong is the hardest kind to undo, because everyone present remembers doing it properly.",
+        "seerTruth": "You did not ask whether he was guilty; you asked how guilt could be administered smoothly. A mob wanted blood and you taught it procedure. Fear with paperwork is still fear, and a fair-sounding wrong is the hardest kind to undo, because everyone present remembers doing it properly. Unraveling that trial would have cost you one town's warmth for one evening. Brakka was priced at twenty years, and you kept your evening.",
         "corruption": 15,
         "heroism": 14,
         "textWith": "Give these people the trial they deserve. Order is what a Chosen brings.",
@@ -506,11 +508,12 @@
           {
             "text": "You cut Brakka loose yourself. The crowd does not cheer; crowds never cheer at being wrong. But it thins, which is better. The peddler flexes her wrists, gathers her pots, and looks at you a long moment. 'I know every road east of here,' she says. 'The ones on the maps and the other ones. Anyone who asks questions is going to want both kinds.' She leaves you a tin whistle, 'for the girl who writes,' and walks north whistling nothing in particular.",
             "speaker": "brakka"
-          }
+          },
+          "The reeve files a complaint with the county: obstruction of custom. The innkeeper charges you for your room, the first person in your life ever to charge the Chosen for anything. By spring the story on this road will be that you freed a spy on a technicality, and no one telling it will mention the eleven minutes."
         ],
         "seerTruth": "Four stories, taken apart gently, came apart entirely. It cost you the crowd's warmth for one evening and it cost Brakka nothing at all, which was the whole sum in question. Questions are not glamorous. Neither are locksmiths, and both open doors.",
         "virtue": 15,
-        "heroism": 9,
+        "heroism": -5,
         "textWith": "Take the accusers aside one at a time. Stories told apart tell the truth.",
         "textAgainst": "Coddle the spy with questions while the town stands waiting."
       },
@@ -589,7 +592,7 @@
         ],
         "corruption": 20,
         "heroism": 18,
-        "seerTruth": "Call it what it was: you killed refugees because frightened people asked you to, and you wanted their gratitude more than the truth. The toys in the ash were not a metaphor. They belonged to children.",
+        "seerTruth": "Call it what it was: you killed refugees because frightened people asked you to, and you wanted their gratitude more than the truth. The toys in the ash were not a metaphor. They belonged to children. The question would have cost you the army's love and a captain's report. Grukha's people were priced at everything they had left. You kept the report clean.",
         "revealed": "You attack at dawn. In the wreckage you find children's toys, cooking pots, a hand-drawn map of the homeland they fled. They were refugees.",
         "textWith": "Protect these farmers. It is what you were summoned to do.",
         "textAgainst": "Promise to drive out 'creatures' you have not once laid eyes on."
@@ -604,10 +607,11 @@
           {
             "text": "'We fled the crown's own land-clearances in the south,' Grukha tells you over thin tea. 'Your king burns his poor and calls it husbandry. We took the empty march because no one was using it.' At dusk you bring her to Hedda's fence line. The two women measure each other. 'You carved my post,' Hedda says at last. 'A boundary blessing,' Grukha answers. 'It means: your cattle will not sicken.' Hedda's mouth opens, and closes. 'Well,' she says. 'Come inside. It's cold.'",
             "speaker": "grukha"
-          }
+          },
+          "A captain of your escort rides west that night with a report, and you know roughly what it says. In Thornfield, where every good thing lately has your name on it, they will hear that you sat at a cook fire with the things from the east and shared their bread. Your father will hear it at the mill, in the quiet way men are told things they are expected to be ashamed of."
         ],
         "virtue": 20,
-        "heroism": 10,
+        "heroism": -5,
         "seerTruth": "You walked unarmed into a camp of strangers and traded an hour of listening for a hundred lives. No one sang about it. Everyone lived.",
         "textWith": "Walk into the camp unarmed and hear them first. Then decide.",
         "textAgainst": "Parley with the things nesting in their fields, as if fear needs a hearing."
@@ -683,10 +687,11 @@
           {
             "text": "You stay three days. Vhaleth teaches you the watch-words of the vault and the taste the wind takes when the seals ache. In exchange you tell it about Thornfield: fences, dogs, a boy's crooked wooden sun. 'I had a village once,' the dragon says, and does not elaborate. On the fourth dawn it walks you down the first mile, a courtesy offered to no one else in eight centuries, and says: 'Send travelers. Not pilgrims. Travelers. I am so tired of being holy.'",
             "speaker": "vhaleth"
-          }
+          },
+          "The pilgrim roads empty ahead of you. Shrine-keepers who blessed your name a month ago sweep their steps as you pass. Somewhere behind you a ballad has started, and it is not kind: the Chosen who climbed the mountain to have a conversation. It rhymes, which makes it faster than you."
         ],
         "virtue": 20,
-        "heroism": 12,
+        "heroism": -8,
         "seerTruth": "You asked a monster why, and it turned out to be the most faithful servant the world had. You shared its burden instead of ending it. That is what help is.",
         "textWith": "It offered you questions. Take it at its word and ask.",
         "textAgainst": "Chat with the beast while it measures you for a grave."
@@ -761,7 +766,7 @@
         ],
         "corruption": 20,
         "heroism": 18,
-        "seerTruth": "You marched ten thousand soldiers at farmers because a king called freedom 'darkness' and you did not check the map. The invasion had a hero's face. Yours.",
+        "seerTruth": "You marched ten thousand soldiers at farmers because a king called freedom 'darkness' and you did not check the map. The invasion had a hero's face. Yours. Refusal was priced at one commission and a levy decree. The east was priced at the east. You kept the armor.",
         "revealed": "The 'Dark Lands' are farming communities, river towns, and a modest republic that refused to kneel. They are not dark. They are just free. You are the invasion.",
         "textWith": "Take the king's banner. An army follows the one who carries it.",
         "textAgainst": "Accept a gilded banner for a war nobody has explained."
@@ -770,10 +775,11 @@
         "text": "Why do you call them the Dark Lands? What did they do?",
         "consequence": [
           "'Why are they called the Dark Lands? What did they do?' The hall does not gasp; it crystallizes. Later, in a corridor, a scribe you have never met walks past you very slowly and lets a book fall open against your hands: tax rolls, sixty years old. The 'Dark Lands' are a republic. Their crime is itemized, in old ink: refused tribute, twice.",
-          "The king does not rage; kings don't. He thanks you for your 'counsel,' and by evening the court's warmth has dropped by precise degrees, like a tide going out on schedule. Command passes to Lord Marshal Crane, a man with a jaw like a gate. The army marches without you. You follow east anyway, on your own road, with Wren and a mule, because whatever is about to be done out there will need witnesses more than it needs one more sword."
+          "The king does not rage; kings don't. He thanks you for your 'counsel,' and by evening the court's warmth has dropped by precise degrees, like a tide going out on schedule. Command passes to Lord Marshal Crane, a man with a jaw like a gate. The army marches without you. You follow east anyway, on your own road, with Wren and a mule, because whatever is about to be done out there will need witnesses more than it needs one more sword.",
+          "The commission is unmade before you reach the outer gate. A herald un-says your titles in the yard, reading from a form and not meeting your eye, and the gilded armor goes back on its stand for the next fitting. The levy decree nailed to Thornfield's well post is, you are informed, 'under review.' They know exactly where your ribs are."
         ],
         "virtue": 20,
-        "heroism": 8,
+        "heroism": -12,
         "seerTruth": "One question in open court, and the invasion lost its story. Empires run on unquestioned words. You stopped one with four of them.",
         "textWith": "Ask the question no one in this hall will: what did the Dark Lands do?",
         "textAgainst": "Embarrass the king before his court with a clerk's quibbling."
@@ -871,11 +877,12 @@
           {
             "text": "The vanguard arrives at grey dawn to find the bridge clear, the town empty, and you sitting on the parapet eating Hedda's soup. Lord Marshal Crane is furious in the way of men who have been handed no one to fight. 'And who,' he demands, 'held this bridge?' 'It held itself,' you say. 'Bridges do, if you let them.'",
             "speaker": "hedda"
-          }
+          },
+          "The army's dispatches name you an obstruction to the campaign. The word traitor is not used; the word reviewed is, twice. Men who cheered you at the High Court watch you cross their bridge like weather that might turn, and the quartermaster discovers, regretfully, that there is no feed for your horses."
         ],
         "seerTruth": "An army is heavy and a birdcage is light, and you decided the light things crossed first. It cost you a marshal's fury and bought a thousand quiet lives. This is the arithmetic no court teaches.",
         "virtue": 20,
-        "heroism": 10,
+        "heroism": -10,
         "lockNote": "The bridge is an obstacle now. That is all your eyes will show you.",
         "textWith": "Hold the bridge. The army can lose a day; the wagons cannot.",
         "textAgainst": "Hold up the whole campaign for a queue of carts."
@@ -954,11 +961,12 @@
           {
             "text": "Wren stays up all night in the council cellar, teaching the archivist's hand to six volunteer clerks. By morning there are copies in coat linings, hymnals, flour barrels, and one, her idea, misfiled deliberately in Lord Marshal Crane's own baggage inventory, where no one will ever look. 'You can't burn what you can't find,' she says, sanding ink from her fingers. 'And you can't find what everybody has.'",
             "speaker": "wren"
-          }
+          },
+          "Lord Marshal Crane's report goes west under three seals. Your escort is halved, then quartered, then gone entirely by the Willowmere road. It is quieter without them. It is also colder, and inns have stopped guessing your face."
         ],
         "seerTruth": "The decree said the charter must be surrendered, and it was: to the whole square at once, out loud. You found the loophole no marshal drafts against: memory. A thing spoken becomes a thing kept. You made two thousand keepers in one reading.",
         "virtue": 15,
-        "heroism": 10,
+        "heroism": -8,
         "textWith": "Read the charter to the square first. Let them keep what fire cannot take.",
         "textAgainst": "Make theatre of a seditious document in an occupied square."
       },
@@ -1018,7 +1026,7 @@
         ],
         "corruption": 15,
         "heroism": 15,
-        "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch.",
+        "seerTruth": "There was no dark magic, and you knew it by the third house. You burned a grandmother's handwriting because an institution wanted her people smaller. That is what a purge is, however holy the torch. Doubt would have cost you the Church's blessing on the road. Willowmere's songs were older than the kingdom, and you let them be swept out the door for the price of a warm welcome at inns.",
         "revealed": "Your soldiers confiscate herbal medicines, folk song books, door blessings in the halflings' ancestral language. An old woman weeps as you burn her grandmother's recipe book.",
         "lockNote": "You watched Marigold wipe flour from her hands. The torch will not light.",
         "textWith": "Let the cleansing proceed. A realm of light cannot leave shadows in its corners.",
@@ -1031,10 +1039,11 @@
           {
             "text": "'Read them to me,' you say at last, holding out gran's book, and the priestess cannot. Not one word. 'Then we are done here. Willowmere is cleared.' The wagon leaves with its EVIDENCE crates still empty and its axles light. Marigold bakes that week, grief bread and wedding bread both since the two days fell close enough to share an oven, and sends a loaf after Wren, addressed: for the girl who writes.",
             "speaker": "priestess"
-          }
+          },
+          "The priestess's circuit letter arrives everywhere before you do: the Chosen is no longer walking in the light. Doors that would have opened at your name now open at Wren's coin, when they open at all. You have begun to travel the way ordinary people travel, which is to say carefully, and on the kindness of halflings."
         ],
         "virtue": 15,
-        "heroism": 10,
+        "heroism": -10,
         "seerTruth": "You looked with your own eyes before you judged, and the accusation died of daylight. Willowmere kept its songs because you bothered to hear them first.",
         "lockNote": "The list is already in your hand, and your hand is already nodding.",
         "textWith": "Make her show you one harm. One. Before a single door is marked.",
@@ -1122,7 +1131,7 @@
           }
         ],
         "virtue": 25,
-        "heroism": 8,
+        "heroism": 0,
         "seerTruth": "You were offered everything and said no. The prophecy required a hand willing to consume innocence; yours refused, and the whole design failed in the space of one word.",
         "lockNote": "Refusal is a language you no longer speak.",
         "textWith": "Refuse. You have seen what gifts cost. Walk home with your own hands.",
@@ -1212,8 +1221,8 @@
     "role": "An unbiased witness who retells the player's completed journey exactly as it happened, not as it felt. The book is the first time the player sees the hidden Corruption/Virtue ledger.",
     "intro": "I am the Seer. I watched your journey without hope and without fear, and I will tell it back to you exactly as it happened, not as it felt. Others called you hero or traitor as it suited them. I will call things what they were. Turn the page when you are ready to be seen.",
     "verdicts": {
-      "dark-lord": "You never chose cruelty by name. You chose applause, and armor, and certainty, and other people's stories about you. Evil rarely asks for volunteers. It asks for heroes who don't ask questions, and you answered every call. You are what the prophecy wanted. That is the whole truth, and it is yours to carry, or to unmake if you begin again. They began paving your road the night you were born: the lamps, the palms, the banner, the nine crowns. You only ever had to keep walking. That is not an excuse. It is how it was done.",
-      "true-hero": "You were called hesitant, difficult, ungrateful, small. Note that every one of those words was aimed at a moment when you were being brave. You saved the world the only way it has ever actually been saved: by refusing, one polite atrocity at a time. No statue will say so. I do. And measure the size of what you did: they built you a road from your cradle door, greened the lamps over your birth, sewed the story into your mother's banner. You are the one who looked down and noticed it was a road.",
+      "dark-lord": "You never chose cruelty by name. You chose applause, and armor, and certainty, and other people's stories about you. Evil rarely asks for volunteers. It asks for heroes who don't ask questions, and you answered every call. You are what the prophecy wanted. That is the whole truth, and it is yours to carry, or to unmake if you begin again. They began paving your road the night you were born: the lamps, the palms, the banner, the nine crowns. You only ever had to keep walking. That is not an excuse. It is how it was done. And here is the heart of it, the part you will want to argue with: the other road was there every single time, and every single time it had a price on it where you could read it. The trial would have cost a town's warmth. The blade, a stipend. The bridge, a commission. The question, your name sung kindly. You never once paid. Evil did not seduce you. It simply never sent you a bill.",
+      "true-hero": "You were called hesitant, difficult, ungrateful, small. Note that every one of those words was aimed at a moment when you were being brave. You saved the world the only way it has ever actually been saved: by refusing, one polite atrocity at a time. No statue will say so. I do. And measure the size of what you did: they built you a road from your cradle door, greened the lamps over your birth, sewed the story into your mother's banner. You are the one who looked down and noticed it was a road. Count what it cost you, because no one else has: the levy, the stipend, your titles read backwards in a courtyard, the escort, the feed for your horses, your name in a mocking rhyme. You paid every bill they sent, and they sent one at every door. That is what the word hero meant, before they minted it into a coin for buying obedience.",
       "crossroads": "Half your journey you questioned; half you obeyed. I cannot call you wicked, and I will not call you wise. You are what most people are: unfinished. The road is still open behind you. Walk it again and see which half of you was the habit."
     }
   },

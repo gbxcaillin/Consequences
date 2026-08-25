@@ -168,7 +168,7 @@ function choiceButtonHTML(ch, side) {
 }
 
 function hudHTML(ch) {
-  const pct = Math.min(100, (state.heroism / DATA.scoring.visible.maxPossible) * 100);
+  const pct = Math.max(0, Math.min(100, (state.heroism / DATA.scoring.visible.maxPossible) * 100));
   return `
     <div class="hud">
       <div>
@@ -320,7 +320,7 @@ function howtoHTML() {
   const items = [
     ['Read, then choose', 'Each chapter ends in a single decision between two paths. Neither is labeled right or wrong. Choose what you believe; the story continues either way.'],
     ['Choices are permanent', 'There is no undo. The world remembers what you did, and so do the people in it. Later chapters echo earlier decisions. You may always page back and re-read a scene before you decide, but a decision, once made, stands.'],
-    ['Your legend grows', 'The Heroism bar shows how the kingdom sees you. Whether the kingdom sees clearly is another matter.'],
+    ['Your legend grows', 'The Heroism bar shows how the kingdom sees you. Whether the kingdom sees clearly is another matter. Some choices make the bar fall; what that means is yours to discover.'],
     ['On the road', 'MAP shows your progress through the land. WREN opens your companion&rsquo;s journal, kept by a scribe who writes down what you do as you do it. The note icon silences the realm.'],
     ['The road remembers', 'Choices have momentum. Walk one path long enough and the other begins to close, and there is a point past which you cannot turn around.'],
     ['The ending is yours', 'There are three endings. Finish a journey to learn which one your choices earned, and to read the Seer&rsquo;s unvarnished account of what you actually did.'],
