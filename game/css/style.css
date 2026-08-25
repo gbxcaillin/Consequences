@@ -1142,3 +1142,31 @@ button.locked .lock-note { font-size: calc(13.5px * var(--tx)); }
   color: var(--gold);
   background: rgba(212,184,106,0.12);
 }
+
+/* crawl: loading beat + explicit skip */
+.crawl-loading {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 46%;
+  text-align: center;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(212,184,106,0.75);
+  animation: loadpulse 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes loadpulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+button.crawl-skip {
+  position: absolute;
+  right: 14px;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 3;
+  width: auto;
+  padding: 9px 22px;
+  background: rgba(30,26,23,0.82);
+  opacity: 0.9;
+}

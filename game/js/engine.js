@@ -695,7 +695,8 @@ function renderInner() {
           </div>
         </div>
         ${soundBtnHTML('sound-corner')}
-        <div class="travel-hint crawl-hint">tap to skip</div>
+        <div class="crawl-loading">The night gathers&hellip;</div>
+        <button class="continue crawl-skip" data-act="crawl-skip">Skip</button>
       </div>`;
     const vid = app.querySelector('video.crawl-bg');
     const inner = app.querySelector('.crawl-inner');
@@ -704,7 +705,11 @@ function renderInner() {
     // if the video never starts, a short fallback releases the text anyway
     let released = false;
     const release = () => {
-      if (!released && inner) { released = true; inner.classList.remove('wait'); }
+      if (released || !inner) return;
+      released = true;
+      inner.classList.remove('wait');
+      const loader = app.querySelector('.crawl-loading');
+      if (loader) loader.classList.add('hidden');
     };
     if (vid) {
       // the muted markup attribute alone doesn't satisfy autoplay policy
@@ -729,7 +734,7 @@ function renderInner() {
         }
       }, 1600);
     }
-    setTimeout(release, 2500);
+    setTimeout(release, 8000);   // give the sky time to load; scroll waits
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
     // Self-fitting headline: measure the real rendered text width on this
     // device (fonts differ; the 3D entry magnifies up to ~1.25x) and size
@@ -891,12 +896,6 @@ app.addEventListener('click', (ev) => {
     travelArrived();
     return;
   }
-  // any tap skips the opening crawl (with a quick fade)
-  if (state && state.phase === 'crawl' && !ev.target.closest('button[data-act]')) {
-    AudioFX.tap();
-    crawlEnd(450);
-    return;
-  }
   const btn = ev.target.closest('button[data-act]');
   if (!btn) return;
   const act = btn.dataset.act;
@@ -908,6 +907,10 @@ app.addEventListener('click', (ev) => {
     state = freshState();
     state.phase = DATA.opening ? 'crawl' : 'narrative';
     AudioFX.tap();
+  } else if (act === 'crawl-skip') {
+    AudioFX.tap();
+    crawlEnd(450);
+    return;
   } else if (act === 'crawl-done') {
     state.phase = 'narrative';
     state.beat = 0;
