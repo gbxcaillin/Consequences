@@ -100,3 +100,32 @@ Mood: absolute stillness, holy — the end of the story, waiting.
   scene-opening beats; optional once painted backgrounds land.
 - **App icon** (assets/icons/) — currently the pixel hero. Suggested real
   piece: Tam's crooked wooden sun charm on dark parchment; must read at 48px.
+
+## Journey map + traveler (chapter transition screen)
+
+### map/journey-map.png — transition backdrop and MAP overlay
+Phone portrait 9:16 (1080x1920+). Hand-painted journey map on aged
+parchment: sepia base, muted golds/sage/slate, weathered vignette edges.
+A single continuous pale-cream road winds bottom-left to top in S-curves
+through ten small painted vignette landmarks, in journey order: thatched
+village, wizard's tower on moors, crossroads inn, wheat fields with tents,
+snow-capped mountain with tiny gold doorway, walled royal city, stone
+bridge over a river, riverside clocktower town, round-doored halfling
+hills, moonlit birch grove (top). Road never touches the edges; NO text or
+labels (the game overlays lettering); top sixth kept quiet for the title
+card; faded-ink compass rose and small parchment flourishes welcome.
+
+### map/traveler-walk.png — hooded figure walk cycle
+One horizontal strip, exactly 8 equal square cells: side-view walk cycle
+facing right, same scale and baseline in every frame, transparent
+background, no shadow, no motion blur. Small storybook figure: worn brown
+hooded cloak (face hidden), travel pack with tiny gold wooden-sun charm,
+walking staff, dusty boots. Bold simple shapes readable at 48-64px tall.
+Frames: contact, down, passing, up, then the mirrored half-stride.
+Fallback: a single mid-stride figure to the same spec (the engine can
+bob-and-sway a static figure).
+
+Engine plan once art arrives: trace the road into waypoints per chapter
+segment; transition screen = map + figure walking the segment + chapter
+title fade, tap to skip; MAP overlay reuses the same art with
+reached/unreached markers.
