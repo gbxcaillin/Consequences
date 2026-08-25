@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 53;   // shown on the title screen; bump with the service worker
+const BUILD = 54;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -692,7 +692,7 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <video class="crawl-bg" autoplay muted loop playsinline preload="auto" poster="assets/scenes/opening-sky.webp"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
+        <video class="crawl-bg" autoplay muted playsinline preload="auto" poster="assets/scenes/opening-sky.webp"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner wait">
