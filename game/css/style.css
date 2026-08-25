@@ -1115,3 +1115,30 @@ button.locked .lock-note { font-size: calc(13.5px * var(--tx)); }
   margin: 0;
 }
 .opt-journal { width: 100%; margin-top: 6px; }
+
+/* segmented text-size picker */
+.opt-label {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin: 6px 0 8px;
+}
+.opt-seg {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.opt-seg .continue {
+  flex: 1;
+  margin: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+  opacity: 0.75;
+}
+.opt-seg .continue.on {
+  opacity: 1;
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212,184,106,0.12);
+}

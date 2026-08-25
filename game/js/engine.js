@@ -337,9 +337,10 @@ function optionsOverlayHTML() {
   return `
     <div class="map-overlay">
       <div class="map-head">Options</div>
-      <div class="opt-row">
-        <span>Text size</span>
-        <button class="continue" data-act="textsize">${TEXT_LABELS[textScale()]}</button>
+      <div class="opt-label">Text size</div>
+      <div class="opt-seg">
+        ${TEXT_SIZES.map(t =>
+          `<button class="continue seg${t === textScale() ? ' on' : ''}" data-act="textsize-set" data-size="${t}">${TEXT_LABELS[t]}</button>`).join('')}
       </div>
       <div class="opt-row">
         <span>Sound</span>
@@ -386,7 +387,6 @@ function hudHTML(ch) {
       </div>
       <div class="hud-controls">
         <button class="icon-btn" data-act="map" aria-label="Journey map">MAP</button>
-        <button class="icon-btn" data-act="journal-open" aria-label="Wren&rsquo;s journal">WREN</button>
         <button class="icon-btn" data-act="options" aria-label="Options">&#9881;</button>
         ${soundBtnHTML('')}
       </div>
@@ -1036,9 +1036,9 @@ app.addEventListener('click', (ev) => {
     state.showOptions = !state.showOptions;
     state.showMap = false;
     AudioFX.tap();
-  } else if (act === 'textsize') {
-    const next = TEXT_SIZES[(TEXT_SIZES.indexOf(textScale()) + 1) % TEXT_SIZES.length];
-    try { localStorage.setItem('csq-text', next); } catch (e) { /* in-memory only */ }
+  } else if (act === 'textsize-set') {
+    const size = TEXT_SIZES.includes(btn.dataset.size) ? btn.dataset.size : 'std';
+    try { localStorage.setItem('csq-text', size); } catch (e) { /* in-memory only */ }
     applyTextScale();
     AudioFX.tap();
   } else if (act === 'sound') {
