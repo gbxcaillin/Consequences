@@ -812,13 +812,21 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   background: var(--bg);
 }
 .travel-frame {
+  /* a camera viewport: the world inside is TRAVEL_ZOOM times wider and
+   * pans to follow the traveler */
   position: relative;
-  aspect-ratio: 720 / 1290;
-  /* width-driven: percentage heights don't resolve in this flex chain */
-  width: min(100%, calc((100dvh - 24px) * 720 / 1290));
+  width: 100%;
+  height: calc(100dvh - 20px);
   margin: 0 auto;
   overflow: hidden;
   border-radius: 10px;
+  background: #c7b291;
+}
+.travel-world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
 }
 .travel-map {
   position: absolute;
@@ -835,12 +843,12 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   pointer-events: none;
 }
 .traveler-sprite {
-  width: 31.25px;
-  height: 48px;
+  width: 39.0625px;
+  height: 60px;
   background-repeat: no-repeat;
-  background-size: 250px 48px;
+  background-size: 312.5px 60px;
   background-position: 0 0;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
 }
 .travel-card {
   position: absolute;
@@ -897,6 +905,7 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 /* MAP overlay dots over the painted map */
 .map-mini {
   width: min(100%, calc(58dvh * 720 / 1290));
+  height: auto;
   aspect-ratio: 720 / 1290;
   margin: 6px auto 4px;
 }

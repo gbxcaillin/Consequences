@@ -161,26 +161,63 @@ function travelPath() {
     .concat([MAP_STOPS[travel.to]]);
 }
 
+/* The travel screen is a camera: the map is laid out ZOOM times wider
+ * than the viewport and the view pans to follow the traveler. */
+const TRAVEL_ZOOM = 2.2;
+const SPR_W = 39.0625, SPR_H = 60;   // traveler cell at display scale
+
 function placeTraveler(walker, x, y, dx) {
-  walker.style.transform = `translate(${x - 15.6}px, ${y - 46}px)`;
+  walker.style.transform = `translate(${x - SPR_W / 2}px, ${y - SPR_H + 3}px)`;
   const sprite = walker.firstElementChild;
   if (sprite) sprite.style.transform = dx < 0 ? 'scaleX(-1)' : '';
+}
+
+/* Chaikin corner-cutting: hand-traced waypoints read as angular once the
+ * camera is zoomed in, so round them before walking. */
+function smoothPath(pts, iters) {
+  for (let k = 0; k < iters; k++) {
+    const out = [pts[0]];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [ax, ay] = pts[i], [bx, by] = pts[i + 1];
+      out.push([ax * 0.75 + bx * 0.25, ay * 0.75 + by * 0.25],
+               [ax * 0.25 + bx * 0.75, ay * 0.25 + by * 0.75]);
+    }
+    out.push(pts[pts.length - 1]);
+    pts = out;
+  }
+  return pts;
+}
+
+function travelWorldSize(frame) {
+  const ww = frame.clientWidth * TRAVEL_ZOOM;
+  return [ww, ww * 1290 / 720];
+}
+
+function travelCamera(frame, world, x, y, ww, wh) {
+  const vw = frame.clientWidth, vh = frame.clientHeight;
+  const tx = Math.max(0, Math.min(ww - vw, x - vw / 2));
+  const ty = Math.max(0, Math.min(wh - vh, y - vh / 2));
+  return [tx, ty];
 }
 
 function startTravelWalk() {
   cancelAnimationFrame(travelRAF);
   const frame = app.querySelector('.travel-frame');
+  const world = app.querySelector('.travel-world');
   const walker = app.querySelector('.traveler');
-  if (!frame || !walker || !travel) return;
-  const W = frame.clientWidth, H = frame.clientHeight;
-  const px = travelPath().map(([x, y]) => [x * W, y * H]);
+  if (!frame || !world || !walker || !travel) return;
+  const [ww, wh] = travelWorldSize(frame);
+  world.style.width = ww + 'px';
+  world.style.height = wh + 'px';
+  const px = smoothPath(travelPath().map(([x, y]) => [x * ww, y * wh]), 2);
   const segs = []; let total = 0;
   for (let i = 1; i < px.length; i++) {
     const d = Math.hypot(px[i][0] - px[i-1][0], px[i][1] - px[i-1][1]);
     segs.push(d); total += d;
   }
-  const dur = Math.max(3800, Math.min(7000, total * 22));
+  const dur = Math.max(4200, Math.min(8200, total * 14));
   const t0 = performance.now();
+  let camx = null, camy = null;
   const at = (dist) => {
     let d = dist;
     for (let i = 0; i < segs.length; i++) {
@@ -200,8 +237,13 @@ function startTravelWalk() {
     const e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
     const [x, y, dx] = at(e * total);
     placeTraveler(walker, x, y, dx);
+    const [tx, ty] = travelCamera(frame, world, x, y, ww, wh);
+    if (camx === null) { camx = tx; camy = ty; }
+    camx += (tx - camx) * 0.12;
+    camy += (ty - camy) * 0.12;
+    world.style.transform = `translate(${-camx}px, ${-camy}px)`;
     const sprite = walker.firstElementChild;
-    if (sprite) sprite.style.backgroundPosition = `${-(Math.floor(now / 110) % 8) * 31.25}px 0`;
+    if (sprite) sprite.style.backgroundPosition = `${-(Math.floor(now / 110) % 8) * SPR_W}px 0`;
     if (t >= 1) { travelArrived(); return; }
     travelRAF = requestAnimationFrame(step);
   };
@@ -213,10 +255,17 @@ function travelArrived() {
   if (!travel) return;
   travel.done = true;
   const frame = app.querySelector('.travel-frame');
+  const world = app.querySelector('.travel-world');
   const walker = app.querySelector('.traveler');
-  if (frame && walker) {
-    const [x, y] = MAP_STOPS[travel.to];
-    placeTraveler(walker, x * frame.clientWidth, y * frame.clientHeight, 1);
+  if (frame && world && walker) {
+    const [ww, wh] = travelWorldSize(frame);
+    world.style.width = ww + 'px';
+    world.style.height = wh + 'px';
+    const [sx, sy] = MAP_STOPS[travel.to];
+    const x = sx * ww, y = sy * wh;
+    placeTraveler(walker, x, y, 1);
+    const [tx, ty] = travelCamera(frame, world, x, y, ww, wh);
+    world.style.transform = `translate(${-tx}px, ${-ty}px)`;
     const sprite = walker.firstElementChild;
     if (sprite) sprite.style.backgroundPosition = '0 0';
   }
@@ -572,13 +621,15 @@ function renderInner() {
     app.innerHTML = `
       <div class="travel-screen">
         <div class="travel-frame">
-          <img class="travel-map" src="${MAP_IMG}" alt="The road east">
+          <div class="travel-world">
+            <img class="travel-map" src="${MAP_IMG}" alt="The road east">
+            <div class="traveler"><div class="traveler-sprite" style="background-image:url('${TRAVELER_IMG}')"></div></div>
+          </div>
           <div class="travel-card">
             <div class="travel-chapter">${chapterLabel(ch)}</div>
             <div class="travel-title">${esc(ch.title)}</div>
             <div class="travel-place">${esc(ch.location)}</div>
           </div>
-          <div class="traveler"><div class="traveler-sprite" style="background-image:url('${TRAVELER_IMG}')"></div></div>
           <div class="travel-hint">tap to hurry along</div>
           <div class="travel-actions">
             <button class="continue travel-done hidden" data-act="travel-done">Arrive</button>
