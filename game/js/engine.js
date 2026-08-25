@@ -319,6 +319,37 @@ function choiceButtonHTML(ch, side) {
   return `<button class="choice-${side} pulled" data-act="choose" data-choice="${side}">${esc(text)}<span class="lock-note">${esc(note)}</span></button>`;
 }
 
+/* user text-size setting, persisted independently of saves */
+const TEXT_SIZES = ['std', 'lg', 'xl'];
+const TEXT_LABELS = { std: 'Standard', lg: 'Large', xl: 'Largest' };
+function textScale() {
+  try { return localStorage.getItem('csq-text') || 'std'; } catch (e) { return 'std'; }
+}
+function applyTextScale() {
+  const t = textScale();
+  document.body.classList.toggle('txt-lg', t === 'lg');
+  document.body.classList.toggle('txt-xl', t === 'xl');
+}
+
+function optionsOverlayHTML() {
+  const onTitle = state.phase === 'title';
+  const hasJournal = !onTitle || !!GameStore.current;
+  return `
+    <div class="map-overlay">
+      <div class="map-head">Options</div>
+      <div class="opt-row">
+        <span>Text size</span>
+        <button class="continue" data-act="textsize">${TEXT_LABELS[textScale()]}</button>
+      </div>
+      <div class="opt-row">
+        <span>Sound</span>
+        ${soundBtnHTML('')}
+      </div>
+      ${hasJournal ? '<button class="continue opt-journal" data-act="journal-open">Wren&rsquo;s Journal</button>' : ''}
+      <div class="actions"><button class="continue" data-act="options">Return</button></div>
+    </div>`;
+}
+
 const SOUND_ON_IMG = 'assets/icons/sound-on.webp';
 const SOUND_OFF_IMG = 'assets/icons/sound-off.webp';
 function soundBtnHTML(extra) {
@@ -356,6 +387,7 @@ function hudHTML(ch) {
       <div class="hud-controls">
         <button class="icon-btn" data-act="map" aria-label="Journey map">MAP</button>
         <button class="icon-btn" data-act="journal-open" aria-label="Wren&rsquo;s journal">WREN</button>
+        <button class="icon-btn" data-act="options" aria-label="Options">&#9881;</button>
         ${soundBtnHTML('')}
       </div>
     </div>
@@ -599,6 +631,7 @@ function themeForNow() {
 
 function render() {
   try {
+    applyTextScale();
     if (state.phase !== 'travel') { cancelAnimationFrame(travelRAF); travel = null; }
     renderInner();
     try { MusicEngine.play(themeForNow()); } catch (e) { /* music is optional */ }
@@ -622,8 +655,10 @@ function renderInner() {
           ${resumable ? '<button class="continue" data-act="resume">Continue</button>' : ''}
           <button class="continue" data-act="begin">${resumable ? 'New Journey' : 'Begin'}</button>
           <button class="continue" data-act="howto">How to Play</button>
+          <button class="continue" data-act="options">Options</button>
           <button class="continue" data-act="chronicle">Chronicle</button>
         </div>
+        ${state.showOptions ? optionsOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'chronicle') {
     app.innerHTML = `
@@ -742,6 +777,7 @@ function renderInner() {
           <button class="continue grow" data-act="choices">Continue</button>
         </div>
         ${state.showMap ? mapOverlayHTML() : ''}
+        ${state.showOptions ? optionsOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'choice') {
     app.innerHTML = `
@@ -756,6 +792,7 @@ function renderInner() {
           ${choiceButtonHTML(ch, 'dark')}
         </div>
         ${state.showMap ? mapOverlayHTML() : ''}
+        ${state.showOptions ? optionsOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'consequence') {
     const type = state.lastChoice;
@@ -803,6 +840,7 @@ function renderInner() {
             : '<button class="continue grow" data-act="aftermath">Continue</button>'}
         </div>
         ${state.showMap ? mapOverlayHTML() : ''}
+        ${state.showOptions ? optionsOverlayHTML() : ''}
       </div>`;
   } else if (state.phase === 'ending') {
     const ending = pickEnding();
@@ -958,9 +996,10 @@ app.addEventListener('click', (ev) => {
     }
     AudioFX.tap();
   } else if (act === 'journal-open') {
+    const src = (state.phase === 'title' && GameStore.current) ? GameStore.current : state;
     journal = {
       run: {
-        choices: state.choices,
+        choices: src.choices,
         ending: state.phase === 'ending' ? pickEnding().id : null,
       },
       back: state.phase,
@@ -992,6 +1031,15 @@ app.addEventListener('click', (ev) => {
     AudioFX.tap();
   } else if (act === 'map') {
     state.showMap = !state.showMap;
+    AudioFX.tap();
+  } else if (act === 'options') {
+    state.showOptions = !state.showOptions;
+    state.showMap = false;
+    AudioFX.tap();
+  } else if (act === 'textsize') {
+    const next = TEXT_SIZES[(TEXT_SIZES.indexOf(textScale()) + 1) % TEXT_SIZES.length];
+    try { localStorage.setItem('csq-text', next); } catch (e) { /* in-memory only */ }
+    applyTextScale();
     AudioFX.tap();
   } else if (act === 'sound') {
     AudioFX.toggle();
