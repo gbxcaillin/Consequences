@@ -710,7 +710,7 @@ function renderInner() {
       : '';
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(ch)}></div>
-      <div class="screen">
+      <div class="screen compact">
         ${hudHTML(ch)}
         <div class="narrative">${proseOrDialogue(beats[i])}</div>
         ${dots}
@@ -764,7 +764,7 @@ function renderInner() {
     const last = state.chapterIndex >= DATA.chapters.length - 1;
     app.innerHTML = `
       <div class="scene-bg" ${sceneStyle(ch)}></div>
-      <div class="screen">
+      <div class="screen compact">
         ${hudHTML(ch)}
         ${flash}
         <div class="narrative">

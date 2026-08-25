@@ -1065,3 +1065,12 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+
+/* story pages close the gap: dots and Continue follow the text, and the
+ * leftover artwork breathes below them instead of between */
+.screen.compact .narrative {
+  flex: 0 1 auto;
+}
+.screen.compact .actions {
+  margin-top: 14px;
+}
