@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 49;   // shown on the title screen; bump with the service worker
+const BUILD = 50;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -352,6 +352,8 @@ function optionsOverlayHTML() {
     </div>`;
 }
 
+const SKY_MP4 = 'assets/scenes/opening-sky.mp4';
+const SKY_WEBM = 'assets/scenes/opening-sky.webm';
 const SOUND_ON_IMG = 'assets/icons/sound-on.webp';
 const SOUND_OFF_IMG = 'assets/icons/sound-off.webp';
 function soundBtnHTML(extra) {
@@ -371,6 +373,10 @@ function crawlEnd(fadeMs) {
   setTimeout(() => {
     crawlEnding = false;
     if (state.phase !== 'crawl') return;
+    const v = app.querySelector('video.crawl-bg');
+    if (v && v.src && v.src.indexOf('blob:') === 0) {
+      try { URL.revokeObjectURL(v.src); } catch (e) { /* fine */ }
+    }
     state.phase = 'narrative';
     state.beat = 0;
     persistState();
@@ -686,7 +692,7 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <video class="crawl-bg" autoplay muted loop playsinline preload="auto" poster="assets/scenes/opening-sky.webp" onerror="this.remove()"><source src="assets/scenes/opening-sky.mp4" type="video/mp4"><source src="assets/scenes/opening-sky.webm" type="video/webm"></video>
+        <video class="crawl-bg" muted loop playsinline poster="assets/scenes/opening-sky.webp"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner wait">
@@ -718,9 +724,6 @@ function renderInner() {
       // when the element arrives via innerHTML
       vid.muted = true;
       vid.addEventListener('playing', release, { once: true });
-      // data-saver and battery modes defer media data, so the first play()
-      // can reject with nothing buffered: retry whenever data arrives, and
-      // once more after a beat with an explicit load()
       const tryPlay = () => {
         if (!vid.paused) return;
         const pr = vid.play();
@@ -728,15 +731,24 @@ function renderInner() {
       };
       vid.addEventListener('canplay', tryPlay);
       vid.addEventListener('loadeddata', tryPlay);
-      tryPlay();
-      setTimeout(() => {
-        if (vid.paused) {
-          try { vid.load(); } catch (e) { /* nothing */ }
+      // Download the whole sky before starting: playing from a local blob
+      // can never stall mid-scroll, so video and text stay in lockstep.
+      // The loader covers the download; streaming is only the fallback.
+      const src = (vid.canPlayType && vid.canPlayType('video/webm; codecs="vp9"')) ? SKY_WEBM : SKY_MP4;
+      fetch(src)
+        .then((r) => { if (!r.ok) throw new Error('http ' + r.status); return r.blob(); })
+        .then((bl) => {
+          if (state.phase !== 'crawl') return;
+          vid.src = URL.createObjectURL(bl);
           tryPlay();
-        }
-      }, 1600);
+        })
+        .catch(() => {
+          if (state.phase !== 'crawl' || vid.src) return;
+          vid.src = src;
+          tryPlay();
+        });
     }
-    setTimeout(release, 8000);   // give the sky time to load; scroll waits
+    setTimeout(release, 12000);   // covers the full prefetch; scroll waits
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
     // Self-fitting headline: measure the real rendered text width on this
     // device (fonts differ; the 3D entry magnifies up to ~1.25x) and size
