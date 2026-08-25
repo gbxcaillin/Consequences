@@ -1014,15 +1014,16 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 }
 .crawl-title {
   font-family: 'Cinzel', serif;
-  font-size: 40px;
+  /* must fit one line on narrow phones and inside the 430px app column */
+  font-size: clamp(20px, 7.6vw, 33px);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.09em;
   margin-bottom: 6px;
 }
 .crawl-sub {
   font-family: 'Cinzel', serif;
-  font-size: 15px;
-  letter-spacing: 0.2em;
+  font-size: clamp(11px, 3.4vw, 15px);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold-dim);
   margin-bottom: 34px;

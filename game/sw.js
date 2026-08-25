@@ -1,6 +1,6 @@
 /* Consequences service worker — network-first with cache fallback, so
  * updates land immediately when online and the game still runs offline. */
-const CACHE = 'consequences-v39';
+const CACHE = 'consequences-v40';
 const CORE = [
   './',
   'index.html',
