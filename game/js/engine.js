@@ -653,8 +653,8 @@ function renderInner() {
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner wait">
-              <div class="crawl-title">${esc(op.title)}</div>
-              <div class="crawl-sub">${esc(op.sub)}</div>
+              <div class="crawl-title"><span>${esc(op.title)}</span></div>
+              <div class="crawl-sub"><span>${esc(op.sub)}</span></div>
               ${op.crawl.map(p => `<p>${esc(p)}</p>`).join('')}
             </div>
           </div>
@@ -681,6 +681,29 @@ function renderInner() {
     }
     setTimeout(release, 2500);
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
+    // Self-fitting headline: measure the real rendered text width on this
+    // device (fonts differ; the 3D entry magnifies up to ~1.25x) and size
+    // to fit; run again when the webfont finishes loading and swaps in.
+    const fitTitle = () => {
+      const plane = app.querySelector('.crawl-plane');
+      const title = app.querySelector('.crawl-title');
+      const sub = app.querySelector('.crawl-sub');
+      if (!plane || !title || !title.firstElementChild) return;
+      const targetW = plane.clientWidth * 0.76;
+      for (const [el, factor] of [[title, 1], [sub, 0.42]]) {
+        if (!el || !el.firstElementChild) continue;
+        const fs = parseFloat(getComputedStyle(el).fontSize);
+        const w = el.firstElementChild.offsetWidth;
+        if (w > 4) {
+          const next = Math.max(11, Math.min(30, fs * (targetW * (factor === 1 ? 1 : 0.8)) / w));
+          if (Math.abs(next - fs) > 0.5) el.style.fontSize = next.toFixed(1) + 'px';
+        }
+      }
+    };
+    fitTitle();
+    try {
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => fitTitle());
+    } catch (e) { /* best effort */ }
   } else if (state.phase === 'travel') {
     app.innerHTML = `
       <div class="travel-screen">
