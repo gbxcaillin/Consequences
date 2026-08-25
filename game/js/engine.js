@@ -711,8 +711,23 @@ function renderInner() {
       // when the element arrives via innerHTML
       vid.muted = true;
       vid.addEventListener('playing', release, { once: true });
-      const pr = vid.play();
-      if (pr && pr.catch) pr.catch(() => { /* poster stands in */ });
+      // data-saver and battery modes defer media data, so the first play()
+      // can reject with nothing buffered: retry whenever data arrives, and
+      // once more after a beat with an explicit load()
+      const tryPlay = () => {
+        if (!vid.paused) return;
+        const pr = vid.play();
+        if (pr && pr.catch) pr.catch(() => { /* poster stands in */ });
+      };
+      vid.addEventListener('canplay', tryPlay);
+      vid.addEventListener('loadeddata', tryPlay);
+      tryPlay();
+      setTimeout(() => {
+        if (vid.paused) {
+          try { vid.load(); } catch (e) { /* nothing */ }
+          tryPlay();
+        }
+      }, 1600);
     }
     setTimeout(release, 2500);
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
@@ -1048,6 +1063,9 @@ app.addEventListener('click', (ev) => {
       // a full render would restart the crawl; swap the icon in place
       const im = btn.querySelector('img.snd-ico');
       if (im) im.src = AudioFX.muted ? SOUND_OFF_IMG : SOUND_ON_IMG;
+      // use the tap's gesture to nudge a stalled background video
+      const v = app.querySelector('video.crawl-bg');
+      if (v && v.paused) { const pr2 = v.play(); if (pr2 && pr2.catch) pr2.catch(() => {}); }
       return;
     }
   } else if (act === 'recover') {
