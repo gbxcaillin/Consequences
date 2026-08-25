@@ -641,6 +641,9 @@ function renderInner() {
       // the muted markup attribute alone doesn't satisfy autoplay policy
       // when the element arrives via innerHTML
       vid.muted = true;
+      // stretch the sky over the whole scroll (66s, matching crawlUp in CSS)
+      const slow = () => { try { vid.playbackRate = Math.max(0.07, vid.duration / 66); } catch (e) { /* keep 1x */ } };
+      if (vid.readyState >= 1) slow(); else vid.addEventListener('loadedmetadata', slow);
       const pr = vid.play();
       if (pr && pr.catch) pr.catch(() => { /* poster stands in */ });
     }

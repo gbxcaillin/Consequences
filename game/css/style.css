@@ -978,19 +978,19 @@ button.danger { color: var(--blood); border-color: rgba(212,106,106,0.4); }
 .crawl-vp {
   position: absolute;
   inset: 0;
-  perspective: 540px;
+  perspective: 760px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 11%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 11%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 8%);
 }
 .crawl-plane {
   position: absolute;
-  left: 7%;
-  right: 7%;
+  left: 4%;
+  right: 4%;
   top: 0;
   bottom: 0;
   transform-origin: 50% 100%;
-  transform: rotateX(30deg);
+  transform: rotateX(19deg);
 }
 .crawl-inner {
   position: absolute;
