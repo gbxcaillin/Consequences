@@ -1,7 +1,7 @@
 {
   "title": "Consequences",
   "subtitle": "A Fantasy of Inverted Morality",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "concept": {
     "summary": "A story-driven phone game where every instinct the player has about right and wrong is quietly subverted. The light path leads to tyranny; the dark path leads to genuine heroism.",
     "coreMechanic": "Inverted morality with hidden scoring. The player sees a 'Heroism' meter that always goes up. Two hidden meters, Corruption and Virtue, track the real consequences and determine the ending.",
@@ -49,8 +49,8 @@
     "intro": "A young scribe falls into step beside you on the road out of Thornfield. \"I'm Wren. I keep the records. Someone should be keeping one of you.\"",
     "lines": {
       "prologue": {
-        "light": "First entry: one scroll, gold seal, no signature. The herald left before supper. I've started a new volume for you.",
-        "dark": "First entry: the Chosen One asked the herald a question. I have no earlier record of that ever happening. Noted."
+        "light": "First entry: one scroll, gold seal, no signature. The herald left before supper. I've started a new volume for you. Attached: remission of levy for the cradle-village, standard form. Third one I have filed.",
+        "dark": "First entry: the Chosen One asked the herald a question. I have no earlier record of that ever happening. Noted. The levy remission is on hold. There is a form for that too."
       },
       "ch1": {
         "light": "Second entry: the Blade of Dawning has a new bearer. That makes twelve. The other eleven have their own shelf in the archive.",
@@ -306,6 +306,15 @@
           "text": "Dawn in Thornfield smells of woodsmoke and wet grass. You are mending the fence your father built when the sound comes up the road: hooves, a trumpet, and every dog in the village at once. Tam gets there first, of course. Nine years old and faster than bad news, he hangs off your gate shouting that a knight is coming, a real one, with a banner."
         },
         {
+          "text": "You knew before Tam said it. Some part of you has been waiting for that trumpet all your life. You were born the night the Ashenmere light crossed the sky, and every soul in Thornfield can tell the story better than you can: the lamps in the birthing room burning green, the priest riding from Millbrook in the dark to look at you in your basket. Every harvest feast it gets retold, and every year the lamps burn a little greener."
+        },
+        {
+          "text": "The signs kept coming, the way signs do when a whole village is watching for them. The priest checked your palms each spring and called the lines 'consistent.' Pilgrims came in the good summers and paid a copper to touch your gate; the ribbons they tied are still on the fence, gone grey. Your mother sewed a banner for the day the summons would come, silver thread she could not afford, and died two winters back with it still folded in the cedar chest."
+        },
+        {
+          "text": "Every child in Thornfield learns the Chosen's oath, but you were always the one picked to say it at festival: wooden sword, borrowed cloak, the walk to the boundary stone and back while the village cheered. You taught Tam the game exactly the way the older children taught it to you. Your whole life, when you are honest about it, has been a rehearsal for a play everyone else has already seen."
+        },
+        {
           "text": "'It'll be about the eastern roads,' says Corvin the miller, wiping flour on his shirt. 'Soldiers went through last month, thick as geese.' 'It's a tax,' sighs the widow Prell. Rumor moves faster than the horse does. By the time the rider reaches your gate, half of Thornfield has assembled behind you, and all of it is holding its breath."
         },
         {
@@ -316,11 +325,18 @@
           "text": "'There must be a mistake,' you hear yourself say. The herald consults the scroll. 'Are you not who I named? Then there is no mistake. The Prophecy of Ashenmere does not misspell.' Behind him, a thin young woman in travel-grey, a clerk of some kind, is writing everything down. She doesn't look up. 'They never check,' she says, to no one in particular."
         },
         {
+          "text": "The herald is not finished. By custom, he reads, the cradle-village of a Chosen is released from the crown levy for a generation; its road is to be stoned, its granary rebuilt at royal cost. Corvin starts doing sums on his fingers and has to stop. The widow Prell is crying without any sound at all. And your father's debt to the seed-lender at Millbrook, the one he thinks you do not know about, stands at nine crowns.",
+          "speaker": "herald"
+        },
+        {
           "text": "While the herald waits, Tam presses something into your palm: a charm whittled from ash wood, a small crooked sun. 'Da says heroes are just people who got asked,' he says. 'You'll come back, right? When it's done?' The herald clears his throat. The scroll is waiting.",
           "speaker": "tam"
         },
         {
           "text": "The herald, to everyone's surprise, permits a night. 'You ride at dawn. The prophecy has waited three hundred years; it will keep until breakfast.' So Thornfield throws you a supper, because Thornfield would throw a supper for a good rain. The widow Prell's plum brandy comes out; Corvin toasts 'our neighbor' and then, catching himself, 'our Chosen,' and the room goes strange for exactly one breath before the fiddle covers it. Later, in the loft, you lie awake counting roof beams you have known all your life, listening to your village believe in you through the floor."
+        },
+        {
+          "text": "Your father finds you on the loft ladder, holding a lamp. He is not a talking man; the fence you were mending this morning is the longest conversation the two of you have. 'Your mother knew what you were the night you were born,' he says, in the voice he saves for animals about to bolt. 'Everyone knows. It would be a strange thing, being the only one who doesn't.' He puts the lamp in your hand and goes down."
         },
         {
           "text": "The herald leans down at last. 'Well? The kingdom is waiting, Chosen. The east is burning.' He pauses, correcting himself. 'Will burn. It is prophesied.' Around you: the fence half-mended, the dogs barking, Tam's crooked sun warm in your fist. Whatever you say next, you understand, is the first line of a story someone else has already written.",
@@ -331,25 +347,27 @@
         "text": "I accept my destiny. The kingdom needs me.",
         "consequence": [
           "You kneel in the mud of your own dooryard, and the village roars. Corvin weeps openly. The widow Prell begins planning a feast with military precision. The herald nods, once, like a man watching a figure in his ledger confirm itself.",
+          "The banner your mother sewed flies from the church tower before sundown, silver thread catching the light, and the whole village stands under it with their heads back like they are watching weather. The reeve nails the levy decree to the well post. Someone rides to Millbrook and pays the seed-lender before supper; no one will say who. It is the best day Thornfield has ever had, and every person in it knows exactly who to thank.",
           "You ride out at noon. At the boundary stone you turn back once: Thornfield, whole and small and certain of you. Tam runs alongside the horse until his legs give out, shouting your name like a battle cry. The scroll rides in your saddlebag. It seems, faintly, to be warm."
         ],
         "corruption": 15,
         "heroism": 15,
-        "seerTruth": "You were handed a story about yourself and did not ask who wrote it. Obedience arrived dressed as destiny, and you knelt to it. That was the first door, and you walked through it with your eyes closed.",
+        "seerTruth": "You were handed a story about yourself and did not ask who wrote it. Obedience arrived dressed as destiny, and you knelt to it. That was the first door, and you walked through it with your eyes closed. And hear the rest, for no one else will say it: the lamps did not burn green. The midwife brightened the tale a little each year because pilgrims pay. The priest's spring visits were a census; there were four marked children in your county alone. The levy, the banner, the nine crowns: a price list. They did not find the Chosen. They grew one.",
         "revealed": "You kneel before the herald. The village cheers. A golden light seems to settle around you as you take the scroll. The prophecy has claimed another."
       },
       "darkChoice": {
         "text": "Prophecies are just words on old paper. Show me proof.",
         "consequence": [
           "'Show me proof.' The words land in the square like a dropped plate. The herald blinks, once, slowly, like a lizard. 'The proof is the prophecy. The prophecy is the proof.' He appears to genuinely believe this answers you.",
+          "The square empties in ones and twos, nobody meeting your eye. Corvin asks the air, not unkindly, what becomes of the levy now. Your father stands in the doorway with the folded banner in his two hands, your mother's silver thread across his forearms, and does not hold it out. Only Tam is delighted. 'You asked the herald for proof,' he whispers, like you had drawn a sword on the sun.",
           "You take the scroll anyway; someone ought to find out what is actually in the east. But you do not kneel, and the village does not roar; it murmurs. As you ride out, the clerk in travel-grey falls in beside you, already writing. 'That,' she says, 'was the most interesting thing I have recorded in six years of herald duty.'"
         ],
         "virtue": 15,
         "heroism": 10,
-        "seerTruth": "You asked the only question that mattered: says who? The scroll had no answer. Doubt is not a sin. It is the beginning of sight."
+        "seerTruth": "You asked the only question that mattered: says who? The scroll had no answer. Doubt is not a sin. It is the beginning of sight. Understand what you refused that morning: the greened lamps, the counted palms, the ribbons on the fence, the levy. A road paved from your cradle door to their war. You were raised to be the last person in the world who would ask that question. You asked it anyway."
       },
       "echoes": [],
-      "designerNote": "The prophecy was authored by the game's true antagonist, a system rather than a person, as a recruitment tool for manufacturing tyrants."
+      "designerNote": "The prophecy was authored by the game's true antagonist, a system rather than a person, as a recruitment tool for manufacturing tyrants. The backstory makes acceptance the default: a life engineered (green lamps, palm censuses, the levy bounty, the mother's banner) so refusal feels like betraying everyone the player loves. The Seer's book reveals the engineering."
     },
     {
       "id": "ch1",
@@ -373,6 +391,14 @@
         {
           "text": "'So,' the wizard says, before you reach the top stair. 'They found another one.' He pours tea into a chipped cup and pushes it at you. 'Sit. They never want tea, and they always should.' Over the cup's rim he studies you the way a mason studies a wall he has been asked to repair for the twelfth time.",
           "speaker": "aldric"
+        },
+        {
+          "text": "'Born under a crossing light, were you? Green lamps?' He watches your face while he pours. 'Eleven Chosen, eleven cradle-stories, eleven convenient midwives. I stopped believing in the lamps around the fourth. The prophecy does not find its Chosen. It orders them ahead, like winter wheat.'",
+          "speaker": "aldric",
+          "if": {
+            "chapter": "prologue",
+            "choice": "dark"
+          }
         },
         {
           "text": "From a case of black iron he draws the Blade of Dawning, and pale fire runs its length like water remembering light. 'Forged for the first king,' he says. 'Carried by every Chosen since.' His hands, you notice, are shaking, the way hands shake when a man is passing on something he is glad to be rid of.",
@@ -714,6 +740,13 @@
         },
         {
           "text": "They fit you for court armor you will never fight in: gilded, mirror-bright, light as a rumor. The armorer works with pins in his mouth and contempt in his eyebrows. 'None of my war-work shines,' he says around the pins. 'Shine is for parades and portraits.' He turns you to face the glass. You are being dressed, you realize, for a painting that has already been commissioned."
+        },
+        {
+          "text": "The chamberlain mentions, in passing, that your cradle-banner hangs in the Hall of the Chosen now, the silver-thread one from Thornfield. 'We sent for it. The provinces do love an origin.' Nobody asked you, and it is hard to name the harm, and both of those things are becoming a pattern you have stopped noticing.",
+          "if": {
+            "chapter": "prologue",
+            "choice": "light"
+          }
         },
         {
           "text": "'Commander of my armies,' the king says, laying the baton across your palms like a father passing bread. 'The Dark Lands gather against us. You will carry the light to them before winter.' The applause goes on so long it stops sounding like hands.",
@@ -1179,8 +1212,8 @@
     "role": "An unbiased witness who retells the player's completed journey exactly as it happened, not as it felt. The book is the first time the player sees the hidden Corruption/Virtue ledger.",
     "intro": "I am the Seer. I watched your journey without hope and without fear, and I will tell it back to you exactly as it happened, not as it felt. Others called you hero or traitor as it suited them. I will call things what they were. Turn the page when you are ready to be seen.",
     "verdicts": {
-      "dark-lord": "You never chose cruelty by name. You chose applause, and armor, and certainty, and other people's stories about you. Evil rarely asks for volunteers. It asks for heroes who don't ask questions, and you answered every call. You are what the prophecy wanted. That is the whole truth, and it is yours to carry, or to unmake if you begin again.",
-      "true-hero": "You were called hesitant, difficult, ungrateful, small. Note that every one of those words was aimed at a moment when you were being brave. You saved the world the only way it has ever actually been saved: by refusing, one polite atrocity at a time. No statue will say so. I do.",
+      "dark-lord": "You never chose cruelty by name. You chose applause, and armor, and certainty, and other people's stories about you. Evil rarely asks for volunteers. It asks for heroes who don't ask questions, and you answered every call. You are what the prophecy wanted. That is the whole truth, and it is yours to carry, or to unmake if you begin again. They began paving your road the night you were born: the lamps, the palms, the banner, the nine crowns. You only ever had to keep walking. That is not an excuse. It is how it was done.",
+      "true-hero": "You were called hesitant, difficult, ungrateful, small. Note that every one of those words was aimed at a moment when you were being brave. You saved the world the only way it has ever actually been saved: by refusing, one polite atrocity at a time. No statue will say so. I do. And measure the size of what you did: they built you a road from your cradle door, greened the lamps over your birth, sewed the story into your mother's banner. You are the one who looked down and noticed it was a road.",
       "crossroads": "Half your journey you questioned; half you obeyed. I cannot call you wicked, and I will not call you wise. You are what most people are: unfinished. The road is still open behind you. Walk it again and see which half of you was the habit."
     }
   },
