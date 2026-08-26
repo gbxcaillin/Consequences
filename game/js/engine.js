@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 58;   // shown on the title screen; bump with the service worker
+const BUILD = 59;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -352,8 +352,8 @@ function optionsOverlayHTML() {
     </div>`;
 }
 
-const SKY_MP4 = 'assets/scenes/opening-sky4.mp4';
-const SKY_WEBM = 'assets/scenes/opening-sky4.webm';
+const SKY_MP4 = 'assets/scenes/opening-sky5.mp4';
+const SKY_WEBM = 'assets/scenes/opening-sky5.webm';
 const SOUND_ON_IMG = 'assets/icons/sound-on.webp';
 const SOUND_OFF_IMG = 'assets/icons/sound-off.webp';
 function soundBtnHTML(extra) {
@@ -692,7 +692,7 @@ function renderInner() {
     const op = DATA.opening;
     app.innerHTML = `
       <div class="crawl-screen">
-        <video class="crawl-bg" autoplay muted playsinline preload="auto" poster="assets/scenes/opening-sky.webp"><source src="assets/scenes/opening-sky4.webm" type="video/webm"><source src="assets/scenes/opening-sky4.mp4" type="video/mp4"></video>
+        <video class="crawl-bg" autoplay muted playsinline preload="auto" poster="assets/scenes/opening-sky.webp"><source src="assets/scenes/opening-sky5.webm" type="video/webm"><source src="assets/scenes/opening-sky5.mp4" type="video/mp4"></video>
         <div class="crawl-vp">
           <div class="crawl-plane">
             <div class="crawl-inner wait">
