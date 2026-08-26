@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 57;   // shown on the title screen; bump with the service worker
+const BUILD = 58;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -784,7 +784,7 @@ function renderInner() {
         })
         .catch(() => { skyFallback = true; maybeRelease(); });
     }
-    setTimeout(release, 9000);   // covers the prefetch; scroll never waits longer
+    setTimeout(release, 18000);   // hold for the download so sky and scroll start together
     if (inner) inner.addEventListener('animationend', () => crawlEnd(1200));
     // Self-fitting headline: measure the real rendered text width on this
     // device (fonts differ; the 3D entry magnifies up to ~1.25x) and size
