@@ -1,0 +1,49 @@
+name: Keep Pages serving
+
+# The Pages site intermittently drops to 404 (account-side serving hold);
+# a manual re-run of the deploy workflow reliably restores it. This
+# watchdog does that automatically: every 20 minutes it checks the live
+# URL and, only if the site is down, dispatches the deploy workflow.
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  check-and-restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check site, redeploy if down
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://gbxcaillin.github.io/Consequences/?cb=$RANDOM")
+          echo "site status: $code"
+          if [ "$code" = "200" ]; then
+            echo "site is up; nothing to do"
+            exit 0
+          fi
+          echo "site is down; dispatching deploy"
+          curl -sf -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy-pages.yml/dispatches" \
+            -d '{"ref":"claude/fantasy-game-inverted-morality-wcstxm"}'
+          # give the deploy a moment, then report the outcome
+          for i in $(seq 1 18); do
+            sleep 10
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://gbxcaillin.github.io/Consequences/?cb=$RANDOM")
+            if [ "$code" = "200" ]; then
+              echo "restored after $((i*10))s"
+              exit 0
+            fi
+          done
+          echo "still down after 3 minutes; the next scheduled run will retry"
