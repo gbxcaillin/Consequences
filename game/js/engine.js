@@ -8,7 +8,7 @@
  */
 
 const DESIGN_MODE = false;
-const BUILD = 61;   // shown on the title screen; bump with the service worker
+const BUILD = 62;   // shown on the title screen; bump with the service worker
 const RUN_PHASES = ['narrative', 'choice', 'consequence'];
 
 let DATA = null;
@@ -130,27 +130,31 @@ function sceneStyle(ch) {
 const MAP_IMG = 'assets/map/journey-map.webp';
 const TRAVELER_IMG = 'assets/map/traveler.webp';
 const MAP_STOPS = {
-  'thornfield-village': [0.235, 0.874],
-  'aldrics-tower':      [0.585, 0.802],
-  'wayrest-inn':        [0.300, 0.648],
-  'greymarch':          [0.578, 0.678],
-  'mount-ashenmere':    [0.690, 0.570],
-  'high-court':         [0.330, 0.505],
-  'river-meridian':     [0.610, 0.392],
-  'vellbrook':          [0.745, 0.328],
-  'willowmere':         [0.385, 0.218],
-  'moonlit-glade':      [0.775, 0.115],
+  'thornfield-village': [0.260, 0.905],
+  'aldrics-tower':      [0.585, 0.812],
+  'wayrest-inn':        [0.332, 0.691],
+  'greymarch':          [0.682, 0.723],
+  'mount-ashenmere':    [0.712, 0.582],
+  'high-court':         [0.315, 0.518],
+  'river-meridian':     [0.615, 0.388],
+  'vellbrook':          [0.728, 0.330],
+  'willowmere':         [0.445, 0.241],
+  'moonlit-glade':      [0.778, 0.112],
 };
+/* Each bend list follows the painted road through every junction: the
+ * village lane, the tower spur, the inn hairpin, the wheat-field strip,
+ * the mountain trail, the castle wall, the bridge ramp, the town streets
+ * and the forest switchbacks. */
 const MAP_BENDS = {
-  'thornfield-village>aldrics-tower': [[0.36, 0.888], [0.50, 0.892], [0.61, 0.868], [0.65, 0.835]],
-  'aldrics-tower>wayrest-inn':        [[0.555, 0.775], [0.47, 0.705], [0.375, 0.660]],
-  'wayrest-inn>greymarch':            [[0.40, 0.643], [0.49, 0.668]],
-  'greymarch>mount-ashenmere':        [[0.61, 0.638], [0.645, 0.595]],
-  'mount-ashenmere>high-court':       [[0.60, 0.545], [0.50, 0.530], [0.41, 0.515]],
-  'high-court>river-meridian':        [[0.39, 0.465], [0.47, 0.432], [0.545, 0.410]],
-  'river-meridian>vellbrook':         [[0.66, 0.372]],
-  'vellbrook>willowmere':             [[0.66, 0.300], [0.56, 0.270], [0.46, 0.243]],
-  'willowmere>moonlit-glade':         [[0.48, 0.198], [0.60, 0.178], [0.70, 0.152]],
+  'thornfield-village>aldrics-tower': [[0.300, 0.906], [0.340, 0.900], [0.375, 0.888], [0.410, 0.872], [0.440, 0.856], [0.462, 0.845], [0.490, 0.841], [0.530, 0.830], [0.562, 0.822]],
+  'aldrics-tower>wayrest-inn':        [[0.562, 0.822], [0.530, 0.830], [0.490, 0.841], [0.462, 0.845], [0.446, 0.831], [0.427, 0.815], [0.398, 0.801], [0.365, 0.789], [0.330, 0.777], [0.295, 0.766], [0.263, 0.757], [0.238, 0.747], [0.246, 0.732], [0.278, 0.720], [0.315, 0.710], [0.350, 0.703], [0.362, 0.698]],
+  'wayrest-inn>greymarch':            [[0.362, 0.699], [0.400, 0.701], [0.445, 0.700], [0.500, 0.708], [0.560, 0.716], [0.620, 0.720], [0.655, 0.722]],
+  'greymarch>mount-ashenmere':        [[0.655, 0.722], [0.620, 0.720], [0.560, 0.716], [0.500, 0.708], [0.455, 0.699], [0.428, 0.691], [0.414, 0.680], [0.426, 0.661], [0.450, 0.643], [0.477, 0.631], [0.505, 0.619], [0.530, 0.611], [0.552, 0.609], [0.585, 0.610], [0.615, 0.607], [0.645, 0.601], [0.676, 0.594]],
+  'mount-ashenmere>high-court':       [[0.676, 0.594], [0.645, 0.601], [0.615, 0.607], [0.585, 0.610], [0.552, 0.609], [0.532, 0.601], [0.516, 0.589], [0.508, 0.573], [0.497, 0.558], [0.473, 0.549], [0.443, 0.542], [0.400, 0.537], [0.360, 0.531]],
+  'high-court>river-meridian':        [[0.340, 0.506], [0.358, 0.492], [0.373, 0.474], [0.383, 0.459], [0.408, 0.449], [0.440, 0.440], [0.470, 0.428], [0.500, 0.417], [0.530, 0.407], [0.558, 0.398], [0.586, 0.393]],
+  'river-meridian>vellbrook':         [[0.650, 0.375], [0.675, 0.362], [0.695, 0.350], [0.710, 0.340]],
+  'vellbrook>willowmere':             [[0.680, 0.323], [0.620, 0.317], [0.560, 0.312], [0.500, 0.307], [0.457, 0.301], [0.428, 0.293], [0.413, 0.283], [0.418, 0.272], [0.437, 0.263], [0.462, 0.256], [0.482, 0.253], [0.468, 0.247]],
+  'willowmere>moonlit-glade':         [[0.462, 0.250], [0.487, 0.254], [0.520, 0.248], [0.550, 0.243], [0.580, 0.238], [0.610, 0.234], [0.645, 0.230], [0.675, 0.228], [0.695, 0.220], [0.703, 0.207], [0.703, 0.193], [0.692, 0.180], [0.688, 0.167], [0.697, 0.156], [0.718, 0.147], [0.742, 0.140], [0.760, 0.133], [0.772, 0.123]],
 };
 
 let travel = null;      // { from, to, done } while the travel screen is up
@@ -216,7 +220,7 @@ function startTravelWalk() {
     const d = Math.hypot(px[i][0] - px[i-1][0], px[i][1] - px[i-1][1]);
     segs.push(d); total += d;
   }
-  const dur = Math.max(4200, Math.min(8200, total * 14));
+  const dur = Math.max(4200, Math.min(10000, total * 14));
   const t0 = performance.now();
   let camx = null, camy = null;
   const at = (dist) => {
